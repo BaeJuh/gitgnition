@@ -18,5 +18,8 @@ git pull origin main          # 5️⃣ 다시 최신화
 git merge branch          # 6️⃣ 병합
 
 **(branch 삭제)**
+git branch -d branch
 
 git push origin main          # 7️⃣ 최종 push
+
+### github 내에서 merge, branch delete 권장
