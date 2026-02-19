@@ -1,0 +1,141 @@
+{
+  "custom": {
+    "dashboard": "",
+    "gpsUrl": ""
+  },
+  "params": {
+    "dashboard": ""
+  },
+  "propConfig": {
+    "custom.dashboard": {
+      "binding": {
+        "config": {
+          "path": "page.props.path"
+        },
+        "transforms": [
+          {
+            "code": "\tdashboard \u003d self.params.dashboard\n\t\n\ttry:\n\t\tpaths \u003d value.split(\"/\")\n\t\tdashboard \u003d paths[-1]\n\texcept:\n\t\tpass\n\t\n\tself.session.custom.dashboard.options.url \u003d dashboard \n\treturn dashboard",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.gpsUrl": {
+      "binding": {
+        "config": {
+          "path": "session.custom.dashboard.options.gpsUrl"
+        },
+        "type": "property"
+      },
+      "onChange": {
+        "enabled": null,
+        "script": "\tif currentValue.value !\u003d None and len(currentValue.value):\n\t\tsystem.perspective.navigate(page\u003d\"/dashboard/%s\" % currentValue.value)"
+      },
+      "persistent": true
+    },
+    "params.dashboard": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.feature": {
+      "paramDirection": "input"
+    },
+    "params.tier1": {
+      "paramDirection": "input"
+    },
+    "params.tier2": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 860
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Status"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "path": "Page/Configuration/Status",
+          "style": {
+            "classes": "Page"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "EmbeddedView"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "custom.configuration": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.sizes"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn dashboard.getBreakpointConfiguration(value)",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.widgets"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn len(value) \u003e 0",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.params": {
+            "binding": {
+              "config": {
+                "path": "this.custom.configuration.viewParams"
+              },
+              "type": "property"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "this.custom.configuration.viewPath"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Page1"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

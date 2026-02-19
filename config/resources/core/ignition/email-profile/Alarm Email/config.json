@@ -1,0 +1,29 @@
+{
+  "profile": {
+    "type": "smtp.classic"
+  },
+  "settings": {
+    "advanced": {
+      "debugModeEnabled": true,
+      "smtpTimeout": 10000,
+      "sslProtocols": "TLSv1.2"
+    },
+    "settings": {
+      "hostname": "smtp.gmail.com",
+      "password": {
+        "data": {
+          "ciphertext": "Gc2dRSzgx-pJ9qCzo3ghCWPi",
+          "encrypted_key": "sJTHjXuHkLrCIeoFUH5Vh6EJQbxBrwbeILh0_Z_h4TqH2QfZz4TBiA",
+          "iv": "TcCBDuYJKQq_3mRh",
+          "protected": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIiwiaWF0IjoxNzY4NTQwMDE4LCJ6aXAiOiJERUYifQ",
+          "tag": "giw7-EMx3JHX2YMY3srSXw"
+        },
+        "type": "Embedded"
+      },
+      "port": 587,
+      "startTlsEnabled": true,
+      "useSslPort": false,
+      "username": "ghkslqlsl04@gmail.com"
+    }
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "custom": {
+    "category": "Faces",
+    "search": ""
+  },
+  "params": {
+    "focusDomID": ""
+  },
+  "propConfig": {
+    "custom.category": {
+      "access": "PRIVATE",
+      "onChange": {
+        "enabled": null,
+        "script": "\tsystem.perspective.sendMessage(\u0027focus-search\u0027)"
+      },
+      "persistent": true
+    },
+    "custom.search": {
+      "access": "PRIVATE",
+      "onChange": {
+        "enabled": null,
+        "script": "\tif previousValue is None or previousValue.value \u003d\u003d \u0027\u0027 or currentValue.value \u003d\u003d \u0027\u0027:\n\t\tsystem.perspective.sendMessage(\u0027set-searching\u0027, {\n\t\t\t\u0027searching\u0027: currentValue.value !\u003d \u0027\u0027\n\t\t})"
+      },
+      "persistent": true
+    },
+    "params.focusDomID": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 408,
+      "width": 576
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Category"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.instances": {
+                "binding": {
+                  "config": {
+                    "expression": "runScript(\u0027exchange.markdownPlus.emojis.getCategoryRepeater\u0027, 0, {view.params.focusDomID})"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "elementPosition": {
+                "basis": "auto",
+                "grow": 0,
+                "shrink": 0
+              },
+              "elementStyle": {
+                "paddingTop": 2,
+                "position": "relative",
+                "top": "1px"
+              },
+              "path": "Exchange/MarkdownPlus/Embedded/EmojiIcon",
+              "style": {
+                "gap": 1,
+                "overflow": "visible"
+              },
+              "useDefaultViewHeight": false,
+              "useDefaultViewWidth": false
+            },
+            "type": "ia.display.flex-repeater"
+          },
+          {
+            "events": {
+              "dom": {
+                "onKeyDown": {
+                  "config": {
+                    "script": "\tif event.key \u003d\u003d \u0027Escape\u0027:\n\t\tsystem.perspective.closePopup(\u0027Emojis\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              },
+              "system": {
+                "onStartup": {
+                  "config": {
+                    "script": "\timport time\n\t\n\ttime.sleep(0.2)\n\tself.focus()\n"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Search"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.custom.search"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "deferUpdates": false,
+              "placeholder": "Search...",
+              "spellcheck": false,
+              "style": {
+                "margin": 2
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "focus-search",
+                  "pageScope": true,
+                  "script": "\timport time\n\t\n\ttime.sleep(0.2)\n\tself.focus()",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "Categories"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "#F4F4F4",
+            "borderBottomColor": "#F0F0F0",
+            "borderBottomStyle": "solid",
+            "borderBottomWidth": 1,
+            "overflow": "visible",
+            "paddingLeft": 1
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Palette"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "persistent": true
+          },
+          "props.instances": {
+            "binding": {
+              "config": {
+                "expression": "if({view.custom.search} \u003d \u0027\u0027,\r\n\trunScript(\u0027exchange.markdownPlus.emojis.getPaletteCategoryRepeater\u0027, 0, {view.params.focusDomID}, {view.custom.category}),\r\n\trunScript(\u0027exchange.markdownPlus.emojis.getPaletteSearchRepeater\u0027, 0, {view.params.focusDomID}, {view.custom.search})\r\n)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "alignContent": "flex-start",
+          "alignItems": "flex-start",
+          "elementPosition": {
+            "basis": "auto",
+            "grow": 0,
+            "shrink": 0
+          },
+          "elementStyle": {
+            "overflow": "visible"
+          },
+          "path": "Exchange/MarkdownPlus/Embedded/EmojiIcon",
+          "style": {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#AAAAAA",
+            "borderStyle": "none",
+            "borderWidth": 1,
+            "classes": "exchange/markdown-plus/input",
+            "gap": 1
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onKeyDown": {
+          "config": {
+            "script": "\tif event.key \u003d\u003d \u0027Escape\u0027:\n\t\tsystem.perspective.closePopup(\u0027Emojis\u0027)"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      },
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\tself.focus()"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "borderColor": "#AAAAAA",
+        "borderStyle": "solid",
+        "borderWidth": 1
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "set-category",
+          "pageScope": true,
+          "script": "\tself.view.custom.category \u003d payload[\u0027category\u0027]",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

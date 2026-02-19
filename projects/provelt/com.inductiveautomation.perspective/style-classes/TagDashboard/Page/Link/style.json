@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "color": "var(--callToAction)",
+      "cursor": "pointer",
+      "fontSize": "12px"
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "custom": {},
+  "params": {
+    "configuration": {},
+    "value": null
+  },
+  "propConfig": {
+    "params.configuration": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 32,
+      "width": 297
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Field"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.format": {
+            "binding": {
+              "config": {
+                "path": "view.params.configuration"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn dashboard.getConfiguration(value, \"format\", \"lll\")",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.locale": {
+            "binding": {
+              "config": {
+                "path": "view.params.configuration"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn dashboard.getConfiguration(value, \"locale\", \"en\")",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.pickerType": {
+            "binding": {
+              "config": {
+                "path": "view.params.configuration"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn dashboard.getConfiguration(value, \"pickerType\", \"datetime\")",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.placeholder": {
+            "binding": {
+              "config": {
+                "path": "view.params.configuration"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn dashboard.getConfiguration(value, \"placeholder\", \"\")",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "view.params.value"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "formattedValues": {
+            "date": "Aug 1, 2019",
+            "datetime": "Aug 1, 2019 3:47 PM",
+            "time": "3:47 PM"
+          },
+          "style": {
+            "classes": "Form/Field"
+          }
+        },
+        "type": "ia.input.date-time-input"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

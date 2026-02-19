@@ -1,0 +1,17 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "code.py"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "2588",
+      "timestamp": "2025-10-20T14:13:55Z"
+    },
+    "hintScope": 2,
+    "lastModificationSignature": "7b1a63db57ea2feb66267d91bdbbd080ba5c19db11b6cc70fe903ef6d7e126ea"
+  }
+}

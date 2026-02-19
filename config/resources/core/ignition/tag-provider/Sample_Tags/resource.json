@@ -1,0 +1,19 @@
+{
+  "scope": "A",
+  "description": "Sample tags for the Quick Start project",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "jhbae@orcait.net",
+      "timestamp": "2026-01-14T23:44:38Z"
+    },
+    "uuid": "3c9729c1-1d76-41c8-8a0d-883c72a26fbf",
+    "lastModificationSignature": "cbd6e551abb24abffe120d3d819319e3419c774de134bf8eff3e301bdeb7f96f",
+    "enabled": false
+  }
+}

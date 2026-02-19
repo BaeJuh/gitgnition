@@ -1,0 +1,14 @@
+{
+  "scope": "A",
+  "description": "알람 데이터 저장 ",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {
+    "uuid": "976a355a-3501-4ab1-8907-f128a7e5e2d5",
+    "enabled": true
+  }
+}

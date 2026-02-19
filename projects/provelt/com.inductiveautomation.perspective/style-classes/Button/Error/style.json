@@ -1,0 +1,17 @@
+{
+  "base": {
+    "style": {
+      "backgroundImage": "linear-gradient(180deg, #E74E67 0%, #E83A56 100%)",
+      "borderColor": "#E83A56",
+      "borderStyle": "solid",
+      "borderWidth": "1px",
+      "borderRadius": "4px",
+      "color": "#FFFFFF",
+      "fontSize": "14px",
+      "fontWeight": "bold",
+      "lineHeight": "18px",
+      "textTransform": "uppercase",
+      "fill": "#FFFFFF"
+    }
+  }
+}

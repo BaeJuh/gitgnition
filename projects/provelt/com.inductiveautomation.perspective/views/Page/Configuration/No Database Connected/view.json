@@ -1,0 +1,86 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 156,
+      "width": 199
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "50px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/error",
+              "style": {
+                "classes": "Menu/Icon",
+                "marginBottom": "10px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Menu/Text",
+                "textAlign": "center"
+              },
+              "text": "No Database Connected"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_0"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "textAlign": "center"
+              },
+              "text": "Please ensure you have a valid database connection configured in the Gateway and the connection is the default of this project. Once fixed refresh the project for the changes to take affect."
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Group"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginTop": "20px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

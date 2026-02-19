@@ -1,0 +1,18 @@
+{
+  "profile": {
+    "type": "SLC"
+  },
+  "settings": {
+    "advanced": {
+      "browseCacheTimeout": 240000,
+      "disableProcessorBrowse": false,
+      "useZeroTnsConnections": false
+    },
+    "connectivity": {
+      "hostname": "192.168.50.30",
+      "localAddress": "",
+      "path": "1,6,2,1",
+      "timeout": 2000
+    }
+  }
+}

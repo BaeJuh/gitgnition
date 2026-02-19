@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "color": "var(--neutral-80)",
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "fill": "var(--neutral-80)"
+    }
+  }
+}

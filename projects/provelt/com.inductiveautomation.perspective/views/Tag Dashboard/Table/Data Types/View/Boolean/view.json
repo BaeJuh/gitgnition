@@ -1,0 +1,123 @@
+{
+  "custom": {
+    "readOnly": false,
+    "value": false
+  },
+  "params": {
+    "tagPath": "[default]Writeable/WriteableBoolean1"
+  },
+  "propConfig": {
+    "custom.readOnly": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}.ReadOnly"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.value": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 32,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "ToggleSwitch"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.selected": {
+            "binding": {
+              "config": {
+                "path": "view.custom.value"
+              },
+              "type": "property"
+            },
+            "onChange": {
+              "enabled": null,
+              "script": "\tif origin \u003d\u003d \"Browser\":\n\t\tself.props.selected \u003d previousValue.value"
+            }
+          }
+        },
+        "type": "ia.input.toggle-switch"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\ttagPath \u003d self.view.params.tagPath\n\tTagDashboard.editTag(tagPath)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{session.custom.settings.tagEdit} \u0026\u0026 !{view.custom.readOnly}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "material/edit",
+          "style": {
+            "cursor": "pointer",
+            "marginLeft": "5px"
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

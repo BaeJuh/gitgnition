@@ -1,0 +1,211 @@
+{
+  "custom": {
+    "id": "6b02c954-7d97-4c63-b111-57812e83fe5c"
+  },
+  "params": {
+    "configuration": {},
+    "value": "#FF0000"
+  },
+  "propConfig": {
+    "custom.id": {
+      "binding": {
+        "config": {
+          "expression": "now(0)"
+        },
+        "transforms": [
+          {
+            "code": "\tfrom java.util import UUID\n\treturn UUID.randomUUID().toString()",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "params.configuration": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 32,
+      "width": 297
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "20px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderColor": "#D3D3D3",
+                "borderRadius": "32px",
+                "borderStyle": "solid",
+                "borderWidth": "1px",
+                "margin": "6px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Field"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.deferUpdates": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.configuration"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn dashboard.getConfiguration(value, \"deferUpdates\", True)",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.placeholder": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.configuration"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn dashboard.getConfiguration(value, \"placeholder\", \"\")",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.rejectUpdatesWhileFocused": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.configuration"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn dashboard.getConfiguration(value, \"rejectUpdatesWhileFocused\", True)",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Form/Field"
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "messageHandlers": [
+                {
+                  "messageType": "color-selection",
+                  "pageScope": true,
+                  "script": "\tid \u003d self.view.custom.id\n\tif id \u003d\u003d payload[\"id\"]:\n\t\tcolor \u003d payload[\"color\"]\n\t\tself.props.text \u003d color",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "draggable": false,
+                    "id": "color-picker",
+                    "modal": true,
+                    "overlayDismiss": true,
+                    "resizable": true,
+                    "showCloseIcon": true,
+                    "title": "Choose Color",
+                    "type": "open",
+                    "viewParams": {
+                      "color": "{/root/FlexContainer/Field.props.text}",
+                      "id": "{view.custom.id}"
+                    },
+                    "viewPath": "Page/Configuration/Parameter Types/Popups/Color Picker"
+                  },
+                  "scope": "C",
+                  "type": "popup"
+                }
+              }
+            },
+            "meta": {
+              "name": "Search"
+            },
+            "position": {
+              "basis": "24px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/search",
+              "style": {
+                "cursor": "pointer",
+                "marginLeft": "6px"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

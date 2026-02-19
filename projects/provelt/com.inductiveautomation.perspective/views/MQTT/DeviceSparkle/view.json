@@ -1,0 +1,100 @@
+{
+  "custom": {},
+  "params": {
+    "tagPath": "[MQTT Engine]Edge Nodes/Ignition MQTT/IA HQ Edge/Lights"
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 24,
+      "width": 24
+    }
+  },
+  "root": {
+    "events": {
+      "dom": {
+        "onClick": {
+          "config": {
+            "draggable": true,
+            "id": "mqtt-device",
+            "modal": false,
+            "overlayDismiss": false,
+            "resizable": true,
+            "showCloseIcon": true,
+            "title": "MQTT Device Metrics",
+            "type": "open",
+            "viewParams": {
+              "tagPath": "{view.params.tagPath}"
+            },
+            "viewPath": "MQTT/Device",
+            "viewportBound": false
+          },
+          "scope": "C",
+          "type": "popup"
+        }
+      }
+    },
+    "meta": {
+      "name": "root",
+      "tooltip": {
+        "enabled": true
+      }
+    },
+    "propConfig": {
+      "meta.tooltip.text": {
+        "binding": {
+          "config": {
+            "path": "view.params.tagPath"
+          },
+          "type": "property"
+        }
+      },
+      "props.style.backgroundColor": {
+        "binding": {
+          "config": {
+            "fallbackDelay": 2.5,
+            "mode": "indirect",
+            "references": {
+              "tagPath": "{view.params.tagPath}"
+            },
+            "tagPath": "{tagPath}/Device Info/Online"
+          },
+          "transforms": [
+            {
+              "fallback": "#D5D5D5",
+              "inputType": "scalar",
+              "mappings": [
+                {
+                  "input": false,
+                  "output": "#D5D5D5"
+                },
+                {
+                  "input": true,
+                  "output": "#00FF00"
+                }
+              ],
+              "outputType": "color",
+              "type": "map"
+            }
+          ],
+          "type": "tag"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "borderColor": "#D5D5D5",
+        "borderStyle": "outset",
+        "borderWidth": "2px",
+        "cursor": "pointer"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

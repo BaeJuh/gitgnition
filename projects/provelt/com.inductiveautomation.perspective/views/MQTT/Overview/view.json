@@ -1,0 +1,195 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 965,
+      "width": 1165
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Connected Metrics"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 6
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 3
+            }
+          ],
+          "height": 240
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "params": {
+            "path": "MQTT/ConnectedMetrics",
+            "title": "Connected Metrics"
+          },
+          "path": "MQTT/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Connected Devices"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 700
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "params": {
+            "path": "MQTT/ConnectedDevices",
+            "title": "Connected Devices"
+          },
+          "path": "MQTT/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "MQTT Engine Metrics"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 6,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 6
+            },
+            {
+              "colIndex": 3,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 3
+            }
+          ],
+          "height": 240
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "params": {
+            "path": "MQTT/EngineMetrics",
+            "title": "MQTT Engine Metrics"
+          },
+          "path": "MQTT/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "MQTT Servers"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 6,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 6
+            }
+          ],
+          "height": 240
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "params": {
+            "path": "MQTT/Servers",
+            "title": "MQTT Servers"
+          },
+          "path": "MQTT/Card"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "gutters": {
+        "horizontal": 2,
+        "vertical": 2
+      },
+      "style": {
+        "padding": "5px"
+      }
+    },
+    "type": "ia.container.column"
+  }
+}

@@ -1,0 +1,11 @@
+SELECT 
+	nmr.TEMPLATE_DEFINITION
+FROM 
+	{stageDB}.SPARKPLUG_TEMPLATE_INSTANCE_REGISTRY nmr 
+WHERE 
+	nmr.GROUP_ID = :groupId AND 
+	nmr.EDGE_NODE_ID = :edgeNodeId AND 
+	nmr.DEVICE_ID = :deviceId AND 
+	nmr.TEMPLATE_REFERENCE = :dataModel AND 
+	nmr.TEMPLATE_VERSION = :dataModelVersion AND 
+	nmr.TEMPLATE_PATH = :instance

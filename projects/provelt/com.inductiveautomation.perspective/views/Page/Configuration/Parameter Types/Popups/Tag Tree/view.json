@@ -1,0 +1,154 @@
+{
+  "custom": {},
+  "params": {
+    "id": "",
+    "mode": "realtime"
+  },
+  "propConfig": {
+    "params.id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mode": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 476,
+      "width": 250
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onItemClicked": {
+              "config": {
+                "script": "\tmode \u003d self.view.params.mode\n\thasChildren \u003d event.data.hasChildren\n\tif hasChildren:\n\t\tif mode \u003d\u003d \"realtime\":\n\t\t\tret \u003d tags.browseTags(event.data.path)\n\t\telse:\n\t\t\tret \u003d tags.browseHistoryTags(event.data.path)\n\t\titems \u003d self.props\n\t\tfor idx in event.itemPath:\n\t\t\titems \u003d items.items[idx]\n\t\titems.items \u003d ret"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Tree"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.items": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "date": "now(0)",
+                  "mode": "{view.params.mode}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tif value[\"mode\"] \u003d\u003d \"realtime\":\n\t\tret \u003d tags.browseTags()\n\telse:\n\t\tret \u003d tags.browseHistoryTags()\n\treturn ret",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "appearance": {
+            "defaultNodeIcons": {
+              "collapsed": {
+                "color": "#5F707E",
+                "path": "material/folder"
+              },
+              "empty": {
+                "color": "#869DB1",
+                "path": "material/stop"
+              },
+              "expanded": {
+                "color": "#5F707E",
+                "path": "material/folder_open"
+              }
+            },
+            "expandIcons": {
+              "collapsed": {
+                "color": "#869DB1",
+                "path": "material/arrow_right"
+              },
+              "empty": {
+                "color": "#869DB1"
+              },
+              "expanded": {
+                "color": "#869DB1",
+                "path": "material/arrow_drop_down"
+              }
+            }
+          }
+        },
+        "type": "ia.display.tree"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tid \u003d self.view.params.id\n\tpath \u003d self.getSibling(\"Tree\").props.selectionData[0].value.path\n\tsystem.perspective.sendMessage(messageType\u003d\"tag-selection\", payload\u003d{\"id\":id, \"path\":path})\n\tsystem.perspective.closePopup(id\u003d\"tag-tree\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Select"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "path": "../Tree.props.selection"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn len(value) \u003e 0",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/check_circle"
+            }
+          },
+          "style": {
+            "borderRadius": "0px",
+            "classes": "Button/Standard"
+          },
+          "text": "Select"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,748 @@
+{
+  "custom": {
+    "color": "green",
+    "data": [
+      {
+        "aggregate": "Average"
+      }
+    ],
+    "dateRange": {
+      "end": {
+        "$": [
+          "ts",
+          192,
+          1738959973732
+        ],
+        "$ts": 1738959973732
+      },
+      "start": {
+        "$": [
+          "ts",
+          192,
+          1738959973732
+        ],
+        "$ts": 1738931173732
+      }
+    },
+    "stats": {
+      "Avg": 90.1,
+      "Max": 98,
+      "Min": 79.5,
+      "t_stamp": {
+        "$": [
+          "ts",
+          192,
+          1738959973981
+        ],
+        "$ts": 1738959973981
+      }
+    },
+    "statsColors": {
+      "avgColor": "transparent",
+      "maxColor": "transparent",
+      "minColor": "orange"
+    },
+    "value": 94.471
+  },
+  "params": {
+    "color": "blue",
+    "colorRanges": [
+      {
+        "color": "red",
+        "end": 60,
+        "start": 0
+      },
+      {
+        "color": "orange",
+        "end": 85,
+        "start": 60
+      },
+      {
+        "color": "green",
+        "end": 100,
+        "start": 85
+      }
+    ],
+    "dateRange": {
+      "end": "auto",
+      "start": "auto"
+    },
+    "graph": true,
+    "name": "OEE",
+    "path": "[default]OEE Dashboard Example/OEE",
+    "stats": true,
+    "statsMaxColor": false
+  },
+  "propConfig": {
+    "custom.color": {
+      "binding": {
+        "config": {
+          "struct": {
+            "colors": "{view.params.colorRanges}",
+            "percent": "{view.custom.value}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\tcolor \u003d \"blue\"\n\tfor item in value.colors:\n\t\tif value.percent \u003e item.start and value.percent \u003c\u003d item.end:\n\t\t\tcolor \u003d item.color\n\t\t\n\treturn color",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "custom.data": {
+      "persistent": true
+    },
+    "custom.data[0].alias": {
+      "binding": {
+        "config": {
+          "path": "view.params.name"
+        },
+        "type": "property"
+      }
+    },
+    "custom.data[0].path": {
+      "binding": {
+        "config": {
+          "path": "view.params.path"
+        },
+        "type": "property"
+      }
+    },
+    "custom.dateRange": {
+      "binding": {
+        "config": {
+          "struct": {
+            "end": "{view.params.dateRange.end}",
+            "start": "{view.params.dateRange.start}",
+            "update": "now(30000)"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\tstart \u003d \"\"\n\tend \u003d \"\"\n\t\n\tif value.start \u003d\u003d \"auto\" and value.end !\u003d \"auto\":\n\t\tend \u003d value.end\n\t\tstart \u003d system.date.addHours(end, -8)\n\telif value.end \u003d\u003d \"auto\" and value.start !\u003d \"auto\":\n\t\tstart  \u003d  value.start\n\t\tend \u003d system.date.addHours(start, 8)\n\telif value.start \u003d\u003d \"auto\" and value.end \u003d\u003d \"auto\":\n\t\tstart \u003d system.date.addHours(system.date.now(), -8)\n\t\tend \u003d system.date.now()\n\t\n\telse:\n\t\tstart \u003d value.start\n\t\tend \u003d value.end\n\t\n\treturn {\"start\":start, \"end\":end}\n\t",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "custom.stats": {
+      "binding": {
+        "config": {
+          "avoidScanClassValidation": true,
+          "calculations": [
+            "Minimum",
+            "Maximum",
+            "Average"
+          ],
+          "dateRange": {
+            "endDate": "{view.custom.dateRange.end}",
+            "startDate": "{view.custom.dateRange.start}"
+          },
+          "enableValueCache": true,
+          "ignoreBadQuality": false,
+          "preventInterpolation": false,
+          "returnFormat": "Calculations",
+          "tags": "{view.custom.data}",
+          "valueFormat": "DATASET"
+        },
+        "transforms": [
+          {
+            "code": "\tMin \u003d max(0, round(value.getValueAt(0, \"Minimum\")*100,1))\n\tMax \u003d max(0, round(value.getValueAt(0, \"Maximum\")*100,1))\n\tAvg \u003d max(0, round(value.getValueAt(0, \"Average\")*100,1))\n\t\n\treturn {\"Min\": Min, \"Max\": Max, \"Avg\": Avg, \"t_stamp\":system.date.now()}",
+            "type": "script"
+          }
+        ],
+        "type": "tag-history"
+      },
+      "persistent": true
+    },
+    "custom.statsColors": {
+      "binding": {
+        "config": {
+          "struct": {
+            "colors": "{view.params.colorRanges}",
+            "showMaxColor": "{view.params.statsMaxColor}",
+            "stats": "{view.custom.stats}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\tminColor \u003d \"\"\n\tavgColor \u003d \"\"\n\tmaxColor \u003d \"\"\n\t\n\tcurrentMin \u003d 0\n\tcurrentMax \u003d 0\n\tcurrentColor \u003d \"\"\n\t\n\tfor item in value.colors:\n\t\tif item.start \u003e\u003d currentMax:\n\t\t\tcurrentMin \u003d item.start\n\t\t\tcurrentMax \u003d item.end\n\t\t\tcurrentColor \u003d item.color\n\t\t\t\n\t\tif value.stats.Min \u003e item.start and value.stats.Min \u003c\u003d item.end:\n\t\t\tminColor \u003d item.color\n\t\tif value.stats.Avg \u003e item.start and value.stats.Avg \u003c\u003d item.end:\n\t\t\tavgColor \u003d item.color\n\t\tif value.stats.Max \u003e item.start and value.stats.Max \u003c\u003d item.end:\n\t\t\tmaxColor \u003d item.color\n\t\n\tcolors \u003d {\"minColor\":minColor, \"avgColor\":avgColor, \"maxColor\":maxColor}\n\n\tif value.showMaxColor \u003d\u003d False:\n\t\tfor item in colors:\n\t\t\tif colors[item] \u003d\u003d currentColor:\n\t\t\t\tcolors[item] \u003d \"transparent\"\n\t\t\n\t\t\n\treturn colors",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "custom.value": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "path": "{view.params.path}"
+          },
+          "tagPath": "{path}"
+        },
+        "transforms": [
+          {
+            "expression": "round({value}*100,3)",
+            "type": "expression"
+          }
+        ],
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "params.color": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.colorRanges": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.dateRange": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.graph": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.path": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.stats": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.statsMaxColor": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 544,
+      "width": 350
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "30px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.style.backgroundColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.color"
+              },
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.name"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": 24,
+            "fontWeight": "bold",
+            "textAlign": "center"
+          },
+          "textStyle": {
+            "color": "white"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "custom": {
+          "color": "value"
+        },
+        "meta": {
+          "name": "SimpleGauge"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.arc.color": {
+            "binding": {
+              "config": {
+                "path": "view.custom.color"
+              },
+              "type": "property"
+            }
+          },
+          "props.label.color": {
+            "binding": {
+              "config": {
+                "path": "session.props.theme"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value[:5] !\u003d \"light\":\n\t\treturn \"white\"\n\treturn \"\"",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.style.marginBottom": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "graph": "{view.params.graph}",
+                  "stats": "{view.params.stats}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "expression": "if({value}[\u0027graph\u0027] \u0026\u0026 {value}[\u0027stats\u0027], -10, if({value}[\u0027graph\u0027] || {value}[\u0027stats\u0027], -10, 10)) ",
+                  "type": "expression"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "path": "view.custom.value"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "arc": {
+            "width": 30
+          },
+          "arcBackground": {
+            "opacity": 0.3
+          },
+          "endAngle": 405,
+          "label": {
+            "maxDecimal": 1,
+            "offsetY": 12,
+            "size": 22,
+            "units": "%"
+          },
+          "startAngle": 135,
+          "style": {
+            "fontWeight": "bolder",
+            "marginTop": -10
+          }
+        },
+        "type": "ia.chart.simple-gauge"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "grow": 0.5
+                },
+                "props": {
+                  "text": "Low",
+                  "textStyle": {
+                    "fontWeight": "bold",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.borderColor": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.statsColors.minColor"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.stats.Min"
+                      },
+                      "transforms": [
+                        {
+                          "expression": "{value} + \"%\"",
+                          "type": "expression"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "borderBottomLeftRadius": 10,
+                    "borderBottomRightRadius": 10,
+                    "borderStyle": "solid",
+                    "borderTopLeftRadius": 10,
+                    "borderTopRightRadius": 10,
+                    "borderWidth": 5,
+                    "overflow": "auto"
+                  },
+                  "textStyle": {
+                    "fontSize": 22,
+                    "fontWeight": "normal",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Low"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginLeft": 10,
+                "marginRight": 10
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "grow": 0.5
+                },
+                "props": {
+                  "text": "Average",
+                  "textStyle": {
+                    "fontWeight": "bold",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.borderColor": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.statsColors.avgColor"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.stats.Avg"
+                      },
+                      "transforms": [
+                        {
+                          "expression": "{value} + \"%\"",
+                          "type": "expression"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "borderBottomLeftRadius": 10,
+                    "borderBottomRightRadius": 10,
+                    "borderStyle": "solid",
+                    "borderTopLeftRadius": 10,
+                    "borderTopRightRadius": 10,
+                    "borderWidth": 5,
+                    "overflow": "auto"
+                  },
+                  "textStyle": {
+                    "fontSize": 22,
+                    "fontWeight": "normal",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Average"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "grow": 0.5
+                },
+                "props": {
+                  "text": "High",
+                  "textStyle": {
+                    "fontWeight": "bold",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.borderColor": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.statsColors.maxColor"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.stats.Max"
+                      },
+                      "transforms": [
+                        {
+                          "expression": "{value} + \"%\"",
+                          "type": "expression"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "borderBottomLeftRadius": 10,
+                    "borderBottomRightRadius": 10,
+                    "borderStyle": "solid",
+                    "borderTopLeftRadius": 10,
+                    "borderTopRightRadius": 10,
+                    "borderWidth": 5,
+                    "overflow": "auto"
+                  },
+                  "textStyle": {
+                    "fontSize": 22,
+                    "fontWeight": "normal",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "High"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginLeft": 10,
+                "marginRight": 10
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "StatsContainer"
+        },
+        "position": {
+          "basis": "80px",
+          "grow": 0.25,
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.stats"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginBottom": 10
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Sparkline"
+        },
+        "position": {
+          "basis": "50px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.graph"
+              },
+              "type": "property"
+            }
+          },
+          "props.desired": {
+            "binding": {
+              "config": {
+                "path": "view.params.colorRanges"
+              },
+              "transforms": [
+                {
+                  "code": "\tcolor \u003d \"grey\"\n\t\n\tstart \u003d 0\n\tend \u003d 0\n\tfor i in range(len(value)):\n\t\tif value[i].start \u003e start:\n\t\t\tstart \u003d value[i].start\n\t\tif value[i].end \u003e end:\n\t\t\tend \u003d value[i].end\n\t\t\tcolor \u003d value[i].color\n\t\n\t\n\treturn {\n\t  \"high\": end/100.0,\n\t  \"low\": start/100.0, \n\t  \"stroke\": {\n\t    \"color\": \"#2DBB32\",\n\t    \"width\": 1,\n\t    \"opacity\": 0,\n\t    \"dashArray\": 4\n\t  },\n\t  \"fill\": {\n\t    \"color\": color,\n\t    \"opacity\": 0.5\n\t  }\n\t}\n\t\n\treturn value",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.points": {
+            "binding": {
+              "config": {
+                "avoidScanClassValidation": true,
+                "dateRange": {
+                  "endDate": "{view.custom.dateRange.end}",
+                  "startDate": "{view.custom.dateRange.start}"
+                },
+                "enableValueCache": true,
+                "ignoreBadQuality": false,
+                "preventInterpolation": false,
+                "returnFormat": "Wide",
+                "returnSize": {
+                  "type": "RAW"
+                },
+                "tags": "{view.custom.data}",
+                "valueFormat": "DATASET"
+              },
+              "type": "tag-history"
+            }
+          }
+        },
+        "props": {
+          "marker": {
+            "first": {
+              "size": 10
+            },
+            "high": {
+              "size": 10
+            },
+            "last": {
+              "size": 10
+            },
+            "low": {
+              "size": 10
+            }
+          },
+          "range": {
+            "high": 1,
+            "low": 0
+          },
+          "width": 3
+        },
+        "type": "ia.display.sparkline"
+      }
+    ],
+    "custom": {
+      "value": "value"
+    },
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.borderColor": {
+        "binding": {
+          "config": {
+            "path": "view.params.color"
+          },
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "borderBottomLeftRadius": 20,
+        "borderBottomRightRadius": 20,
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "borderWidth": 5
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "custom": {
+    "selected": false
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\tif self.params.index \u003d\u003d 0:\n\t\tself.custom.selected \u003d True"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "domID": "",
+    "index": 0,
+    "user": ""
+  },
+  "propConfig": {
+    "custom.selected": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "params.domID": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.index": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.user": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 20,
+      "width": 390
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "custom": {
+          "mouseOverOther": false
+        },
+        "events": {
+          "dom": {
+            "onMouseDown": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\u0027mention-selected\u0027, {\n\t\t\u0027domID\u0027: self.view.params.domID,\n\t\t\u0027user\u0027: self.view.params.user\n\t})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "custom.mouseOverOther": {
+            "access": "PRIVATE"
+          },
+          "props.style.backgroundColor": {
+            "binding": {
+              "config": {
+                "expression": "if({view.custom.selected} \u0026\u0026 !{this.custom.mouseOverOther},\r\n\t\u0027#FFFFFF\u0027,\r\n\t\u0027\u0027\r\n)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "\u0027@\u0027 + replace({view.params.user}, \u0027 \u0027, \u0027_\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "exchange/markdown-plus/mention-select",
+            "whiteSpace": "nowrap"
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "mouse-over-mention",
+              "pageScope": true,
+              "script": "\tself.custom.mouseOverOther \u003d payload[\u0027user\u0027] !\u003d \u0027\u0027 and payload[\u0027user\u0027] !\u003d self.view.params.user",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onKeyDown": {
+          "config": {
+            "script": "\tif event.key \u003d\u003d \u0027ArrowDown\u0027:\n\t\tsystem.perspective.sendMessage(\u0027mention-down\u0027, {\n\t\t\t\u0027domID\u0027: self.view.params.domID\n\t\t})\n\telif event.key \u003d\u003d \u0027ArrowUp\u0027:\n\t\tsystem.perspective.sendMessage(\u0027mention-up\u0027, {\n\t\t\t\u0027domID\u0027: self.view.params.domID\n\t\t})\n\telif event.key \u003d\u003d \u0027Escape\u0027:\n\t\tsystem.perspective.sendMessage(\u0027clear-mention\u0027, {\n\t\t\t\u0027domID\u0027: self.view.params.domID\n\t\t})"
+          },
+          "scope": "G",
+          "type": "script"
+        },
+        "onMouseEnter": {
+          "config": {
+            "script": "\tsystem.perspective.sendMessage(\u0027mouse-over-mention\u0027, {\n\t\t\u0027user\u0027: self.view.params.user\n\t})"
+          },
+          "enabled": false,
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "exchange/markdown-plus/no-focus-border",
+        "cursor": "pointer",
+        "overflow": "visible"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "mention-index",
+          "pageScope": true,
+          "script": "\timport time\n\t\t\n\tself.view.custom.selected \u003d payload[\u0027index\u0027] \u003d\u003d self.view.params.index\n\tif self.view.custom.selected:\n\t\ttime.sleep(0.1)\n\t\tself.focus()",
+          "sessionScope": false,
+          "viewScope": false
+        },
+        {
+          "messageType": "select-mention",
+          "pageScope": true,
+          "script": "\tif payload[\u0027domID\u0027] \u003d\u003d self.view.params.domID and self.view.custom.selected:\n\t\tsystem.perspective.sendMessage(\u0027mention-selected\u0027, {\n\t\t\t\u0027domID\u0027: self.view.params.domID,\n\t\t\t\u0027user\u0027: self.view.params.user\n\t\t})",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

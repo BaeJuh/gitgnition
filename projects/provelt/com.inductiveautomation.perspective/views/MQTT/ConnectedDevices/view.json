@@ -1,0 +1,63 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "devicesOffline": "{[MQTT Engine]Engine Info/Devices/DevicesOffline}",
+                  "devicesOnline": "{[MQTT Engine]Engine Info/Devices/DevicesOnline}",
+                  "nodesOffline": "{[MQTT Engine]Engine Info/Edge Nodes/NodesOffline}",
+                  "nodesOnline": "{[MQTT Engine]Engine Info/Edge Nodes/NodesOnline}",
+                  "offlineNodes": "{[MQTT Engine]Engine Info/Edge Nodes/Offline Nodes}",
+                  "onlineNodes": "{[MQTT Engine]Engine Info/Edge Nodes/Online Nodes}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tret \u003d []\n\t\n\tnodes \u003d []\n\tfor node in system.dataset.toPyDataSet(value[\"offlineNodes\"]):\n\t\tnodes.append(node[0])\n\tfor node in system.dataset.toPyDataSet(value[\"onlineNodes\"]):\n\t\tnodes.append(node[0])\n\tnodes.sort()\n\t\n\tfor node in nodes:\n\t\tnodeTagPath \u003d \"[MQTT Engine]Edge Nodes/%s\" % node\n\t\tdevices \u003d system.tag.browse(path\u003dnodeTagPath, filters\u003d{\"tagType\":\"Folder\"})\n\t\tfor device in devices.getResults():\n\t\t\tif len(system.tag.browse(path\u003d\"%s/Device Info\" % device[\"fullPath\"], filters\u003d{\"tagType\":\"Folder\"}).getResults()):\n\t\t\t\tif device[\"name\"] not in [\"Node Control\", \"Node Info\"]:\n\t\t\t\t\tret.append({\"tagPath\":device[\"fullPath\"]})\n\t\n\treturn ret",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            },
+            "onChange": {
+              "enabled": null,
+              "script": "\tself.print(\"Instanes changed: \" + str(currentValue.value))"
+            }
+          }
+        },
+        "props": {
+          "elementStyle": {
+            "margin": "1px"
+          },
+          "loading": {
+            "order": "with-parent"
+          },
+          "path": "MQTT/DeviceSparkle",
+          "wrap": "wrap"
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

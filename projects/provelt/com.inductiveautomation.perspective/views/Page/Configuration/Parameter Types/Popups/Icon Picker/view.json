@@ -1,0 +1,510 @@
+{
+  "custom": {},
+  "params": {
+    "icon": "home",
+    "id": ""
+  },
+  "propConfig": {
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.id": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 490,
+      "width": 250
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "alignVertical": "center",
+              "style": {
+                "marginLeft": "6px",
+                "marginRight": "6px"
+              },
+              "text": "Search"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "TextField"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "\"\""
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Form/Field",
+                "marginRight": "6px"
+              }
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_1"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "6px",
+            "marginTop": "6px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Icons"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "icons": "{parent.custom.searchIcons}",
+                  "page": "{parent.custom.page}",
+                  "pageSize": "{parent.custom.pageSize}",
+                  "pages": "{parent.custom.pages}",
+                  "total": "{parent.custom.total}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\ticons \u003d self.parent.custom.searchIcons\n\tpage \u003d value[\"page\"]\n\ttotal \u003d value[\"total\"]\n\tpages \u003d value[\"pages\"]\n\tpageSize \u003d value[\"pageSize\"]\n\tstartIdx \u003d page * pageSize\n\tendIdx \u003d startIdx + pageSize\n\tendIdx \u003d total if endIdx \u003e total else endIdx\n\treturn icons[startIdx:endIdx]",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "alignContent": "flex-start",
+          "alignItems": "flex-start",
+          "elementPosition": {
+            "basis": "32px",
+            "grow": 0,
+            "shrink": 0
+          },
+          "justify": "center",
+          "key": "value",
+          "path": "Page/Configuration/Parameter Types/Popups/Icon",
+          "style": {
+            "backgroundColor": "#FFFFFF"
+          },
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false,
+          "wrap": "wrap"
+        },
+        "scripts": {
+          "customMethods": [],
+          "messageHandlers": [
+            {
+              "messageType": "color-clicked",
+              "pageScope": true,
+              "script": "\tcolor \u003d payload[\"color\"]\n\tself.view.params.color \u003d color",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.flex-repeater"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").custom.page \u003d 0\n\t\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Icon_0"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/first_page",
+              "style": {
+                "cursor": "pointer"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tpage \u003d self.view.getChild(\"root\").custom.page\n\tpages \u003d self.view.getChild(\"root\").custom.pages\n\t\n\tif (page - 1) \u003e\u003d 0:\n\t\tpage -\u003d 1\n\t\n\tself.view.getChild(\"root\").custom.page \u003d page\n\t\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/chevron_left",
+              "style": {
+                "cursor": "pointer"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "({/root.custom.page} + 1) + \" of \" + {/root.custom.pages}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "alignVertical": "center",
+              "style": {
+                "marginLeft": "6px",
+                "marginRight": "6px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tpage \u003d self.view.getChild(\"root\").custom.page\n\tpages \u003d self.view.getChild(\"root\").custom.pages\n\t\n\tif (page + 1) \u003c\u003d (pages - 1):\n\t\tpage +\u003d 1\n\t\n\tself.view.getChild(\"root\").custom.page \u003d page\n\t\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Icon_1"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/chevron_right",
+              "style": {
+                "cursor": "pointer"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tpages \u003d self.view.getChild(\"root\").custom.pages\n\tself.view.getChild(\"root\").custom.page \u003d pages - 1"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Icon_2"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/last_page",
+              "style": {
+                "cursor": "pointer"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_2"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "center",
+          "style": {
+            "marginTop": "6px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "alignVertical": "center",
+              "style": {
+                "marginLeft": "6px",
+                "marginRight": "6px"
+              },
+              "text": "Icon"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "TextField"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.icon"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Form/Field"
+              }
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "expression": "\"material/\" + {../TextField.props.text}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "marginLeft": "6px",
+                "marginRight": "6px"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "10px",
+            "marginTop": "10px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tid \u003d self.view.params.id\n\ticon \u003d self.view.params.icon\n\tsystem.perspective.sendMessage(messageType\u003d\"icon-selection\", payload\u003d{\"id\":id, \"icon\":icon})\n\tsystem.perspective.closePopup(id\u003d\"icon-picker\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Select"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/check_circle"
+            }
+          },
+          "style": {
+            "borderRadius": "0px",
+            "classes": "Button/Standard"
+          },
+          "text": "Select"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "custom": {
+      "page": 0,
+      "pageSize": 70
+    },
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.icons": {
+        "access": "PRIVATE",
+        "binding": {
+          "config": {
+            "expression": "now(0)"
+          },
+          "transforms": [
+            {
+              "code": "\tfrom xml.dom import minidom\n\t\n\tret \u003d []\n\ttry:\n\t\tres \u003d system.net.httpGet(\"%s/data/perspective/icons/material.svg\" % self.session.props.gateway.address)\n\t\tdoc \u003d minidom.parseString(res)\n\t\tfor g in doc.getElementsByTagName(\"g\"):\n\t\t\tif g.hasAttribute(\"id\"):\n\t\t\t\tret.append({\"icon\":g.getAttribute(\"id\")})\n\texcept:\n\t\tpass\n\t\n\treturn ret",
+              "type": "script"
+            }
+          ],
+          "type": "expr"
+        }
+      },
+      "custom.pages": {
+        "binding": {
+          "config": {
+            "struct": {
+              "pageSize": "{this.custom.pageSize}",
+              "total": "{this.custom.total}"
+            },
+            "waitOnAll": true
+          },
+          "transforms": [
+            {
+              "code": "\timport math\n\treturn int(math.ceil(value[\"total\"]  / float(value[\"pageSize\"])))",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      },
+      "custom.searchIcons": {
+        "binding": {
+          "config": {
+            "struct": {
+              "icons": "{this.custom.icons}",
+              "search": "{./FlexContainer_1/TextField.props.text}"
+            },
+            "waitOnAll": true
+          },
+          "transforms": [
+            {
+              "code": "\ticons \u003d self.custom.icons\n\tsearch \u003d value[\"search\"]\n\tret \u003d []\n\tfor i in range(len(icons)):\n\t\ticon \u003d icons[i]\n\t\tif search \u003d\u003d None or search \u003d\u003d \"\" or search in icon[\"icon\"]:\n\t\t\tret.append(icon)\n\treturn ret",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      },
+      "custom.total": {
+        "binding": {
+          "config": {
+            "path": "this.custom.searchIcons"
+          },
+          "transforms": [
+            {
+              "code": "\treturn len(value)",
+              "type": "script"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "direction": "column"
+    },
+    "scripts": {
+      "customMethods": [],
+      "messageHandlers": [
+        {
+          "messageType": "icon-selected",
+          "pageScope": true,
+          "script": "\tself.view.params.icon \u003d payload[\"icon\"]",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

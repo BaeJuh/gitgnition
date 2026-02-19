@@ -1,0 +1,28 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "IFrame"
+        },
+        "position": {
+          "height": 564,
+          "width": 532,
+          "x": 62,
+          "y": 52
+        },
+        "props": {
+          "src": "http://localhost:8088/main/texteditor.html"
+        },
+        "type": "ia.display.iframe"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

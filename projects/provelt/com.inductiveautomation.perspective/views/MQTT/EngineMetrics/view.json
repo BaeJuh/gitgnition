@@ -1,0 +1,447 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 200,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label"
+              },
+              "text": "Total Tags"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "now(30000)"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\ttry:\n\t\tfrom com.inductiveautomation.ignition.gateway import IgnitionGateway\n\t\tcontext \u003d IgnitionGateway.get()\n\t\ttagManager \u003d context.getTagManager()\n\t\ttagProvider \u003d tagManager.getTagProvider(\"MQTT Engine\")\n\t\ttagCount \u003d tagProvider.getStatusInformation().get().getTagCount()\n\t\treturn tagCount\n\texcept:\n\t\treturn 0",
+                      "type": "script"
+                    },
+                    {
+                      "expression": "if({value} \u003d null, 0, numberFormat({value}, \"#,##0\"))",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Total Tags"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "MQTT/Row"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label"
+              },
+              "text": "Total Bytes Recvd"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Total Bytes Recvd"
+                  },
+                  "transforms": [
+                    {
+                      "expression": "numberFormat(\r\n\tif({value} \u003e\u003d 1024*1024*1024*1024, {value} / (1024*1024*1024*1024),\r\n\tif({value} \u003e\u003d 1024*1024*1024, {value} / (1024*1024*1024),\r\n\tif({value} \u003e\u003d 1024*1024, {value} / (1024*1024),\r\n\tif({value} \u003e\u003d 1024, {value} / 1024,\r\n\t{value})))),\r\n\"#,##0.##\")  + \r\n\r\nif({value} \u003e\u003d 1024*1024*1024*1024, \"TB\",\r\nif({value} \u003e\u003d 1024*1024*1024, \"GB\",\r\nif({value} \u003e\u003d 1024*1024, \"MB\",\r\nif({value} \u003e\u003d 1024, \"KB\",\r\n\"B\"))))",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Total Bytes Recvd"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "MQTT/Row"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label"
+              },
+              "text": "Total Bytes Xmit"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Total Bytes Xmit"
+                  },
+                  "transforms": [
+                    {
+                      "expression": "numberFormat(\r\n\tif({value} \u003e\u003d 1024*1024*1024*1024, {value} / (1024*1024*1024*1024),\r\n\tif({value} \u003e\u003d 1024*1024*1024, {value} / (1024*1024*1024),\r\n\tif({value} \u003e\u003d 1024*1024, {value} / (1024*1024),\r\n\tif({value} \u003e\u003d 1024, {value} / 1024,\r\n\t{value})))),\r\n\"#,##0.##\")  + \r\n\r\nif({value} \u003e\u003d 1024*1024*1024*1024, \"TB\",\r\nif({value} \u003e\u003d 1024*1024*1024, \"GB\",\r\nif({value} \u003e\u003d 1024*1024, \"MB\",\r\nif({value} \u003e\u003d 1024, \"KB\",\r\n\"B\"))))",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Total Bytes Xmit"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "MQTT/Row"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label"
+              },
+              "text": "Total Data Mesg Count"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Total Data Mesg Count"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Total Data Mesg Count"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "MQTT/Row"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label"
+              },
+              "text": "Redundancy Role"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Redundancy Role"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Redundancy Role"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "MQTT/Row"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label"
+              },
+              "text": "Redundancy State"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Redundancy State"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Redundancy State"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "MQTT/Row"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label"
+              },
+              "text": "Version"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Version"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Version"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "MQTT/Row"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

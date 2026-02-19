@@ -1,0 +1,272 @@
+{
+  "custom": {},
+  "params": {
+    "id": -1,
+    "mode": "select"
+  },
+  "propConfig": {
+    "params.id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mode": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 476,
+      "width": 250
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Tree"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.items": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "dashboards": "{session.custom.dashboard.dashboards.dashboards}",
+                  "id": "{view.params.id}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tid \u003d value[\"id\"]\n\tdashboards \u003d self.session.custom.dashboard.dashboards.dashboards\n\treturn dashboard.getTree(dashboards, id)",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "appearance": {
+            "defaultNodeIcons": {
+              "collapsed": {
+                "color": "#5F707E",
+                "path": "material/folder"
+              },
+              "empty": {
+                "color": "#869DB1",
+                "path": "material/stop"
+              },
+              "expanded": {
+                "color": "#5F707E",
+                "path": "material/folder_open"
+              }
+            },
+            "expandIcons": {
+              "collapsed": {
+                "color": "#869DB1",
+                "path": "material/arrow_right"
+              },
+              "empty": {
+                "color": "#869DB1"
+              },
+              "expanded": {
+                "color": "#869DB1",
+                "path": "material/arrow_drop_down"
+              }
+            }
+          }
+        },
+        "type": "ia.display.tree"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tid \u003d self.getSibling(\"Tree\").props.selectionData[0].value.id\n\tpath \u003d self.getSibling(\"Tree\").props.selectionData[0].value.path\n\tsystem.perspective.sendMessage(messageType\u003d\"parent-selection\", payload\u003d{\"id\":id, \"path\":path})\n\tsystem.perspective.closePopup(id\u003d\"dashboard-tree\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Select"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.mode} \u003d \"select\""
+              },
+              "type": "expr"
+            }
+          },
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "path": "../Tree.props.selection"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn len(value) \u003e 0",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/check_circle"
+            }
+          },
+          "style": {
+            "borderRadius": "0px",
+            "classes": "Button/Standard"
+          },
+          "text": "Select"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\titems \u003d self.parent.parent.getChild(\"Tree\").props.items \n\tpaths \u003d [int(val) for val in self.parent.parent.getChild(\"Tree\").props.selectionData[0].itemPath.split(\"/\")]\n\t\n\tcurrentItem \u003d None\n\tmoveItem \u003d None\n\tselItems \u003d items\n\tfor i in range(len(paths)):\n\t\tpath \u003d paths[i]\n\t\t\n\t\tif i \u003d\u003d (len(paths) - 1):\n\t\t\tcurrentItem \u003d selItems[path]\n\t\t\tmoveItem \u003d selItems[path-1]\n\t\telse:\n\t\t\tselItems \u003d selItems[path].items\n\t\t\t\n\tdashboard.moveDashboard(self, currentItem.data.id, currentItem.data.order, moveItem.data.id, moveItem.data.order)\n\tpaths[-1] \u003d paths[-1] - 1\n\tpaths \u003d [str(path) for path in paths]\n\tself.parent.parent.getChild(\"Tree\").props.selection[0] \u003d \"/\".join(paths)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Move Up"
+            },
+            "position": {
+              "basis": "50%",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "path": ".../Tree.props.selectionData"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\ttry:\n\t\treturn value[0].value.canMoveUp\n\texcept:\n\t\tpass\n\t\t\n\treturn False",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/keyboard_arrow_up"
+                }
+              },
+              "style": {
+                "borderRadius": "0px",
+                "classes": "Button/Standard",
+                "marginRight": "1px"
+              },
+              "text": "Move Up"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\titems \u003d self.parent.parent.getChild(\"Tree\").props.items \n\tpaths \u003d [int(val) for val in self.parent.parent.getChild(\"Tree\").props.selectionData[0].itemPath.split(\"/\")]\n\t\n\tcurrentItem \u003d None\n\tmoveItem \u003d None\n\tselItems \u003d items\n\tfor i in range(len(paths)):\n\t\tpath \u003d paths[i]\n\t\t\n\t\tif i \u003d\u003d (len(paths) - 1):\n\t\t\tcurrentItem \u003d selItems[path]\n\t\t\tmoveItem \u003d selItems[path+1]\n\t\telse:\n\t\t\tselItems \u003d selItems[path].items\n\t\t\t\n\tdashboard.moveDashboard(self, currentItem.data.id, currentItem.data.order, moveItem.data.id, moveItem.data.order)\n\tpaths[-1] \u003d paths[-1] + 1\n\tpaths \u003d [str(path) for path in paths]\n\tself.parent.parent.getChild(\"Tree\").props.selection[0] \u003d \"/\".join(paths)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Move Down"
+            },
+            "position": {
+              "basis": "50%",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "path": ".../Tree.props.selectionData"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\ttry:\n\t\treturn value[0].value.canMoveDown\n\texcept:\n\t\tpass\n\t\t\n\treturn False",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/keyboard_arrow_down"
+                }
+              },
+              "style": {
+                "borderRadius": "0px",
+                "classes": "Button/Standard"
+              },
+              "text": "Move Down"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "36px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.mode} \u003d \"move\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

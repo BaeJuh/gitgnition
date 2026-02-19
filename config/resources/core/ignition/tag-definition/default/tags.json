@@ -1,0 +1,52 @@
+[
+  {
+    "valueSource": "opc",
+    "opcItemPath": "[Mitsubishi_Device]D0.0",
+    "name": "DReg0_Bit0",
+    "tagType": "AtomicTag",
+    "opcServer": "Ignition OPC UA Server"
+  },
+  {
+    "valueSource": "opc",
+    "opcItemPath": "[Modbus]HR1",
+    "name": "HR1",
+    "tagType": "AtomicTag",
+    "opcServer": "Ignition OPC UA Server"
+  },
+  {
+    "valueSource": "opc",
+    "opcItemPath": "[S71200]IW0",
+    "name": "Input0",
+    "tagGroup": "My Tag Group",
+    "tagType": "AtomicTag",
+    "opcServer": "Ignition OPC UA Server"
+  },
+  {
+    "valueSource": "memory",
+    "name": "Lo SP",
+    "defaultValue": 20,
+    "tagType": "AtomicTag"
+  },
+  {
+    "valueSource": "opc",
+    "opcItemPath": "[Mitsubishi_Device]D0",
+    "name": "DReg0",
+    "tagType": "AtomicTag",
+    "opcServer": "Ignition OPC UA Server"
+  },
+  {
+    "valueSource": "opc",
+    "opcItemPath": "[Mitsubishi_Device]D\u003cint32\u003e5",
+    "historyProvider": "MySQL Historian",
+    "name": "BigTag",
+    "historyEnabled": true,
+    "tagType": "AtomicTag",
+    "opcServer": "Ignition OPC UA Server"
+  },
+  {
+    "valueSource": "memory",
+    "name": "Hi SP",
+    "defaultValue": 95,
+    "tagType": "AtomicTag"
+  }
+]

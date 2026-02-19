@@ -1,0 +1,77 @@
+{
+  "custom": {},
+  "params": {
+    "large": 480,
+    "small": 0
+  },
+  "propConfig": {
+    "params.large": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.small": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Large"
+        },
+        "position": {
+          "size": "large"
+        },
+        "propConfig": {
+          "props.params.size": {
+            "binding": {
+              "config": {
+                "path": "view.params.large"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Page/Dashboard Component"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Small"
+        },
+        "propConfig": {
+          "props.params.size": {
+            "binding": {
+              "config": {
+                "path": "view.params.small"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Page/Dashboard Component"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.breakpoint": {
+        "binding": {
+          "config": {
+            "path": "view.params.large"
+          },
+          "type": "property"
+        }
+      }
+    },
+    "type": "ia.container.breakpt"
+  }
+}

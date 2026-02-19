@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "type": "ControlLogix"
+  },
+  "settings": {
+    "advanced": {
+      "concurrentRequests": 2,
+      "disableAutomaticBrowse": false,
+      "showStringArrays": false,
+      "slotNumber": 0,
+      "statusPollRate": 1000
+    },
+    "connectivity": {
+      "hostname": "192.168.50.30",
+      "localAddress": "",
+      "path": "",
+      "timeout": 2000
+    }
+  }
+}

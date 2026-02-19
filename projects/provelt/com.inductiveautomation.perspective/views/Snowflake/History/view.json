@@ -1,0 +1,263 @@
+{
+  "custom": {},
+  "params": {},
+  "propConfig": {
+    "params.feature": {
+      "paramDirection": "input"
+    },
+    "params.key": {
+      "paramDirection": "input"
+    },
+    "params.tier1": {
+      "paramDirection": "input"
+    },
+    "params.tier2": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 804
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "icon": "show_chart",
+            "messageAction": {
+              "icon": "",
+              "messageType": "",
+              "payload": {}
+            },
+            "text": "Data Model History"
+          },
+          "path": "Snowflake/Title",
+          "style": {
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Label_6"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "!{session.custom.filters.valid}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontStyle": "italic",
+            "marginLeft": "10px",
+            "marginRight": "10px"
+          },
+          "text": "Please select filters on the right to see history"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "TimeSeriesChart"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "session.custom.filters.valid"
+              },
+              "type": "property"
+            }
+          },
+          "props.plots": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "axis": "{session.custom.filters.axis}",
+                  "metricsEnabled": "{session.custom.filters.metricsEnabled}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tret \u003d []\n\t\n\tdef getTrend(name, row):\n\t\treturn {\n\t\t  \"visible\": True,\n\t\t  \"type\": \"line\",\n\t\t  \"series\": \"History\",\n\t\t  \"interpolation\": \"curveLinear\",\n\t\t  \"breakLine\": True,\n\t\t  \"stack\": True,\n\t\t  \"radius\": 2,\n\t\t  \"axis\": name,\n\t\t  \"columns\": [\n\t\t  \t{\n\t\t  \t  \"key\": name,\n\t\t  \t  \"color\": row[\"color\"],\n\t\t  \t  \"styles\": {\n\t\t  \t    \"normal\": {\n\t\t  \t      \"stroke\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"width\": None,\n\t\t  \t        \"dashArray\": None,\n\t\t  \t        \"opacity\": None\n\t\t  \t      },\n\t\t  \t      \"fill\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"opacity\": None\n\t\t  \t      }\n\t\t  \t    },\n\t\t  \t    \"highlighted\": {\n\t\t  \t      \"stroke\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"width\": None,\n\t\t  \t        \"dashArray\": None,\n\t\t  \t        \"opacity\": None\n\t\t  \t      },\n\t\t  \t      \"fill\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"opacity\": None\n\t\t  \t      }\n\t\t  \t    },\n\t\t  \t    \"selected\": {\n\t\t  \t      \"stroke\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"width\": None,\n\t\t  \t        \"dashArray\": None,\n\t\t  \t        \"opacity\": None\n\t\t  \t      },\n\t\t  \t      \"fill\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"opacity\": None\n\t\t  \t      }\n\t\t  \t    },\n\t\t  \t    \"muted\": {\n\t\t  \t      \"stroke\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"width\": None,\n\t\t  \t        \"dashArray\": None,\n\t\t  \t        \"opacity\": None\n\t\t  \t      },\n\t\t  \t      \"fill\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"opacity\": None\n\t\t  \t      }\n\t\t  \t    }\n\t\t  \t  }\n\t\t  \t}\n\t\t  ],\n\t\t  \"baselines\": []\n\t\t}\n\t\t\n\tdef getAxis(name, row):\n\t\treturn {\n\t\t  \"name\": name,\n\t\t  \"min\": row[\"axisMin\"],\n\t\t  \"max\": row[\"axisMax\"],\n\t\t  \"alignment\": \"left\",\n\t\t  \"width\": 60,\n\t\t  \"label\": {\n\t\t    \"visible\": True,\n\t\t    \"text\": row[\"axisTitle\"],\n\t\t    \"offset\": 0,\n\t\t    \"font\": {\n\t\t      \"color\": row[\"color\"],\n\t\t      \"size\": 12\n\t\t    },\n\t\t    \"style\": {\n\t\t      \"classes\": \"\"\n\t\t    }\n\t\t  },\n\t\t  \"tick\": {\n\t\t    \"color\": \"\",\n\t\t    \"count\": \"Auto\",\n\t\t    \"label\": {\n\t\t      \"format\": \"Auto\",\n\t\t      \"font\": {\n\t\t        \"color\": \"\",\n\t\t        \"size\": 10\n\t\t      },\n\t\t      \"style\": {\n\t\t        \"classes\": \"\"\n\t\t      }\n\t\t    },\n\t\t    \"style\": {\n\t\t      \"classes\": \"\"\n\t\t    }\n\t\t  },\n\t\t  \"grid\": {\n\t\t    \"visible\": True,\n\t\t    \"color\": \"\",\n\t\t    \"opacity\": 0.1,\n\t\t    \"dashArray\": 0,\n\t\t    \"style\": {\n\t\t      \"classes\": \"\"\n\t\t    }\n\t\t  },\n\t\t  \"style\": {\n\t\t    \"classes\": \"\"\n\t\t  }\n\t\t}\n\t\n\tif value[\"axis\"] \u003d\u003d \"separate\":\t\n\t\tfor row in value[\"metricsEnabled\"]:\n\t\t\tname \u003d row[\"name\"].upper()\n\t\t\t\t\n\t\t\tret.append({\n\t\t\t  \"relativeWeight\": 1,\n\t\t\t  \"trends\": [getTrend(name, row)],\n\t\t\t  \"axes\": [getAxis(name, row)],\n\t\t\t  \"markers\": []\n\t\t\t})\n\telse:\n\t\ttrends \u003d []\n\t\taxes \u003d []\n\t\tfor row in value[\"metricsEnabled\"]:\n\t\t\tname \u003d row[\"name\"].upper()\n\t\t\ttrends.append(getTrend(name, row))\n\t\t\taxes.append(getAxis(name, row))\n\t\t\t\n\t\tret.append({\n\t\t  \"relativeWeight\": 1,\n\t\t  \"trends\": trends,\n\t\t  \"axes\": axes,\n\t\t  \"markers\": []\n\t\t})\n\t\n\treturn ret",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.series[0].data": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "avgCols": "{session.custom.filters.avgCols}",
+                  "avgRawCols": "{session.custom.filters.avgRawCols}",
+                  "cols": "{session.custom.filters.cols}",
+                  "dataModel": "{session.custom.filters.dataModel_DB} + \r {session.custom.filters.dataModelVersion_DB}",
+                  "deviceId": "{session.custom.filters.deviceId}",
+                  "edgeNodeId": "{session.custom.filters.edgeNodeId}",
+                  "endDate": "toMillis({session.custom.filters.endDate})",
+                  "fixedRows": "{session.custom.filters.fixedRows}",
+                  "groupId": "{session.custom.filters.groupId}",
+                  "instanceName": "{session.custom.filters.instance}",
+                  "startDate": "toMillis({session.custom.filters.startDate})"
+                },
+                "queryPath": "Snowflake/History",
+                "returnFormat": "dataset"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "series": [
+            {
+              "name": "History"
+            }
+          ],
+          "style": {
+            "marginBottom": "10px"
+          },
+          "timeAxis": {
+            "grid": {
+              "opacity": 0.1,
+              "visible": true
+            }
+          }
+        },
+        "type": "ia.chart.timeseries"
+      },
+      {
+        "meta": {
+          "name": "ChartRangeSelector"
+        },
+        "position": {
+          "basis": "100px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "session.custom.filters.valid"
+              },
+              "type": "property"
+            }
+          },
+          "props.areaStyles.colors": {
+            "binding": {
+              "config": {
+                "path": "session.custom.filters.metricsEnabled"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn [row[\"color\"] for row in value]",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.data": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "avgCols": "{session.custom.filters.firstAvgCol}",
+                  "avgRawCols": "{session.custom.filters.firstAvgRawCol}",
+                  "cols": "{session.custom.filters.firstCol}",
+                  "dataModel": "{session.custom.filters.dataModel_DB} +  {session.custom.filters.dataModelVersion_DB}",
+                  "deviceId": "{session.custom.filters.deviceId}",
+                  "edgeNodeId": "{session.custom.filters.edgeNodeId}",
+                  "endDate": "toMillis({session.custom.filters.endDate})",
+                  "fixedRows": "{session.custom.filters.fixedRows}",
+                  "groupId": "{session.custom.filters.groupId}",
+                  "instanceName": "{session.custom.filters.instance}",
+                  "startDate": "toMillis({session.custom.filters.startDate})"
+                },
+                "queryPath": "Snowflake/History",
+                "returnFormat": "dataset"
+              },
+              "type": "query"
+            }
+          },
+          "props.selectedRange.end": {
+            "binding": {
+              "config": {
+                "path": "session.custom.filters.endDate"
+              },
+              "type": "property"
+            }
+          },
+          "props.selectedRange.start": {
+            "binding": {
+              "config": {
+                "path": "session.custom.filters.startDate"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "areaStyles": {},
+          "selectedRange": {},
+          "style": {
+            "marginBottom": "10px"
+          },
+          "timeAxis": {
+            "tick": {
+              "label": {
+                "format": "M-D-YYYY h:mm:ss"
+              }
+            }
+          }
+        },
+        "type": "ia.chart.chartrangeselector"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Snowflake/Page"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "stats",
+          "pageScope": true,
+          "script": "\tself.refreshBinding(\"custom.stats\")\n\tself.getChild(\"Data Models\").refreshBinding(\"props.data\")\n\tself.getChild(\"FlexContainer_0\").getChild(\"FlexContainer_1\").getChild(\"Group Id\").refreshBinding(\"props.options\")\n\tself.getChild(\"FlexContainer_0\").getChild(\"FlexContainer_2\").getChild(\"Edge Node Id\").refreshBinding(\"props.options\")",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

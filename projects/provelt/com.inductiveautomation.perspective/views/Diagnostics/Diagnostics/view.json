@@ -1,0 +1,174 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 828,
+      "width": 2378
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "System"
+        },
+        "position": {
+          "basis": "280px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "path": "Diagnostics/Embedded/System",
+            "title": "System"
+          },
+          "path": "Framework/Card/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "System Performance"
+        },
+        "position": {
+          "basis": "280px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "path": "Diagnostics/Embedded/System Performance",
+            "title": "System Performance"
+          },
+          "path": "Framework/Card/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Redundancy"
+        },
+        "position": {
+          "basis": "280px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "path": "Diagnostics/Embedded/Redundancy",
+            "title": "Redundancy"
+          },
+          "path": "Framework/Card/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Gateway Network"
+        },
+        "position": {
+          "basis": "280px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "path": "Diagnostics/Embedded/Gateway Network Connections",
+            "title": "Gateway Network"
+          },
+          "path": "Framework/Card/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "OPC Servers"
+        },
+        "position": {
+          "basis": "280px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "path": "Diagnostics/Embedded/OPC Servers",
+            "title": "OPC Servers"
+          },
+          "path": "Framework/Card/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "OPC Devices"
+        },
+        "position": {
+          "basis": "280px"
+        },
+        "props": {
+          "params": {
+            "path": "Diagnostics/Embedded/OPC Devices",
+            "title": "OPC Devices"
+          },
+          "path": "Framework/Card/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Databases"
+        },
+        "position": {
+          "basis": "280px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "path": "Diagnostics/Embedded/Databases",
+            "title": "Databases"
+          },
+          "path": "Framework/Card/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Session"
+        },
+        "position": {
+          "basis": "280px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "path": "Diagnostics/Embedded/Session",
+            "title": "Session"
+          },
+          "path": "Framework/Card/Card"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Device"
+        },
+        "position": {
+          "basis": "280px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "path": "Diagnostics/Embedded/Device",
+            "title": "Device"
+          },
+          "path": "Framework/Card/Card"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "flex-start",
+      "wrap": "wrap"
+    },
+    "type": "ia.container.flex"
+  }
+}

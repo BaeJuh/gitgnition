@@ -1,0 +1,91 @@
+{
+  "custom": {},
+  "params": {
+    "tagPath": "[default]Writeable/DatasetTag"
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 200,
+      "width": 598
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onEditCellCommit": {
+                  "config": {
+                    "script": "\tself.props.data \u003d system.dataset.setValue(self.props.data, event.row, event.column, event.value)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Table"
+            },
+            "position": {
+              "basis": "200px",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.columns": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.data"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tret \u003d []\n\tcolumnNames \u003d value.getColumnNames()\n\tfor columnName in columnNames:\n\t\tret.append({\n\t  \"field\": columnName,\n\t  \"visible\": True,\n\t  \"editable\": True,\n\t  \"render\": \"auto\",\n\t  \"justify\": \"auto\",\n\t  \"align\": \"center\",\n\t  \"resizable\": True,\n\t  \"sortable\": True,\n\t  \"sort\": \"none\",\n\t  \"viewPath\": \"\",\n\t  \"viewParams\": {},\n\t  \"boolean\": \"checkbox\",\n\t  \"number\": \"value\",\n\t  \"progressBar\": {\n\t    \"max\": 100,\n\t    \"min\": 0,\n\t    \"bar\": {\n\t      \"color\": \"\",\n\t      \"style\": {\n\t        \"classes\": \"\"\n\t      }\n\t    },\n\t    \"track\": {\n\t      \"color\": \"\",\n\t      \"style\": {\n\t        \"classes\": \"\"\n\t      }\n\t    },\n\t    \"value\": {\n\t      \"enabled\": True,\n\t      \"format\": \"0,0.##\",\n\t      \"justify\": \"center\",\n\t      \"style\": {\n\t        \"classes\": \"\"\n\t      }\n\t    }\n\t  },\n\t  \"toggleSwitch\": {\n\t    \"color\": {\n\t      \"selected\": \"\",\n\t      \"unselected\": \"\"\n\t    }\n\t  },\n\t  \"numberFormat\": \"0,0.##\",\n\t  \"dateFormat\": \"MM/DD/YYYY\",\n\t  \"width\": \"\",\n\t  \"strictWidth\": False,\n\t  \"style\": {\n\t    \"classes\": \"\"\n\t  },\n\t  \"header\": {\n\t    \"title\": \"\",\n\t    \"justify\": \"left\",\n\t    \"align\": \"center\",\n\t    \"style\": {\n\t      \"classes\": \"\"\n\t    }\n\t  },\n\t  \"footer\": {\n\t    \"title\": \"\",\n\t    \"justify\": \"left\",\n\t    \"align\": \"center\",\n\t    \"style\": {\n\t      \"classes\": \"\"\n\t    }\n\t  }\n\t})\n\t\n\treturn ret",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "indirect",
+                    "references": {
+                      "tagPath": "{view.params.tagPath}"
+                    },
+                    "tagPath": "{tagPath}"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "type": "ia.display.table"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.flex"
+  }
+}

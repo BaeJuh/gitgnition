@@ -1,0 +1,4 @@
+Time Interval, Browse Path, Value Source, Data Type
+"0","Test/MyTag","0.0","Double"
+"1","Test/MyTag","1.0","Double"
+"0","Test/MySineTag","sine(-10, 10, 60, true)","Double"

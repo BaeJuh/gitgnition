@@ -1,0 +1,7 @@
+{
+  "config": {
+    "opcDataMode": "Polled",
+    "rate": 5000,
+    "readAfterWrite": true
+  }
+}

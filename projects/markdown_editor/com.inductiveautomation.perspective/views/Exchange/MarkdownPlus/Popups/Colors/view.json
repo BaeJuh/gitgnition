@@ -1,0 +1,1946 @@
+{
+  "custom": {},
+  "params": {
+    "domID": ""
+  },
+  "propConfig": {
+    "params.domID": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 204,
+      "width": 268
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)\n"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Red"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "FireBrick"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "DarkRed"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Crimson"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "OrangeRed"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Tomato"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "DarkOrange"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Orange"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Row 1"
+        },
+        "props": {
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Gold"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "PeachPuff"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "LightYellow"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Yellow"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "YellowGreen"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "LimeGreen"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Green"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "LawnGreen"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Row 2"
+        },
+        "props": {
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Aquamarine"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "LightCyan"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Aqua"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Turquoise"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "LightBlue"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "LightSkyBlue"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Blue"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Navy"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Row 3"
+        },
+        "props": {
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "MediumSlateBlue"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Violet"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Purple"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Indigo"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Magenta"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "MediumVioletRed"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "DeepPink"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Pink"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Row 4"
+        },
+        "props": {
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "SaddleBrown"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "DarkGoldenRod"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "BurlyWood"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "RosyBrown"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "White"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "LightGray"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "DimGray"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").invoke(self.meta.name)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Black"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderBottomLeftRadius": 4,
+                "borderBottomRightRadius": 4,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+                "cursor": "pointer",
+                "height": "30px",
+                "marginBottom": 3,
+                "marginLeft": 3,
+                "marginTop": 3
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Row 5"
+        },
+        "props": {
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": [
+              {
+                "config": {
+                  "script": "\tsystem.perspective.closePopup(\u0027Colors\u0027)\n"
+                },
+                "scope": "G",
+                "type": "script"
+              },
+              {
+                "config": {
+                  "draggable": false,
+                  "id": "ColorPicker",
+                  "modal": true,
+                  "overlayDismiss": true,
+                  "resizable": false,
+                  "showCloseIcon": false,
+                  "type": "open",
+                  "viewParams": {
+                    "id": "{view.params.domID}"
+                  },
+                  "viewPath": "Exchange/ColorPicker/ColorPickerPopup",
+                  "viewportBound": true
+                },
+                "scope": "C",
+                "type": "popup"
+              }
+            ]
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "primary": false,
+          "style": {
+            "margin": 4
+          },
+          "text": "Other..."
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "scripts": {
+      "customMethods": [
+        {
+          "name": "invoke",
+          "params": [
+            "color"
+          ],
+          "script": "\tsystem.perspective.closePopup(\u0027Colors\u0027)\n\tsystem.perspective.sendMessage(\u0027insert-format\u0027, {\n\t\t\u0027pre\u0027: \u0027\u003cspan style\u003d\"color: \u0027 + color + \u0027\"\u003e\u0027,\n\t\t\u0027post\u0027: \u0027\u003c/span\u003e\u0027,\n\t\t\u0027domID\u0027: self.view.params.domID\n\t})"
+        }
+      ],
+      "extensionFunctions": null,
+      "messageHandlers": []
+    },
+    "type": "ia.container.flex"
+  }
+}

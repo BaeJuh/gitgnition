@@ -1,0 +1,519 @@
+{
+  "custom": {
+    "pollingRate": 0,
+    "tagPaths": [
+      {
+        "alias": "tag"
+      }
+    ]
+  },
+  "params": {
+    "defaultRangeColor": "#EEEEEE",
+    "desiredHigh": 65,
+    "desiredLow": 40,
+    "desiredRangeColor": "#B8DAFF",
+    "highAlarm": 90,
+    "highHighAlarm": null,
+    "highInterlock": null,
+    "inactiveAlarmColor": "#888888",
+    "indicatorColor": "#888888",
+    "interlockColor": "#000000",
+    "level1AlarmColor": "#FF0000",
+    "level2AlarmColor": "#FFFF00",
+    "lowAlarm": 10,
+    "lowInterlock": null,
+    "lowLowAlarm": null,
+    "maxValue": 100,
+    "minValue": 0,
+    "polling": false,
+    "pollingRate": 1,
+    "rangeMinutes": 5,
+    "reverseIndicator": false,
+    "setpointColor": "#888888",
+    "setpointValue": null,
+    "showSparkline": true,
+    "showValue": false,
+    "sparklineColor": "#888888",
+    "sparklineWidth": 0.5,
+    "tagPath": ""
+  },
+  "propConfig": {
+    "custom.pollingRate": {
+      "binding": {
+        "config": {
+          "expression": "if(toBoolean({view.params.polling}), {view.params.pollingRate}, 0)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.tagPaths": {
+      "persistent": true
+    },
+    "custom.tagPaths[0].path": {
+      "binding": {
+        "config": {
+          "path": "view.params.tagPath"
+        },
+        "type": "property"
+      }
+    },
+    "params.defaultRangeColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.desiredHigh": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.desiredLow": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.desiredRangeColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.highAlarm": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.highHighAlarm": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.highInterlock": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.inactiveAlarmColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.indicatorColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.interlockColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.level1AlarmColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.level2AlarmColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.lowAlarm": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.lowInterlock": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.lowLowAlarm": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.maxValue": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.minValue": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.polling": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.pollingRate": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rangeMinutes": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.reverseIndicator": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.setpointColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.setpointValue": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showSparkline": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showValue": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.sparklineColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.sparklineWidth": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 139,
+      "width": 228
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "MovingAnalogIndicator"
+        },
+        "position": {
+          "basis": "40px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.defaultRangeColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.defaultRangeColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.desiredHigh": {
+            "binding": {
+              "config": {
+                "path": "view.params.desiredHigh"
+              },
+              "type": "property"
+            }
+          },
+          "props.desiredLow": {
+            "binding": {
+              "config": {
+                "path": "view.params.desiredLow"
+              },
+              "type": "property"
+            }
+          },
+          "props.desiredRangeColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.desiredRangeColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.highAlarm": {
+            "binding": {
+              "config": {
+                "path": "view.params.highAlarm"
+              },
+              "type": "property"
+            }
+          },
+          "props.highHighAlarm": {
+            "binding": {
+              "config": {
+                "path": "view.params.highHighAlarm"
+              },
+              "type": "property"
+            }
+          },
+          "props.highInterlock": {
+            "binding": {
+              "config": {
+                "path": "view.params.highInterlock"
+              },
+              "type": "property"
+            }
+          },
+          "props.inactiveAlarmColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.inactiveAlarmColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.indicatorColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.indicatorColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.interlockColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.interlockColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.label.visible": {
+            "binding": {
+              "config": {
+                "path": "view.params.showValue"
+              },
+              "type": "property"
+            }
+          },
+          "props.level1AlarmColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.level1AlarmColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.level2AlarmColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.level2AlarmColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.lowAlarm": {
+            "binding": {
+              "config": {
+                "path": "view.params.lowAlarm"
+              },
+              "type": "property"
+            }
+          },
+          "props.lowInterlock": {
+            "binding": {
+              "config": {
+                "path": "view.params.lowInterlock"
+              },
+              "type": "property"
+            }
+          },
+          "props.lowLowAlarm": {
+            "binding": {
+              "config": {
+                "path": "view.params.lowLowAlarm"
+              },
+              "type": "property"
+            }
+          },
+          "props.maxValue": {
+            "binding": {
+              "config": {
+                "path": "view.params.maxValue"
+              },
+              "type": "property"
+            }
+          },
+          "props.minValue": {
+            "binding": {
+              "config": {
+                "path": "view.params.minValue"
+              },
+              "type": "property"
+            }
+          },
+          "props.processValue": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}"
+              },
+              "type": "tag"
+            }
+          },
+          "props.reverseIndicator": {
+            "binding": {
+              "config": {
+                "path": "view.params.reverseIndicator"
+              },
+              "type": "property"
+            }
+          },
+          "props.setpointColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.setpointColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.setpointValue": {
+            "binding": {
+              "config": {
+                "path": "view.params.setpointValue"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "label": {}
+        },
+        "type": "ia.display.moving-analog-indicator"
+      },
+      {
+        "meta": {
+          "name": "Sparkline"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "toBoolean({view.params.showSparkline})"
+              },
+              "type": "expr"
+            }
+          },
+          "props.color": {
+            "binding": {
+              "config": {
+                "path": "view.params.sparklineColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.desired.fill.color": {
+            "binding": {
+              "config": {
+                "path": "view.params.desiredRangeColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.desired.high": {
+            "binding": {
+              "config": {
+                "expression": "toDouble({view.params.desiredHigh})"
+              },
+              "type": "expr"
+            }
+          },
+          "props.desired.low": {
+            "binding": {
+              "config": {
+                "expression": "toDouble({view.params.desiredLow})"
+              },
+              "type": "expr"
+            }
+          },
+          "props.marker.last.fill.color": {
+            "binding": {
+              "config": {
+                "path": "view.params.sparklineColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.points": {
+            "binding": {
+              "config": {
+                "aggregate": "MinMax",
+                "avoidScanClassValidation": true,
+                "dateRange": {
+                  "mostRecent": "toInt({view.params.rangeMinutes})",
+                  "mostRecentUnits": "MIN"
+                },
+                "ignoreBadQuality": false,
+                "polling": {
+                  "enabled": true,
+                  "rate": "{view.custom.pollingRate}"
+                },
+                "preventInterpolation": false,
+                "returnFormat": "Wide",
+                "returnSize": {
+                  "numRows": "100",
+                  "type": "FIXED"
+                },
+                "tags": "{view.custom.tagPaths}",
+                "valueFormat": "DATASET"
+              },
+              "type": "tag-history"
+            }
+          },
+          "props.range.high": {
+            "binding": {
+              "config": {
+                "expression": "toDouble({view.params.maxValue})"
+              },
+              "type": "expr"
+            }
+          },
+          "props.range.low": {
+            "binding": {
+              "config": {
+                "expression": "toDouble({view.params.minValue})"
+              },
+              "type": "expr"
+            }
+          },
+          "props.width": {
+            "binding": {
+              "config": {
+                "expression": "toDouble({view.params.sparklineWidth})"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "desired": {
+            "fill": {
+              "opacity": 1
+            },
+            "stroke": {
+              "width": 0
+            }
+          },
+          "marker": {
+            "first": {
+              "size": 0
+            },
+            "high": {
+              "size": 0
+            },
+            "last": {
+              "fill": {}
+            },
+            "low": {
+              "size": 0
+            }
+          },
+          "range": {}
+        },
+        "type": "ia.display.sparkline"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.flex"
+  }
+}

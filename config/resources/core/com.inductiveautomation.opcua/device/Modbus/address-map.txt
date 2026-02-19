@@ -1,0 +1,1 @@
+8|v_,0,9,false,0,HoldingRegister,1

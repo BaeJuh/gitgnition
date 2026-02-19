@@ -1,0 +1,172 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 260
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Features"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.items[0].style.backgroundColor": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[0].target}, \"var(--callToActionHighlight)\", \"\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.items[0].style.fontWeight": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[0].target}, \"bold\", \"\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.items[1].style.backgroundColor": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[1].target}, \"var(--callToActionHighlight)\", \"\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.items[1].style.fontWeight": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[1].target}, \"bold\", \"\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.items[2].style.backgroundColor": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[2].target}, \"var(--callToActionHighlight)\", \"\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.items[2].style.fontWeight": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "expression": "if ({value} \u003d {this.props.items[2].target}, \"bold\", \"\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "backActionStyle": {
+            "classes": "Snowflake/Menu/All_Header"
+          },
+          "backActionText": "All Features",
+          "itemStyle": {
+            "classes": "Snowflake/Menu/Item"
+          },
+          "items": [
+            {
+              "items": [],
+              "label": {
+                "icon": {
+                  "path": "material/dashboard"
+                },
+                "text": "Overview"
+              },
+              "navIcon": {},
+              "showHeader": false,
+              "style": {
+                "classes": "Snowflake/Menu/ItemSelected"
+              },
+              "target": "/"
+            },
+            {
+              "items": [],
+              "label": {
+                "icon": {
+                  "path": "material/show_chart"
+                },
+                "text": "History"
+              },
+              "navIcon": {},
+              "showHeader": false,
+              "style": {
+                "classes": "Snowflake/Menu/ItemSelected"
+              },
+              "target": "/history"
+            },
+            {
+              "items": [],
+              "label": {
+                "icon": {
+                  "path": "material/warning"
+                },
+                "text": "Anomaly Detection"
+              },
+              "navIcon": {},
+              "showHeader": false,
+              "style": {
+                "classes": "Snowflake/Menu/ItemSelected"
+              },
+              "target": "/anomaly"
+            }
+          ],
+          "style": {
+            "classes": "Snowflake/Menu/Menu"
+          }
+        },
+        "type": "ia.navigation.menutree"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.flex"
+  }
+}

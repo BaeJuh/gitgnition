@@ -1,0 +1,259 @@
+{
+  "custom": {
+    "colors": [
+      "#e6194b",
+      "#3cb44b",
+      "#ffe119",
+      "#4363d8",
+      "#f58231",
+      "#911eb4",
+      "#46f0f0",
+      "#f032e6",
+      "#bcf60c",
+      "#fabebe",
+      "#008080",
+      "#e6beff",
+      "#9a6324",
+      "#fffac8",
+      "#800000",
+      "#aaffc3",
+      "#808000",
+      "#ffd8b1",
+      "#000075",
+      "#808080",
+      "#ffffff",
+      "#000000"
+    ],
+    "dashboard": {
+      "objects": {
+        "edit": {
+          "action": {
+            "action": ""
+          },
+          "allow_edit": false,
+          "cellSize": 100,
+          "default": false,
+          "gps": {
+            "enabled": false
+          },
+          "grid": "fixed",
+          "gridColGutterSize": 6,
+          "gridCols": 10,
+          "gridRowGutterSize": 6,
+          "gridRows": 10,
+          "icon": "",
+          "id": null,
+          "name": "",
+          "order": null,
+          "parent_id": null,
+          "parent_path": null,
+          "public": false,
+          "sizes": [
+            0
+          ],
+          "url": "",
+          "widgets": []
+        }
+      },
+      "options": {
+        "gpsUrl": "",
+        "overrideUsername": null,
+        "url": ""
+      }
+    },
+    "filters": {
+      "aggregation": "AVG",
+      "avgCols": "",
+      "avgRawCols": "",
+      "axis": "separate",
+      "cols": "",
+      "dataModel": null,
+      "dataModelVersion": null,
+      "dataModelVersion_DB": null,
+      "dataModel_DB": null,
+      "deviceId": null,
+      "edgeNodeId": null,
+      "edgeNodeId_DB": null,
+      "endDate": {
+        "$": [
+          "ts",
+          192,
+          1739475002546
+        ],
+        "$ts": 1739476799000
+      },
+      "firstAvgCol": null,
+      "firstAvgRawCol": null,
+      "firstCol": null,
+      "fixedRows": 1000,
+      "groupId": null,
+      "groupId_DB": null,
+      "instance": null,
+      "interval": "minute",
+      "metrics": [],
+      "metricsEnabled": [],
+      "queryMode": "fixed",
+      "selection": "multiple",
+      "startDate": {
+        "$": [
+          "ts",
+          192,
+          1739475002551
+        ],
+        "$ts": 1739466000000
+      },
+      "valid": false
+    },
+    "settings": {
+      "historyDuration": 5,
+      "tagEdit": true
+    },
+    "stageDB": "STAGE_DB",
+    "tagPath": ""
+  },
+  "propConfig": {
+    "custom.dashboard": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.dashboard.dashboards": {
+      "binding": {
+        "config": {
+          "path": "this.custom.dashboard.options.username"
+        },
+        "transforms": [
+          {
+            "code": "\ttry:\n\t\tvalue \u003d system.db.runNamedQuery(path\u003d\"Dashboard/Get\", parameters\u003d{\"username\":value})\n\t\tvalue \u003d system.dataset.toPyDataSet(value)\n\t\treturn dashboard.getDashboards(value)\n\texcept:\n\t\treturn {\"default\":None, \"dashboards\":[], \"first\":None, \"valid\":False, \"numDashboards\":0}",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      }
+    },
+    "custom.dashboard.objects.current": {
+      "binding": {
+        "config": {
+          "struct": {
+            "dashboards": "{this.custom.dashboard.dashboards.dashboards}",
+            "url": "{this.custom.dashboard.options.url}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\turl \u003d value[\"url\"]\n\tdashboards \u003d self.custom.dashboard.dashboards\n\treturn dashboard.getCurrentDashboard(dashboards, url)",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      }
+    },
+    "custom.dashboard.objects.currentLastModified": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "id": "{this.custom.dashboard.objects.current.id}"
+          },
+          "polling": {
+            "enabled": true,
+            "rate": "30"
+          },
+          "queryPath": "Dashboard/Last Modified"
+        },
+        "type": "query"
+      },
+      "onChange": {
+        "enabled": null,
+        "script": "\tif previousValue !\u003d None and previousValue.value !\u003d None and currentValue !\u003d None and currentValue.value !\u003d None and currentValue.value !\u003d previousValue.value:\n\t\tdashboard.refresh(self, True)"
+      }
+    },
+    "custom.dashboard.options.isDesigner": {
+      "binding": {
+        "config": {
+          "expression": "{this.props.device.type} \u003d \u0027designer\u0027"
+        },
+        "type": "expr"
+      }
+    },
+    "custom.dashboard.options.username": {
+      "binding": {
+        "config": {
+          "expression": "if({this.custom.dashboard.options.isDesigner}, \r\n{this.custom.dashboard.options.overrideUsername},\r\n{this.props.auth.user.userName})"
+        },
+        "type": "expr"
+      }
+    },
+    "custom.dbValid": {
+      "access": "PRIVATE",
+      "binding": {
+        "config": {
+          "queryPath": "DB Check"
+        },
+        "transforms": [
+          {
+            "code": "\treturn False if value \u003d\u003d None else value \u003d\u003d 1",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      }
+    },
+    "props.auth": {
+      "access": "PRIVATE",
+      "persistent": false
+    },
+    "props.device.accelerometer": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.identifier": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.timezone": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.type": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.userAgent": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.gateway": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.geolocation.data": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.geolocation.permissionGranted": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.host": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.id": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.lastActivity": {
+      "access": "SYSTEM",
+      "persistent": false
+    }
+  },
+  "props": {
+    "address": "73.48.196.97",
+    "device": {},
+    "geolocation": {},
+    "locale": "en-US",
+    "securityLevels": [],
+    "theme": "light-cool",
+    "timeZoneId": "Etc/UTC"
+  }
+}

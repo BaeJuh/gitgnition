@@ -1,0 +1,773 @@
+{
+  "custom": {
+    "deferedColor": "blue"
+  },
+  "params": {
+    "color": "blue",
+    "rowIndex": -1
+  },
+  "propConfig": {
+    "custom.deferedColor": {
+      "binding": {
+        "config": {
+          "expression": "now(1000)"
+        },
+        "transforms": [
+          {
+            "code": "\treturn self.view.params.color",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "onChange": {
+        "enabled": null,
+        "script": "\tif currentValue and currentValue.value and previousValue and previousValue.value !\u003d currentValue.value:\n\t\tsystem.perspective.sendMessage(\u0027color-selected\u0027, {\u0027rowIndex\u0027: self.view.params.rowIndex, \u0027color\u0027: currentValue.value})"
+      },
+      "persistent": true
+    },
+    "params.color": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.rowIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 435,
+      "width": 250
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Color Palette"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "alignContent": "flex-start",
+          "alignItems": "flex-start",
+          "elementPosition": {
+            "basis": "35px",
+            "grow": 0,
+            "shrink": 0
+          },
+          "instances": [
+            {
+              "value": "#FFFFFF"
+            },
+            {
+              "value": "#D5D5D5"
+            },
+            {
+              "value": "#AAAAAA"
+            },
+            {
+              "value": "#808080"
+            },
+            {
+              "value": "#555555"
+            },
+            {
+              "value": "#2B2B2B"
+            },
+            {
+              "value": "#000000"
+            },
+            {
+              "value": "#FFCCCC"
+            },
+            {
+              "value": "#FF8A8A"
+            },
+            {
+              "value": "#FF4747"
+            },
+            {
+              "value": "#FF0000"
+            },
+            {
+              "value": "#D90000"
+            },
+            {
+              "value": "#AC0000"
+            },
+            {
+              "value": "#800000"
+            },
+            {
+              "value": "#FFE8CC"
+            },
+            {
+              "value": "#FFCA8A"
+            },
+            {
+              "value": "#FFAC47"
+            },
+            {
+              "value": "#FF8C00"
+            },
+            {
+              "value": "#D97700"
+            },
+            {
+              "value": "#AC5F00"
+            },
+            {
+              "value": "#804600"
+            },
+            {
+              "value": "#FFFFCC"
+            },
+            {
+              "value": "#FFFF8A"
+            },
+            {
+              "value": "#FFFF47"
+            },
+            {
+              "value": "#FFFF00"
+            },
+            {
+              "value": "#D9D900"
+            },
+            {
+              "value": "#ACAC00"
+            },
+            {
+              "value": "#808000"
+            },
+            {
+              "value": "#CCFFCC"
+            },
+            {
+              "value": "#8AFF8A"
+            },
+            {
+              "value": "#47FF47"
+            },
+            {
+              "value": "#00FF00"
+            },
+            {
+              "value": "#00D900"
+            },
+            {
+              "value": "#00AC00"
+            },
+            {
+              "value": "#008000"
+            },
+            {
+              "value": "#CCFFFF"
+            },
+            {
+              "value": "#8AFFFF"
+            },
+            {
+              "value": "#47FFFF"
+            },
+            {
+              "value": "#00FFFF"
+            },
+            {
+              "value": "#00D9D9"
+            },
+            {
+              "value": "#00ACAC"
+            },
+            {
+              "value": "#008080"
+            },
+            {
+              "value": "#CCCCFF"
+            },
+            {
+              "value": "#8A8AFF"
+            },
+            {
+              "value": "#4747FF"
+            },
+            {
+              "value": "#0000FF"
+            },
+            {
+              "value": "#0000D9"
+            },
+            {
+              "value": "#0000AC"
+            },
+            {
+              "value": "#000080"
+            },
+            {
+              "value": "#FFCCFF"
+            },
+            {
+              "value": "#FF8AFF"
+            },
+            {
+              "value": "#FF47FF"
+            },
+            {
+              "value": "#FF00FF"
+            },
+            {
+              "value": "#D900D9"
+            },
+            {
+              "value": "#AC00AC"
+            },
+            {
+              "value": "#800080"
+            }
+          ],
+          "key": "value",
+          "path": "Framework/Color Picker/Color Ad Hoc",
+          "style": {
+            "backgroundColor": "#FFFFFF"
+          },
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false,
+          "wrap": "wrap"
+        },
+        "scripts": {
+          "customMethods": [],
+          "messageHandlers": [
+            {
+              "messageType": "color-clicked",
+              "pageScope": true,
+              "script": "\tif \u0027rowIndex\u0027 in payload and payload[\u0027rowIndex\u0027] \u003e\u003d 0:\n\t\tpass\n\telse:\n\t\tself.view.params.color \u003d payload[\u0027color\u0027]",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.flex-repeater"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "40px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "marginLeft": "6px"
+                  },
+                  "text": "Red"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "NumericEntryField"
+                    },
+                    "position": {
+                      "basis": "32px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.color"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\ttry:\n\t\treturn int(value[1:3], 16)\n\texcept:\n\t\treturn None",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        },
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tif origin in [\"Browser\", \"BindingWriteback\"]:\n\t\tif currentValue.value !\u003d None:\n\t\t\tcolor \u003d self.view.params.color\n\t\t\thexColor \u003d hex(currentValue.value).replace(\"0x\",\"\").upper().replace(\"L\",\"\")\n\t\t\tif len(hexColor) \u003d\u003d 1:\n\t\t\t\thexColor \u003d \"0%s\" % hexColor\n\t\t\tcolor \u003d \"#\" + hexColor + color[3:]\n\t\t\tself.view.params.color \u003d color"
+                        }
+                      }
+                    },
+                    "props": {
+                      "format": "0,0",
+                      "inputBounds": {
+                        "maximum": 255,
+                        "minimum": 0
+                      },
+                      "style": {
+                        "borderRadius": "4px"
+                      }
+                    },
+                    "type": "ia.input.numeric-entry-field"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "50px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "center",
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginRight": "10px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "Slider"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "../FlexContainer/NumericEntryField.props.value"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "labels": {
+                    "interval": 42.5,
+                    "show": true
+                  },
+                  "max": 255,
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginRight": "20px"
+                  }
+                },
+                "type": "ia.input.slider"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "basis": "72px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "40px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "marginLeft": "6px"
+                  },
+                  "text": "Blue"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "NumericEntryField"
+                    },
+                    "position": {
+                      "basis": "32px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.color"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\ttry:\n\t\treturn int(value[3:5], 16)\n\texcept:\n\t\treturn None",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        },
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tif origin in [\"Browser\", \"BindingWriteback\"]:\n\t\tif currentValue.value !\u003d None:\n\t\t\tcolor \u003d self.view.params.color\n\t\t\thexColor \u003d hex(currentValue.value).replace(\"0x\",\"\").upper().replace(\"L\",\"\")\n\t\t\tif len(hexColor) \u003d\u003d 1:\n\t\t\t\thexColor \u003d \"0%s\" % hexColor\n\t\t\tcolor \u003d \"#\" + color[1:3] + hexColor + color[5:]\n\t\t\tself.view.params.color \u003d color"
+                        }
+                      }
+                    },
+                    "props": {
+                      "format": "0,0",
+                      "inputBounds": {
+                        "maximum": 255,
+                        "minimum": 0
+                      },
+                      "style": {
+                        "borderRadius": "4px"
+                      }
+                    },
+                    "type": "ia.input.numeric-entry-field"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "50px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "center",
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginRight": "10px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "Slider"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "../FlexContainer/NumericEntryField.props.value"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "labels": {
+                    "interval": 42.5,
+                    "show": true
+                  },
+                  "max": 255,
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginRight": "20px"
+                  }
+                },
+                "type": "ia.input.slider"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "basis": "72px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_1"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "40px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "marginLeft": "6px"
+                  },
+                  "text": "Green"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "NumericEntryField"
+                    },
+                    "position": {
+                      "basis": "32px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.color"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\ttry:\n\t\treturn int(value[5:], 16)\n\texcept:\n\t\treturn None",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        },
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tif origin in [\"Browser\", \"BindingWriteback\"]:\n\t\tif currentValue.value !\u003d None:\n\t\t\tcolor \u003d self.view.params.color\n\t\t\thexColor \u003d hex(currentValue.value).replace(\"0x\",\"\").upper().replace(\"L\",\"\")\n\t\t\tif len(hexColor) \u003d\u003d 1:\n\t\t\t\thexColor \u003d \"0%s\" % hexColor\n\t\t\tcolor \u003d \"#\" + color[1:5] + hexColor\n\t\t\tself.view.params.color \u003d color"
+                        }
+                      }
+                    },
+                    "props": {
+                      "format": "0,0",
+                      "inputBounds": {
+                        "maximum": 255,
+                        "minimum": 0
+                      },
+                      "style": {
+                        "borderRadius": "4px"
+                      }
+                    },
+                    "type": "ia.input.numeric-entry-field"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "50px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "center",
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginRight": "10px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "Slider"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "../FlexContainer/NumericEntryField.props.value"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "labels": {
+                    "interval": 42.5,
+                    "show": true
+                  },
+                  "max": 255,
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginRight": "20px"
+                  }
+                },
+                "type": "ia.input.slider"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "basis": "72px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_2"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "alignVertical": "center",
+              "style": {
+                "marginLeft": "6px",
+                "marginRight": "6px"
+              },
+              "text": "Color"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "TextField"
+            },
+            "position": {
+              "basis": "100px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.color"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderRadius": "4px"
+              }
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "Label_0"
+            },
+            "position": {
+              "basis": "20px"
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.color"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderColor": "#D3D3D3",
+                "borderRadius": "32px",
+                "borderStyle": "solid",
+                "borderWidth": "1px",
+                "margin": "6px"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "10px",
+            "marginTop": "10px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Framework/ColorPicker/Container"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

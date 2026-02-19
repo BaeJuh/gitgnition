@@ -1,0 +1,2869 @@
+{
+  "custom": {
+    "buttonSizes": {
+      "large": {
+        "height": "24px",
+        "iconSize": 25,
+        "width": "36px"
+      },
+      "medium": {
+        "height": "21px",
+        "iconSize": 22,
+        "width": "32px"
+      },
+      "small": {
+        "height": "18px",
+        "iconSize": 19,
+        "width": "28px"
+      }
+    },
+    "debugging": false,
+    "deferUpdates": false,
+    "domID": "md94873862",
+    "lastSelection": 0,
+    "mentionSelectedIndex": 0,
+    "mentioning": "",
+    "previewShowing": false,
+    "redoText": "",
+    "runJS": 3,
+    "selectionEnd": 0,
+    "selectionStart": 0,
+    "setCursorAt": -1,
+    "undoText": ""
+  },
+  "params": {
+    "attachmentsFileSizeLimit": 160,
+    "attachmentsTable": "mes.markdown_attachments",
+    "buttonsSize": "medium",
+    "deferUpdates": false,
+    "domID": "md94873862",
+    "enableAttachments": true,
+    "enableHTML": true,
+    "enabled": true,
+    "focusNow": false,
+    "focusOnStartup": true,
+    "html": "",
+    "isRequiredAlert": false,
+    "label": "Notes",
+    "openLinksInNewTab": true,
+    "placeholder": "",
+    "previewPosition": "Right",
+    "previewShowing": false,
+    "rejectUpdatesWhileFocused": true,
+    "showButtons": true,
+    "showHelpIcon": true,
+    "showPreviewIcon": true,
+    "text": "",
+    "userMentions": "Full Name",
+    "userMentionsPopupHeight": "7em"
+  },
+  "propConfig": {
+    "custom.buttonSizes": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.buttonSizes.large": {
+      "access": "PRIVATE"
+    },
+    "custom.buttonSizes.medium": {
+      "access": "PRIVATE"
+    },
+    "custom.buttonSizes.small": {
+      "access": "PRIVATE"
+    },
+    "custom.debugging": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.deferUpdates": {
+      "access": "PRIVATE",
+      "binding": {
+        "config": {
+          "path": "view.params.deferUpdates"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.domID": {
+      "access": "PROTECTED",
+      "binding": {
+        "config": {
+          "expression": "\u0027md\u0027 + runScript(\u0027exchange.markdownPlus.utils.getRandomNumber\u0027)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.lastSelection": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.mentionSelectedIndex": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.mentioning": {
+      "access": "PRIVATE",
+      "onChange": {
+        "enabled": null,
+        "script": "\tif currentValue.value \u003d\u003d \u0027\u0027:\n\t\tself.custom.mentionSelectedIndex \u003d 0\n"
+      },
+      "persistent": true
+    },
+    "custom.previewShowing": {
+      "access": "PRIVATE",
+      "binding": {
+        "config": {
+          "bidirectional": true,
+          "path": "view.params.previewShowing"
+        },
+        "type": "property"
+      },
+      "onChange": {
+        "enabled": null,
+        "script": "\tif currentValue.value:\n\t\tself.custom.deferUpdates \u003d False\n\telse:\n\t\tself.custom.deferUpdates \u003d self.params.deferUpdates"
+      },
+      "persistent": true
+    },
+    "custom.redoText": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.runJS": {
+      "binding": {
+        "config": {
+          "expression": "now(30000)"
+        },
+        "transforms": [
+          {
+            "expression": "0",
+            "type": "expression"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.selectionEnd": {
+      "onChange": {
+        "enabled": null,
+        "script": "\tif currentValue.value \u003d\u003d 0:\n\t\tself.custom.lastSelection \u003d previousValue.value\n\telse:\n\t\tself.custom.lastSelection \u003d currentValue.value"
+      },
+      "persistent": true
+    },
+    "custom.selectionStart": {
+      "persistent": true
+    },
+    "custom.setCursorAt": {
+      "persistent": true
+    },
+    "custom.undoText": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "params.attachmentsFileSizeLimit": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.attachmentsTable": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.buttonsSize": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.deferUpdates": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.domID": {
+      "binding": {
+        "config": {
+          "expression": "coalesce({view.custom.domID}, \u0027mdText0000\u0027)"
+        },
+        "overlayOptOut": true,
+        "type": "expr"
+      },
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.enableAttachments": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.enableHTML": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.enabled": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.focusNow": {
+      "onChange": {
+        "enabled": null,
+        "script": "\ttry:\n\t\tsystem.perspective.sendMessage(\u0027focus-notes\u0027, {\n\t\t\t\u0027domID\u0027: self.custom.domID\n\t\t})\n\texcept:\n\t\tpass "
+      },
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.focusOnStartup": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.html": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.isRequiredAlert": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.openLinksInNewTab": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.placeholder": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.previewPosition": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.previewShowing": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.rejectUpdatesWhileFocused": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showButtons": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showHelpIcon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showPreviewIcon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.text": {
+      "access": "PUBLIC",
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.userMentions": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.userMentionsPopupHeight": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 103,
+      "width": 841
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.view.getChild(\"root\").insertBold()"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Bold",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Bold"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 22,
+                    "icon": {
+                      "path": "material/format_bold"
+                    },
+                    "position": "center",
+                    "width": 22
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "height": "21px",
+                    "marginLeft": 0,
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 1
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.view.getChild(\"root\").insertItalic()"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Italic",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Italic"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 22,
+                    "icon": {
+                      "path": "material/format_italic"
+                    },
+                    "position": "center",
+                    "width": 22
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontStyle": "italic",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 1
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.view.getChild(\"root\").insertUnderline()"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Underline",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Underlined"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enableHTML"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 2,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 2,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 2\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 2,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 2,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 2\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 20,
+                    "icon": {
+                      "path": "material/format_underlined"
+                    },
+                    "position": "center",
+                    "width": 20
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontStyle": "italic",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 1
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.view.getChild(\"root\").insertStrikethrough()"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Strikethrough",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Strikethrough"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enableHTML"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 22,
+                    "icon": {
+                      "path": "material/format_strikethrough"
+                    },
+                    "position": "center",
+                    "width": 22
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontStyle": "italic",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 1
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "draggable": false,
+                        "id": "Colors",
+                        "modal": true,
+                        "overlayDismiss": true,
+                        "position": {
+                          "relativeLocation": "center"
+                        },
+                        "positionType": "relative",
+                        "resizable": false,
+                        "showCloseIcon": false,
+                        "type": "open",
+                        "viewParams": {
+                          "domID": "{view.custom.domID}"
+                        },
+                        "viewPath": "Exchange/MarkdownPlus/Popups/Colors",
+                        "viewportBound": true
+                      },
+                      "scope": "C",
+                      "type": "popup"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Color",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Color"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enableHTML"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 22,
+                    "icon": {
+                      "path": "material/color_lens"
+                    },
+                    "width": 22
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 1,
+                    "width": "28px"
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "meta": {
+                  "name": "Divider1"
+                },
+                "position": {
+                  "basis": "1px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enableHTML"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\ttoInt({view.custom.buttonSizes.small.height}) - 3 + \u0027px\u0027,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\ttoInt({view.custom.buttonSizes.medium.height}) - 3 + \u0027px\u0027,\r\n\t\ttoInt({view.custom.buttonSizes.large.height}) - 3 + \u0027px\u0027\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#BBBBBB",
+                    "marginBottom": "2px",
+                    "marginLeft": "3px",
+                    "marginRight": "3px",
+                    "marginTop": "2px"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.view.getChild(\"root\").insertQuote()"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Quote",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Quote"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize},\r\n\t\t{view.custom.buttonSizes.large.iconSize}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 22,
+                    "icon": {
+                      "path": "material/format_quote"
+                    },
+                    "position": "center",
+                    "width": 22
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontStyle": "italic",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 1
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.view.getChild(\"root\").insertTable()"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Table",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Table"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 1,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 1,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 1\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 1,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 1,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 1\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 21,
+                    "icon": {
+                      "path": "material/border_all"
+                    },
+                    "position": "center",
+                    "width": 21
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontStyle": "italic",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 0
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "draggable": false,
+                        "id": "Hyperlink",
+                        "modal": true,
+                        "overlayDismiss": false,
+                        "resizable": false,
+                        "showCloseIcon": false,
+                        "type": "open",
+                        "viewParams": {
+                          "domID": "{view.custom.domID}"
+                        },
+                        "viewPath": "Exchange/MarkdownPlus/Popups/Hyperlink",
+                        "viewportBound": false
+                      },
+                      "scope": "C",
+                      "type": "popup"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Hyperlink",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Hyperlink"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 1,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 1,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 1\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 1,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 1,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 1\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 21,
+                    "icon": {
+                      "path": "material/insert_link"
+                    },
+                    "position": "center",
+                    "width": 21
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontStyle": "italic",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 0
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "meta": {
+                  "name": "Divider2"
+                },
+                "position": {
+                  "basis": "1px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\ttoInt({view.custom.buttonSizes.small.height}) - 3 + \u0027px\u0027,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\ttoInt({view.custom.buttonSizes.medium.height}) - 3 + \u0027px\u0027,\r\n\t\ttoInt({view.custom.buttonSizes.large.height}) - 3 + \u0027px\u0027\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#BBBBBB",
+                    "marginBottom": "2px",
+                    "marginLeft": "3px",
+                    "marginRight": "3px",
+                    "marginTop": "2px"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "draggable": false,
+                        "id": "Emojis",
+                        "modal": true,
+                        "overlayDismiss": true,
+                        "position": {
+                          "relativeLocation": "center"
+                        },
+                        "positionType": "relative",
+                        "resizable": false,
+                        "showCloseIcon": false,
+                        "type": "open",
+                        "viewParams": {
+                          "focusDomID": "{view.custom.domID}"
+                        },
+                        "viewPath": "Exchange/MarkdownPlus/Popups/Emojis",
+                        "viewportBound": true
+                      },
+                      "scope": "C",
+                      "type": "popup"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Emoji",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Emoji"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 3,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 3,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 3\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 3,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 3,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 3\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 19,
+                    "icon": {
+                      "path": "material/emoji_emotions"
+                    },
+                    "position": "center",
+                    "width": 19
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 0,
+                    "width": "28px"
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tsystem.perspective.openPopup(\u0027Image\u0027, \u0027Exchange/MarkdownPlus/Popups/Image\u0027, {\n\t\t\t\u0027domID\u0027: self.view.params.domID,\n\t\t\t\u0027attachmentsTable\u0027: self.view.params.attachmentsTable,\n\t\t\t\u0027fileSizeLimit\u0027: self.view.params.attachmentsFileSizeLimit\n\t\t},\n\t\t\u0027Insert Image/Video\u0027,\n\t\tposition \u003d {\n\t\t\t\u0027width\u0027 : \u002740%\u0027,\n\t\t\t\u0027height\u0027: \u002790%\u0027\n\t\t},\n\t\tdraggable \u003d True,\n\t\tresizable \u003d True,\n\t\tshowCloseIcon \u003d True,\n\t\tmodal \u003d True,\n\t\toverlayDismiss \u003d True)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Image",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Image/Video"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.params.enableHTML} \u0026\u0026 {view.params.enableAttachments}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 3,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 3,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 3\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 3,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 3,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 3\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 19,
+                    "icon": {
+                      "path": "material/image"
+                    },
+                    "position": "center",
+                    "width": 19
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 0,
+                    "width": "28px"
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tsystem.perspective.openPopup(\u0027Image\u0027, \u0027Exchange/MarkdownPlus/Popups/Image\u0027, {\n\t\t\t\u0027domID\u0027: self.view.params.domID,\n\t\t\t\u0027type\u0027: \u0027video\u0027,\n\t\t\t\u0027attachmentsTable\u0027: self.view.params.attachmentsTable,\n\t\t\t\u0027fileSizeLimit\u0027: self.view.params.attachmentsFileSizeLimit\n\t\t},\n\t\t\u0027Insert Video\u0027,\n\t\tposition \u003d {\n\t\t\t\u0027width\u0027 : \u002740%\u0027,\n\t\t\t\u0027height\u0027: \u002790%\u0027\n\t\t},\n\t\tdraggable \u003d True,\n\t\tresizable \u003d True,\n\t\tshowCloseIcon \u003d True,\n\t\tmodal \u003d True,\n\t\toverlayDismiss \u003d True)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Video",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Video"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.params.enableHTML} \u0026\u0026 {view.params.enableAttachments}"
+                      },
+                      "enabled": false,
+                      "type": "expr"
+                    }
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 3,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 3,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 3\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 3,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 3,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 3\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 19,
+                    "icon": {
+                      "path": "material/ondemand_video"
+                    },
+                    "position": "center",
+                    "width": 19
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "fontSize": "13px",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 0,
+                    "width": "28px"
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tsystem.perspective.openPopup(\u0027File\u0027, \u0027Exchange/MarkdownPlus/Popups/File\u0027, {\n\t\t\t\u0027domID\u0027: self.view.params.domID,\n\t\t\t\u0027attachmentsTable\u0027: self.view.params.attachmentsTable,\n\t\t\t\u0027fileSizeLimit\u0027: self.view.params.attachmentsFileSizeLimit\n\t\t},\n\t\t\u0027Attach File\u0027,\n\t\tposition \u003d {\n\t\t\t\u0027width\u0027 : \u002730%\u0027,\n\t\t\t\u0027height\u0027: \u002724%\u0027\n\t\t},\n\t\tdraggable \u003d True,\n\t\tresizable \u003d True,\n\t\tshowCloseIcon \u003d True,\n\t\tmodal \u003d True,\n\t\toverlayDismiss \u003d True)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "FileAttachment",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "center-left",
+                    "text": "Attach File"
+                  }
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.width},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.width},\r\n\t\t{view.custom.buttonSizes.large.width}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.params.enableHTML} \u0026\u0026 {view.params.enableAttachments}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.image.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 3,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 3,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 3\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.image.width": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.iconSize} - 3,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.iconSize} - 3,\r\n\t\t{view.custom.buttonSizes.large.iconSize} - 3\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.style.height": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "image": {
+                    "height": 19,
+                    "icon": {
+                      "path": "material/attachment"
+                    },
+                    "position": "center",
+                    "width": 19
+                  },
+                  "primary": false,
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons exchange/markdown-plus/icon-rotated",
+                    "fontSize": "13px",
+                    "fontWeight": "normal",
+                    "height": "21px",
+                    "padding": 0,
+                    "paddingLeft": 1,
+                    "paddingRight": 1,
+                    "paddingTop": 0,
+                    "width": "28px"
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "Buttons"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "justify": "center",
+              "style": {
+                "gap": 3,
+                "overflow": "visible",
+                "paddingBottom": 1,
+                "paddingTop": 1,
+                "position": "relative",
+                "top": "-1px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "ButtonsLayer"
+        },
+        "position": {
+          "height": 0.001,
+          "width": 0.5,
+          "x": 0.25
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "path": "view.params.showButtons"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "borderColor": "#0FEC00",
+            "borderStyle": "none",
+            "borderWidth": 0,
+            "overflow": "visible",
+            "zIndex": 2
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.isRequiredAlert},\r\n\t\u0027exchange/markdown-plus/label exchange/markdown-plus/required-field\u0027,\r\n\t\u0027exchange/markdown-plus/label\u0027\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.label"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "marginRight": 2
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onTouchEnd": {
+                      "config": {
+                        "draggable": false,
+                        "id": "Issue Tooltip",
+                        "modal": false,
+                        "overlayDismiss": true,
+                        "position": {
+                          "relativeLocation": "top-left"
+                        },
+                        "positionType": "relative",
+                        "resizable": false,
+                        "showCloseIcon": false,
+                        "type": "toggle",
+                        "viewPath": "Page/Maintenance/Embedded/Issue Tooltip"
+                      },
+                      "scope": "C",
+                      "type": "popup"
+                    },
+                    "onTouchStart": {
+                      "config": {
+                        "draggable": false,
+                        "id": "Issue Tooltip",
+                        "modal": false,
+                        "overlayDismiss": false,
+                        "position": {
+                          "relativeLocation": "top-left"
+                        },
+                        "positionType": "relative",
+                        "resizable": false,
+                        "showCloseIcon": false,
+                        "type": "toggle",
+                        "viewPath": "Page/Maintenance/Embedded/Issue Tooltip",
+                        "viewportBound": false
+                      },
+                      "enabled": false,
+                      "scope": "C",
+                      "type": "popup"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Help",
+                  "tooltip": {
+                    "enabled": true,
+                    "location": "bottom",
+                    "style": {
+                      "textAlign": "left",
+                      "whiteSpace": "pre"
+                    },
+                    "sustain": 0
+                  }
+                },
+                "position": {
+                  "basis": "18px"
+                },
+                "propConfig": {
+                  "meta.tooltip.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027To create a header:\\n\\n\t# Header 1\\n\t## Header 2\\n\t### Header 3\\n\\n\u0027 +\r\n\u0027To create a bulleted list:\\n\\n\t- Item 1\\n\t- Item 2\\n\\n\u0027 +\r\n\u0027Right click to:\\n\\n\t• Insert a special character at the cursor\\n\t• Add formatting to selected text\\n\\n\u0027 + \r\nif({view.params.userMentions} !\u003d \u0027None\u0027,\r\n\t\u0027To mention a user, type \\\u0027@\\\u0027 followed by their name.\\n\\n\u0027,\r\n\t\u0027\u0027\r\n) + \r\n\u0027Chrome users, hold down SHIFT or CTRL while\\nright-clicking to enable spell check menu\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.showHelpIcon"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "color": "#949494",
+                  "path": "material/help",
+                  "style": {
+                    "classes": "exchange/markdown-plus/buttons",
+                    "position": "relative",
+                    "top": "-1px"
+                  }
+                },
+                "type": "ia.display.icon"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.view.custom.previewShowing \u003d not self.view.custom.previewShowing\n\tsystem.perspective.sendMessage(\u0027focus-notes\u0027, {\n\t\t\u0027domID\u0027: self.view.custom.domID\n\t})"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "TogglePreview",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "center-left",
+                        "text": "Toggle Preview"
+                      }
+                    },
+                    "position": {
+                      "basis": "21px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "meta.visible": {
+                        "binding": {
+                          "config": {
+                            "expression": "{view.params.showPreviewIcon} \u0026\u0026 {view.params.enabled}"
+                          },
+                          "overlayOptOut": true,
+                          "type": "expr"
+                        }
+                      },
+                      "position.basis": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t{view.custom.buttonSizes.small.height},\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t{view.custom.buttonSizes.medium.height},\r\n\t\t{view.custom.buttonSizes.large.height}\r\n\t)\r\n)"
+                          },
+                          "type": "expr"
+                        },
+                        "persistent": true
+                      },
+                      "props.color": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({view.custom.previewShowing},\r\n\t\u0027#FFFFFF\u0027,\r\n\t\u0027#000000\u0027\r\n)"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.style.marginBottom": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t0,\r\n\t3\r\n)"
+                          },
+                          "type": "expr"
+                        },
+                        "persistent": true
+                      }
+                    },
+                    "props": {
+                      "path": "material/remove_red_eye",
+                      "style": {
+                        "classes": "exchange/markdown-plus/buttons",
+                        "cursor": "pointer",
+                        "marginBottom": 3,
+                        "marginRight": 2
+                      }
+                    },
+                    "type": "ia.display.icon"
+                  }
+                ],
+                "meta": {
+                  "name": "Right"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Header"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.label} !\u003d \u0027\u0027 || {view.params.showHelpIcon} || {view.params.showButtons} || {view.params.showPreviewIcon}"
+                  },
+                  "overlayOptOut": true,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "justify": "center",
+              "style": {
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "custom": {
+                  "altIsDown": false,
+                  "ctrlIsDown": false,
+                  "cursorWasAt": -1,
+                  "firstEnterTyped": false,
+                  "firstKeyTyped": true,
+                  "hasFocus": false,
+                  "lostFocusAfterFirstKeyTyped": false,
+                  "shiftIsDown": false
+                },
+                "events": {
+                  "dom": {
+                    "onBlur": {
+                      "config": {
+                        "script": "\tself.custom.hasFocus \u003d False\n\tif self.custom.firstKeyTyped:\n\t\tself.custom.lostFocusAfterFirstKeyTyped \u003d True\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    },
+                    "onClick": {
+                      "config": {
+                        "script": "\tself.custom.shiftOrCtrlIsDown \u003d False\n\tself.props.rejectUpdatesWhileFocused \u003d self.view.params.rejectUpdatesWhileFocused\n\tself.view.custom.mentioning \u003d \u0027\u0027"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    },
+                    "onContextMenu": {
+                      "config": {
+                        "script": "\tself.props.rejectUpdatesWhileFocused \u003d False\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    },
+                    "onFocus": {
+                      "config": {
+                        "script": "\tself.custom.shiftOrCtrlIsDown \u003d False\n\tself.props.rejectUpdatesWhileFocused \u003d self.view.params.rejectUpdatesWhileFocused\n\tself.custom.hasFocus \u003d True\n\tself.custom.firstEnterTyped \u003d False"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    },
+                    "onKeyDown": {
+                      "config": {
+                        "script": "\n\tif event.key \u003d\u003d \u0027Shift\u0027:\n\t\tself.custom.shiftIsDown \u003d True\n\telif event.key \u003d\u003d \u0027Control\u0027:\n\t\tself.custom.ctrlIsDown \u003d True\n\telif event.key \u003d\u003d \u0027Alt\u0027:\n\t\tself.custom.altIsDown \u003d True\n\telif event.key \u003d\u003d \u0027Tab\u0027:\n\t\tself.custom.firstEnterTyped \u003d False\n\t\n\tsystem.perspective.sendMessage(\u0027markdown-text-area-editing\u0027)\n\t\n\tif event.key \u003d\u003d \u0027@\u0027:\n\t\tself.custom.shiftOrCtrlIsDown \u003d False\n\t\tself.props.deferUpdates \u003d False\n\n\tif self.view.custom.mentioning !\u003d \u0027\u0027:\n\t\tif event.key \u003d\u003d \u0027Escape\u0027:\n\t\t\tself.view.custom.mentioning \u003d \u0027\u0027\n\t\telif event.key \u003d\u003d \u0027ArrowDown\u0027:\n\t\t\tsystem.perspective.sendMessage(\u0027mention-down\u0027, {\n\t\t\t\t\u0027domID\u0027: self.view.custom.domID\n\t\t\t})\n\t\telif event.key \u003d\u003d \u0027ArrowUp\u0027:\n\t\t\tsystem.perspective.sendMessage(\u0027mention-up\u0027, {\n\t\t\t\t\u0027domID\u0027: self.view.custom.domID\n\t\t\t})\n\t\t\tself.view.custom.setCursorAt \u003d self.view.custom.lastSelection\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    },
+                    "onKeyUp": {
+                      "config": {
+                        "script": "\timport re\n\timport time\n\t\t\n\tdef refocus():\n\t\tself.custom.cursorWasAt \u003d self.view.custom.selectionEnd\n\t\ttime.sleep(0.2)\n\t\tself.focus()\n\t\tself.view.custom.setCursorAt \u003d self.custom.cursorWasAt\n\t\tself.restoreUpdatesSettings()\n\t\n\tdef undoText():\n\t\tself.props.text \u003d self.view.custom.undoText\n\t\trefocus()\n\t\t\n\tdef redoText():\n\t\tself.props.text \u003d self.view.custom.redoText\n\t\trefocus()\n\t\t\n\tif event.key \u003d\u003d \u0027Shift\u0027:\n\t\tself.custom.shiftIsDown \u003d False\n\telif event.key \u003d\u003d \u0027Control\u0027:\n\t\tself.custom.ctrlIsDown \u003d False\n\telif event.key \u003d\u003d \u0027Alt\u0027:\n\t\tself.custom.altIsDown \u003d False\n\telif event.key \u003d\u003d \u0027Enter\u0027 and self.custom.lostFocusAfterFirstKeyTyped:\n\t\tself.custom.firstEnterTyped \u003d True\n\telse:\n\t\tself.custom.firstEnterTyped \u003d False\n\t\t\n\tself.custom.firstKeyTyped \u003d True\n\ttextUpToCursor \u003d self.props.text[:self.view.custom.selectionEnd]\n\t\n\tif event.key !\u003d \u0027@\u0027 and event.key !\u003d \u0027Shift\u0027:\n\t\tif event.key \u003d\u003d \u0027Enter\u0027 and self.view.custom.mentioning !\u003d \u0027\u0027:\n\t\t\tsystem.perspective.sendMessage(\u0027select-mention\u0027, {\n\t\t\t\t\u0027domID\u0027: self.view.custom.domID\n\t\t\t})\n\t\telif self.view.params.userMentions !\u003d \u0027None\u0027 and re.match(\u0027[\\s\\S]*\\@\\w{1,7}$\u0027, textUpToCursor):\n\t\t\tself.view.custom.mentioning \u003d re.sub(\u0027[\\s\\S]*\\@(\\w{1,7})$\u0027, \u0027\\\\1\u0027, textUpToCursor)\n\t\telse:\n\t\t\tself.view.custom.mentioning \u003d \u0027\u0027\n\t\t\tif not self.view.custom.previewShowing:\n\t\t\t\tself.view.custom.deferUpdates \u003d self.view.params.deferUpdates\n\t\t\t\t\n\tif event.key \u003d\u003d \u0027z\u0027 and self.custom.ctrlIsDown and self.view.custom.undoText !\u003d \u0027\u0027:\n\t\tself.props.rejectUpdatesWhileFocused \u003d False\n\t\tself.view.custom.redoText \u003d self.props.text\n\t\ttime.sleep(0.2)\n\t\tundoText()\n\telif event.key \u003d\u003d \u0027y\u0027 and self.custom.ctrlIsDown and self.view.custom.redoText !\u003d \u0027\u0027:\n\t\tself.props.rejectUpdatesWhileFocused \u003d False\n\t\tself.view.custom.undoText \u003d self.props.text\n\t\ttime.sleep(0.2)\n\t\tredoText()\n\telif event.key !\u003d \u0027Control\u0027:\n\t\tself.view.custom.undoText \u003d self.view.custom.redoText \u003d \u0027\u0027\n\t\n\tif self.custom.ctrlIsDown and self.custom.altIsDown and event.key \u003d\u003d \u0027d\u0027:\n\t\tself.view.custom.debugging \u003d not self.view.custom.debugging\n"
+                      },
+                      "preventDefault": true,
+                      "scope": "G",
+                      "stopPropagation": true,
+                      "type": "script"
+                    }
+                  },
+                  "system": {
+                    "onStartup": {
+                      "config": {
+                        "script": "\timport time\n\n\tself.props.rejectUpdatesWhileFocused \u003d False\n\ttime.sleep(0.5)\n\tif self.view.params.focusOnStartup and self.view.custom.runJS:\n\t\tself.focus()\n\t\tself.view.custom.selectionStart \u003d len(self.view.params.text)\n\t\tself.view.custom.selectionEnd \u003d len(self.view.params.text)\n\tself.props.rejectUpdatesWhileFocused \u003d self.view.params.rejectUpdatesWhileFocused\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "contextMenu": {
+                    "style": {
+                      "whiteSpace": "pre"
+                    }
+                  },
+                  "name": "MarkdownEdit"
+                },
+                "position": {
+                  "basis": "50%",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "custom.altIsDown": {
+                    "access": "PRIVATE"
+                  },
+                  "custom.ctrlIsDown": {
+                    "access": "PRIVATE"
+                  },
+                  "custom.firstEnterTyped": {
+                    "access": "PRIVATE"
+                  },
+                  "custom.firstKeyTyped": {
+                    "access": "PRIVATE"
+                  },
+                  "custom.hasFocus": {
+                    "access": "PRIVATE"
+                  },
+                  "custom.lostFocusAfterFirstKeyTyped": {
+                    "access": "PRIVATE"
+                  },
+                  "custom.shiftIsDown": {
+                    "access": "PRIVATE"
+                  },
+                  "custom.shiftOrCtrlIsDown": {
+                    "access": "PRIVATE",
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.shiftIsDown} || {this.custom.ctrlIsDown}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "meta.contextMenu.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{this.custom.shiftOrCtrlIsDown}"
+                      },
+                      "overlayOptOut": true,
+                      "type": "expr"
+                    }
+                  },
+                  "meta.contextMenu.items": {
+                    "binding": {
+                      "config": {
+                        "expression": "runScript(\u0027exchange.markdownPlus.formatting.getFormattingContextMenu\u0027, 0, {view.custom.domID}, {view.custom.selectionStart}, {view.custom.selectionEnd}, {view.params.enableHTML})"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "meta.domId": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.domID"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.deferUpdates": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.deferUpdates"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  },
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.placeholder": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.placeholder"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  },
+                  "props.rejectUpdatesWhileFocused": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.custom.mentioning} !\u003d \u0027\u0027,\r\n\tfalse,\r\n\t{view.params.rejectUpdatesWhileFocused}\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.isRequiredAlert},\r\n\t\u0027exchange/markdown-plus/input exchange/markdown-plus/required-field\u0027,\r\n\t\u0027exchange/markdown-plus/input\u0027\r\n)"
+                      },
+                      "overlayOptOut": true,
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.text"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {}
+                },
+                "scripts": {
+                  "customMethods": [
+                    {
+                      "name": "restoreUpdatesSettings",
+                      "params": [],
+                      "script": "\timport time\n\n\ttime.sleep(0.2)\n\t\n\tself.props.rejectUpdatesWhileFocused \u003d self.view.params.rejectUpdatesWhileFocused\n\t\n\ttime.sleep(0.2)\n\t\n\tself.view.custom.deferUpdates \u003d self.view.params.deferUpdates"
+                    }
+                  ],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "insert-symbol",
+                      "pageScope": true,
+                      "script": "\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\tself.view.custom.undoText \u003d self.view.params.text\n\t\tself.props.rejectUpdatesWhileFocused \u003d False\n\t\tindex \u003d self.view.custom.selectionStart\n\t\ttext \u003d self.props.text\n\t\tself.props.text \u003d text[0:index] + payload[\u0027char\u0027] + text[index:]\n\t\tself.view.custom.setCursorAt \u003d index + 1\n\t\tself.restoreUpdatesSettings()",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "insert-format",
+                      "pageScope": true,
+                      "script": "\texchange.markdownPlus.formatting.insertFormat(self, payload)",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "markdown-text-area-re-focus",
+                      "pageScope": true,
+                      "script": "\timport time\n\t\n\ttime.sleep(0.2)\n\t\n\tself.focus()",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "insert-emoji",
+                      "pageScope": true,
+                      "script": "\timport time\n\t\t\n\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\tself.props.rejectUpdatesWhileFocused \u003d False\n\t\t\n\t\ttime.sleep(0.1)\n\t\t\n\t\tself.view.custom.undoText \u003d self.view.params.text\n\t\tindex1 \u003d self.view.custom.selectionStart\n\t\tindex2 \u003d self.view.custom.selectionEnd\n\t\ttext \u003d self.props.text\n\t\tif self.view.params.enableHTML:\n\t\t\tinsertText \u003d \u0027:\u0027 + payload[\u0027description\u0027].lower().replace(\u0027 \u0027, \u0027_\u0027) + \u0027:\u0027\n\t\telse:\n\t\t\tinsertText \u003d \u0027\u0026#\u0027 + payload[\u0027number\u0027] + \u0027;\u0027\n\t\tself.props.text \u003d text[0:index1] + insertText + text[index2:]\n\t\tself.view.custom.setCursorAt \u003d index1 + len(insertText)\n\t\t\n\t\ttime.sleep(0.5)\n\t\t\n\t\tself.focus()\n\t\tself.restoreUpdatesSettings()",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "mention-selected",
+                      "pageScope": true,
+                      "script": "\timport time\n\timport re\n\n\tdef insertMention(userName, cursorAt):\n\t\ttextUpToCursor \u003d self.props.text[:cursorAt]\n\t\ttextAfterCursor \u003d self.props.text[cursorAt:]\n\t\tadj \u003d len(re.sub(\u0027^[\\s\\S]*\\@(\\w+)$\u0027, \u0027\\\\1\u0027, textUpToCursor))\n\t\tself.props.text \u003d re.sub(\u0027^([\\s\\S]*)\\@\\w+$\u0027, \u0027\\\\1@\u0027 + userName, textUpToCursor) + textAfterCursor\n\t\tself.view.custom.setCursorAt \u003d cursorAt + len(userName) - adj\n\t\t\n\t\ttime.sleep(0.2)\n\t\t\n\t\tself.focus()\n\t\tself.view.custom.mentioning \u003d \u0027\u0027\n\t\tself.props.rejectUpdatesWhileFocused \u003d self.view.params.rejectUpdatesWhileFocused\n\t\tself.view.custom.deferUpdates \u003d self.view.params.deferUpdates\n\t\tself.view.custom.mentionSelectedIndex \u003d 0\n\t\t\n\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\tself.props.rejectUpdatesWhileFocused \u003d False\n\t\tself.view.custom.deferUpdates \u003d False\n\t\t\n\t\ttime.sleep(0.1)\n\t\t\n\t\tinsertMention(payload[\u0027user\u0027].replace(\u0027 \u0027, \u0027_\u0027), self.view.custom.selectionEnd)",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "focus-notes",
+                      "pageScope": true,
+                      "script": "\timport time\n\n\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\ttime.sleep(0.2)\n\t\tself.focus()",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "insert-hyperlink",
+                      "pageScope": true,
+                      "script": "\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\tself.props.rejectUpdatesWhileFocused \u003d False\n\t\tindex \u003d self.view.custom.selectionStart\n\t\ttext \u003d self.props.text\n\t\tif self.view.params.enableHTML:\n\t\t\tif self.view.params.openLinksInNewTab:\n\t\t\t\tlink \u003d \u0027\u003ca href\u003d\"\u0027 + payload[\u0027url\u0027] + \u0027\" target\u003d\"_blank\"\u003e\u0027 + payload[\u0027text\u0027] + \u0027\u003c/a\u003e\u0027\n\t\t\telse:\n\t\t\t\tlink \u003d \u0027\u003ca href\u003d\"\u0027 + payload[\u0027url\u0027] + \u0027\"\u003e\u0027 + payload[\u0027text\u0027] + \u0027\u003c/a\u003e\u0027\n\t\telse:\n\t\t\tlink \u003d \u0027[\u0027 + payload[\u0027text\u0027] + \u0027](\u0027 + payload[\u0027url\u0027] + \u0027)\u0027\n\t\tself.props.text \u003d text[0:index] + link + text[index:]\n\t\tself.view.custom.setCursorAt \u003d index + len(link)\n\t\tself.restoreUpdatesSettings()",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "insert-image",
+                      "pageScope": true,
+                      "script": "\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\tself.props.rejectUpdatesWhileFocused \u003d False\n\t\tindex \u003d self.view.custom.selectionStart\n\t\ttext \u003d self.props.text\n\t\ttry:\n\t\t\tatt \u003d \u0027\u0027\n\t\t\tif payload[\u0027width\u0027] !\u003d \u0027\u0027:\n\t\t\t\tatt +\u003d \u0027 width\u003d\u0027 + str(payload[\u0027width\u0027])\n\t\t\tif payload[\u0027height\u0027] !\u003d \u0027\u0027:\n\t\t\t\tatt +\u003d \u0027 height\u003d\u0027 + str(payload[\u0027height\u0027])\n\t\t\tatt +\u003d \u0027 align\u003d\u0027 + payload[\u0027align\u0027]\n\t\t\tif payload[\u0027caption\u0027] !\u003d \u0027\u0027:\n\t\t\t\tpos \u003d \u0027 \u0027 + payload[\u0027captionPosition\u0027]\n\t\t\t\tif pos \u003d\u003d \u0027 \u0027:\n\t\t\t\t\tpos \u003d \u0027\u0027\n\t\t\t\tatt +\u003d \u0027 caption\u0027 + pos + \u0027\u003d\u0027 + payload[\u0027caption\u0027].replace(\u0027\u003e\u0027, \u0027\u0026gt;\u0027)\n\t\t\tinsert \u003d \u0027\u003c[\u0027 + payload[\u0027type\u0027] + \u0027?id\u003d\u0027 + str(payload[\u0027id\u0027]) + att + \u0027]\u003e\u0027\n\t\t\tself.props.text \u003d text[0:index] + insert + text[index:]\n\t\t\tself.view.custom.setCursorAt \u003d index + len(insert)\n\t\t\tself.restoreUpdatesSettings()\n\t\texcept Exception as e:\n\t\t\tsystem.perspective.print(str(e))",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "insert-file",
+                      "pageScope": true,
+                      "script": "\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\tself.props.rejectUpdatesWhileFocused \u003d False\n\t\tindex \u003d self.view.custom.selectionStart\n\t\ttext \u003d self.props.text\n\t\ttry:\n\t\t\ticonType \u003d exchange.markdownPlus.attachments.getFileAttachmentIcon(payload[\u0027name\u0027])\n\t\t\tinsert \u003d \u0027\u003c[file?id\u003d\u0027 + str(payload[\u0027id\u0027]) + \u0027\u0026type\u003d\u0027 + payload[\u0027type\u0027] + \u0027\u0026name\u003d\u0027 + payload[\u0027name\u0027].replace(\u0027]\u0027, \u0027~CB~\u0027) + \u0027 type\u003d\u0027 + iconType + \u0027]\u003e\\n\u0027\n\t\t\tself.props.text \u003d text[0:index] + insert + text[index:]\n\t\t\tself.view.custom.setCursorAt \u003d index + len(insert)\n\t\t\tself.restoreUpdatesSettings()\n\t\texcept Exception as e:\n\t\t\tsystem.perspective.print(str(e))",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.text-area"
+              },
+              {
+                "meta": {
+                  "contextMenu": {
+                    "enabled": true
+                  },
+                  "name": "MarkdownPreview"
+                },
+                "position": {
+                  "basis": "50%",
+                  "display": false,
+                  "grow": 1
+                },
+                "propConfig": {
+                  "meta.contextMenu.items": {
+                    "binding": {
+                      "config": {
+                        "path": "../MarkdownEdit.meta.contextMenu.items"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.previewShowing"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    },
+                    "persistent": true
+                  },
+                  "props.params.attachmentsTable": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.attachmentsTable"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  },
+                  "props.params.display": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.previewShowing"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  },
+                  "props.params.enableHTML": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enableHTML"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  },
+                  "props.params.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.enabled"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  },
+                  "props.params.html": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.html"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  },
+                  "props.params.markdownText": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.text"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  },
+                  "props.params.openLinksInNewTab": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.openLinksInNewTab"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "Exchange/MarkdownPlus/MarkdownPlus"
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "focus-preview",
+                      "pageScope": true,
+                      "script": "\tself.focus()",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.view"
+              }
+            ],
+            "meta": {
+              "name": "TextArea"
+            },
+            "position": {
+              "basis": "3em",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.direction": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.previewPosition} \u003d \u0027Right\u0027,\r\n\t\u0027row\u0027,\r\n\tif({view.params.previewPosition} \u003d \u0027Bottom\u0027,\r\n\t\t\u0027column\u0027,\r\n\t\tif({view.params.previewPosition} \u003d \u0027Left\u0027,\r\n\t\t\t\u0027row-reverse\u0027,\r\n\t\t\t\u0027column-reverse\u0027\r\n\t\t)\r\n\t)\r\n)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "gap": 5,
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "GetCaretPosition"
+            },
+            "position": {
+              "basis": "0px"
+            },
+            "propConfig": {
+              "props.source": {
+                "binding": {
+                  "config": {
+                    "expression": "runScript(\u0027exchange.markdownPlus.javaScript.getCaretPositionJS\u0027, 0, {view.custom.domID})"
+                  },
+                  "overlayOptOut": true,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "markdown": {
+                "escapeHtml": false
+              }
+            },
+            "type": "ia.display.markdown"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "PreviewDEBUG"
+                    },
+                    "position": {
+                      "grow": 1,
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "..../TextArea/Preview.props.source"
+                          },
+                          "overlayOptOut": true,
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "deferUpdates": false,
+                      "style": {
+                        "fontFamily": "monospace"
+                      }
+                    },
+                    "type": "ia.input.text-area"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "Defer"
+                        },
+                        "position": {
+                          "basis": "1.1em",
+                          "shrink": 0
+                        },
+                        "propConfig": {
+                          "props.selected": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "view.params.deferUpdates"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "text": "Defer"
+                        },
+                        "type": "ia.input.checkbox"
+                      },
+                      {
+                        "meta": {
+                          "name": "Reject"
+                        },
+                        "position": {
+                          "basis": "1.1em",
+                          "shrink": 0
+                        },
+                        "propConfig": {
+                          "props.selected": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "view.params.rejectUpdatesWhileFocused"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "text": "Reject"
+                        },
+                        "type": "ia.input.checkbox"
+                      },
+                      {
+                        "meta": {
+                          "name": "Shift"
+                        },
+                        "position": {
+                          "basis": "1.1em",
+                          "shrink": 0
+                        },
+                        "propConfig": {
+                          "props.selected": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "...../TextArea/TextArea.custom.shiftIsDown"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "text": "Shift"
+                        },
+                        "type": "ia.input.checkbox"
+                      },
+                      {
+                        "meta": {
+                          "name": "Ctrl"
+                        },
+                        "position": {
+                          "basis": "1.1em",
+                          "shrink": 0
+                        },
+                        "propConfig": {
+                          "props.selected": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "...../TextArea/TextArea.custom.ctrlIsDown"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "text": "Ctrl"
+                        },
+                        "type": "ia.input.checkbox"
+                      },
+                      {
+                        "meta": {
+                          "name": "Alt"
+                        },
+                        "position": {
+                          "basis": "1.1em",
+                          "shrink": 0
+                        },
+                        "propConfig": {
+                          "props.selected": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "...../TextArea/TextArea.custom.altIsDown"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "text": "Alt"
+                        },
+                        "type": "ia.input.checkbox"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Status"
+                    },
+                    "props": {
+                      "direction": "column",
+                      "style": {
+                        "gap": 5,
+                        "overflow": "visible",
+                        "paddingTop": 4
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "props": {
+                  "style": {
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "Mentioning"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027mentioning \u003d \u0027 + {view.custom.mentioning}"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Debug"
+            },
+            "position": {
+              "basis": "20%",
+              "display": false,
+              "grow": 1
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "coalesce({view.custom.debugging}, false)"
+                  },
+                  "type": "expr"
+                },
+                "persistent": true
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "fontSize": "80%",
+                "marginTop": 4,
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "TextAreaLayer"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "borderColor": "#F5335F",
+            "borderStyle": "none",
+            "borderWidth": 0,
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "fontSize": "90%",
+                    "marginLeft": 3,
+                    "marginTop": 2
+                  },
+                  "text": "Mention User:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onKeyUp": {
+                      "config": {
+                        "script": "\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tsystem.perspective.sendMessage(\u0027select-mention\u0027, {\n\t\t\t\u0027domID\u0027: self.view.custom.domID\n\t\t})"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    },
+                    "onMouseLeave": {
+                      "config": {
+                        "script": "\tsystem.perspective.sendMessage(\u0027mouse-over-mention\u0027, {\n\t\t\u0027user\u0027: \u0027\u0027\n\t})"
+                      },
+                      "enabled": false,
+                      "scope": "G",
+                      "type": "script"
+                    },
+                    "onMouseOut": {
+                      "config": {
+                        "script": "\tsystem.perspective.sendMessage(\u0027mouse-over-mention\u0027, {\n\t\t\u0027user\u0027: \u0027\u0027\n\t})"
+                      },
+                      "enabled": false,
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "FlexRepeater"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "runScript(\u0027exchange.markdownPlus.users.getMentionOptions\u0027, 0, {view.custom.domID}, {view.custom.mentioning}, {view.params.userMentions})"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "elementStyle": {
+                    "margin": 0
+                  },
+                  "path": "Exchange/MarkdownPlus/Embedded/Mention",
+                  "style": {
+                    "backgroundColor": "#FFFFFF00",
+                    "overflowX": "hidden",
+                    "overflowY": "auto"
+                  },
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "select-mention",
+                      "pageScope": true,
+                      "script": "\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\tsystem.perspective.sendMessage(\u0027mention-selected\u0027, {\n\t\t\t\u0027domID\u0027: self.view.params.domID\n\t\t})",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "mention-down",
+                      "pageScope": true,
+                      "script": "\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\tself.view.custom.mentionSelectedIndex +\u003d 1\n\t\tif self.view.custom.mentionSelectedIndex \u003d\u003d len(self.props.instances):\n\t\t\tself.view.custom.mentionSelectedIndex \u003d 0\n\t\tsystem.perspective.sendMessage(\u0027mention-index\u0027, {\n\t\t\t\u0027index\u0027: self.view.custom.mentionSelectedIndex\n\t\t})\n\t\t#self.focus()",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "mention-up",
+                      "pageScope": true,
+                      "script": "\tif payload[\u0027domID\u0027] \u003d\u003d self.view.custom.domID:\n\t\tself.view.custom.mentionSelectedIndex -\u003d 1\n\t\tif self.view.custom.mentionSelectedIndex \u003c 0:\n\t\t\tself.view.custom.mentionSelectedIndex \u003d len(self.props.instances) - 1\n\t\tsystem.perspective.sendMessage(\u0027mention-index\u0027, {\n\t\t\t\u0027index\u0027: self.view.custom.mentionSelectedIndex\n\t\t})\n\t\t#self.focus()",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "clear-mention",
+                      "pageScope": true,
+                      "script": "\tself.view.custom.mentioning \u003d \u0027\u0027",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.flex-repeater"
+              },
+              {
+                "meta": {
+                  "name": "NoMatches"
+                },
+                "position": {
+                  "display": false,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.mentioning} !\u003d \u0027\u0027 \u0026\u0026 len({../FlexRepeater.props.instances}) \u003d 0"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": true
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027No users matching \"\u0027 + {view.custom.mentioning} + \u0027\"\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontSize": "80%",
+                    "fontStyle": "italic",
+                    "marginLeft": 3,
+                    "marginTop": 2,
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Popup"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({parent.meta.visible},\r\n\t{view.params.userMentionsPopupHeight},\r\n\t\u00270\u0027\r\n)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "backgroundColor": "#FAFAFAFA",
+                "borderBottomLeftRadius": 5,
+                "borderBottomRightRadius": 5,
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 5,
+                "borderTopRightRadius": 5,
+                "borderWidth": 1,
+                "classes": "exchange/markdown-plus/input",
+                "minWidth": "10em",
+                "overflow": "visible",
+                "position": "relative",
+                "textShadow": "#00000019 1px 1px 1px",
+                "top": "20px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onKeyUp": {
+              "config": {
+                "script": "\tif event.key \u003d\u003d \u0027Escape\u0027:\n\t\tself.view.custom.mentioning \u003d \u0027\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "UserMentionLayer",
+          "visible": false
+        },
+        "position": {
+          "width": 0.3899
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.mentioning} !\u003d null \u0026\u0026 {view.custom.mentioning} !\u003d \u0027\u0027"
+              },
+              "type": "expr"
+            },
+            "persistent": true
+          },
+          "position.height": {
+            "binding": {
+              "config": {
+                "expression": "if({view.custom.mentioning} !\u003d null \u0026\u0026 {view.custom.mentioning} !\u003d \u0027\u0027,\r\n\t0.5,\r\n\t0\r\n)"
+              },
+              "type": "expr"
+            }
+          },
+          "position.y": {
+            "binding": {
+              "config": {
+                "expression": "if({view.custom.mentioning} !\u003d null \u0026\u0026 {view.custom.mentioning} !\u003d \u0027\u0027,\r\n\tif(lower({view.params.buttonsSize}) \u003d \u0027small\u0027,\r\n\t\t-0.5,\r\n\t\tif(lower({view.params.buttonsSize}) \u003d \u0027medium\u0027,\r\n\t\t\t-0.492,\r\n\t\t\t-0.484\r\n\t\t)\r\n\t),\r\n\t0\r\n)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "justify": "flex-end",
+          "style": {
+            "borderStyle": "none",
+            "borderWidth": 0,
+            "overflow": "visible",
+            "zIndex": 99
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "borderStyle": "none",
+        "borderWidth": 0,
+        "overflow": "visible"
+      }
+    },
+    "scripts": {
+      "customMethods": [
+        {
+          "name": "insertBold",
+          "params": [],
+          "script": "\tsystem.perspective.sendMessage(\u0027insert-format\u0027, {\n\t\t\u0027pre\u0027: \u0027**\u0027,\n\t\t\u0027post\u0027: \u0027**\u0027,\n\t\t\u0027domID\u0027: self.view.custom.domID\n\t})"
+        },
+        {
+          "name": "insertItalic",
+          "params": [],
+          "script": "\tsystem.perspective.sendMessage(\u0027insert-format\u0027, {\n\t\t\u0027pre\u0027: \u0027*\u0027,\n\t\t\u0027post\u0027: \u0027*\u0027,\n\t\t\u0027domID\u0027: self.view.custom.domID\n\t})"
+        },
+        {
+          "name": "insertUnderline",
+          "params": [],
+          "script": "\tsystem.perspective.sendMessage(\u0027insert-format\u0027, {\n\t\t\u0027pre\u0027: \u0027\u003cu\u003e\u0027,\n\t\t\u0027post\u0027: \u0027\u003c/u\u003e\u0027,\n\t\t\u0027domID\u0027: self.view.custom.domID\n\t})"
+        },
+        {
+          "name": "insertStrikethrough",
+          "params": [],
+          "script": "\tsystem.perspective.sendMessage(\u0027insert-format\u0027, {\n\t\t\u0027pre\u0027: \u0027\u003cs\u003e\u0027,\n\t\t\u0027post\u0027: \u0027\u003c/s\u003e\u0027,\n\t\t\u0027domID\u0027: self.view.custom.domID\n\t})"
+        },
+        {
+          "name": "insertQuote",
+          "params": [],
+          "script": "\tif self.view.custom.selectionEnd \u003d\u003d self.view.custom.selectionStart:\n\t\tsystem.perspective.sendMessage(\u0027insert-format\u0027, {\n\t\t\t\u0027pre\u0027: \u0027\\n\u003e Quote\u0027,\n\t\t\t\u0027post\u0027: \u0027\u0027,\n\t\t\t\u0027domID\u0027: self.view.custom.domID\n\t\t})\n\telse:\n\t\tsystem.perspective.sendMessage(\u0027insert-format\u0027, {\n\t\t\t\u0027pre\u0027: \u0027\\n\u003e \u0027,\n\t\t\t\u0027post\u0027: \u0027\u0027,\n\t\t\t\u0027domID\u0027: self.view.custom.domID\n\t\t})"
+        },
+        {
+          "name": "insertTable",
+          "params": [],
+          "script": "\tpfix \u003d \u0027\u0027\n\tif self.view.params.text !\u003d \u0027\u0027 and not self.view.params.text.endswith(\u0027\\n\u0027):\n\t\tpfix \u003d \u0027\\n\\n\u0027\n\tsystem.perspective.sendMessage(\u0027insert-format\u0027, {\n\t\t\u0027pre\u0027: pfix + \u0027|Col 1|Col 2|\\n|-----|-----|\\n| 1,1 | 1,2 |\\n| 2,1 | 2,2 |\\n\u0027,\n\t\t\u0027post\u0027: \u0027\u0027,\n\t\t\u0027domID\u0027: self.view.custom.domID\n\t})"
+        }
+      ],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "color-picker-confirmed",
+          "pageScope": true,
+          "script": "\tif payload[\u0027id\u0027] \u003d\u003d self.view.custom.domID:\n\t\tsystem.perspective.sendMessage(\u0027insert-format\u0027, {\n\t\t\t\u0027pre\u0027: \u0027\u003cspan style\u003d\"\u0027 + (\u0027background-\u0027 if payload[\u0027isBackground\u0027] else \u0027\u0027) + \u0027color: \u0027 + payload[\u0027color\u0027] + \u0027\"\u003e\u0027,\n\t\t\t\u0027post\u0027: \u0027\u003c/span\u003e\u0027,\n\t\t\t\u0027domID\u0027: self.view.custom.domID\n\t\t})",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

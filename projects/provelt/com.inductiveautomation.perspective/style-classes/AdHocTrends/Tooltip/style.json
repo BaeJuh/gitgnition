@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "var(--neutral-30)",
+      "color": "var(--neutral-100)",
+      "fontFamily": "Roboto",
+      "fontSize": "13px",
+      "textAlign": "center"
+    }
+  }
+}

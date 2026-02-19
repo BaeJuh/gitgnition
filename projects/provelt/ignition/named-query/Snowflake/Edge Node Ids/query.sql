@@ -1,0 +1,11 @@
+SELECT 
+	nmr.EDGE_NODE_ID label,
+	nmr.EDGE_NODE_ID value
+FROM 
+	{stageDB}.SPARKPLUG_EDGE_NODE_REGISTRY nmr
+WHERE 
+	nmr.GROUP_ID = :groupId
+GROUP BY 
+	nmr.EDGE_NODE_ID
+ORDER BY 
+	nmr.EDGE_NODE_ID

@@ -1,0 +1,19 @@
+{
+  "scope": "G",
+  "description": "The light-cool theme for Perspective.",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json",
+    "index.css",
+    "variables.css"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "theme-manager",
+      "timestamp": "2025-12-18T05:47:52Z"
+    },
+    "lastModificationSignature": "2b387f8f59a5bdcc7bf68214a74044bfb2e03428481a4debd5e69aaf807bba04"
+  }
+}

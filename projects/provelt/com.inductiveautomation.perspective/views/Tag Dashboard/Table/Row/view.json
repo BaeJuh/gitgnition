@@ -1,0 +1,500 @@
+{
+  "custom": {
+    "alarm": false,
+    "alarmActive": null,
+    "alarmActiveName": null,
+    "dataType": "String",
+    "history": false,
+    "historyTagPath": null,
+    "timestamp": {
+      "$": [
+        "ts",
+        192,
+        1626460787396
+      ],
+      "$ts": 1626386970244
+    }
+  },
+  "params": {
+    "alternate": true,
+    "folder": false,
+    "name": "WriteableString1",
+    "tagPath": "[default]Writeable/WriteableString1"
+  },
+  "propConfig": {
+    "custom.alarm": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}.Alarms"
+        },
+        "transforms": [
+          {
+            "expression": "{value} !\u003d null",
+            "type": "expression"
+          }
+        ],
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.alarmActive": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}/Alarms.HasActive"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.alarmActiveName": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}/Alarms.HighestActiveName"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.dataType": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}.DataType"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.history": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}.HistoryEnabled"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.historyTagPath": {
+      "binding": {
+        "config": {
+          "expression": "if({view.custom.history}, {view.params.tagPath}, null)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.timestamp": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}.Timestamp"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "params.alternate": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.folder": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 32,
+      "width": 781
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\ttagPath \u003d self.view.params.tagPath\n\tTagDashboard.selectFolder(self, tagPath)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.folder"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "material/folder",
+          "style": {
+            "classes": "TagDashboard/Title/Icon",
+            "cursor": "pointer",
+            "marginRight": "4px"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tfolder \u003d self.view.params.folder\n\tif folder:\n\t\ttagPath \u003d self.view.params.tagPath\n\t\tTagDashboard.selectFolder(self, tagPath)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "200px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.name"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "cursor": "pointer",
+            "marginRight": "5px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "EmbeddedView"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "!{view.params.folder}"
+              },
+              "type": "expr"
+            }
+          },
+          "props.params.tagPath": {
+            "binding": {
+              "config": {
+                "path": "view.params.tagPath"
+              },
+              "type": "property"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.folder}, \"\", \"Tag Dashboard/Table/Data Types/View/\" + {view.custom.dataType})"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "style": {
+            "marginRight": "5px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tfolder \u003d self.view.params.folder\n\tif folder:\n\t\ttagPath \u003d self.view.params.tagPath\n\t\tTagDashboard.selectFolder(self, tagPath)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "basis": "130px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.custom.timestamp"
+              },
+              "transforms": [
+                {
+                  "formatType": "datetime",
+                  "formatValue": {
+                    "date": "short",
+                    "time": "short"
+                  },
+                  "type": "format"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "cursor": "pointer",
+            "marginRight": "5px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Sparkline"
+            },
+            "position": {
+              "basis": "32px",
+              "grow": 1
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.custom.historyTagPath} !\u003d null"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.points": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "historyDuration": "{session.custom.settings.historyDuration}",
+                      "historyTagPath": "{view.custom.historyTagPath}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\thistoryTagPath \u003d value[\"historyTagPath\"]\n\thistoryDuration \u003d value[\"historyDuration\"]\n\tif historyTagPath !\u003d None:\n\t\tpaths \u003d [historyTagPath]\n\t\treturn system.tag.queryTagHistory(paths\u003dpaths, returnSize\u003d100, rangeMinutes\u003dhistoryDuration)\n\t\n\treturn []",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "marginRight": "5px"
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "refresh-history",
+                  "pageScope": true,
+                  "script": "\tself.refreshBinding(\"props.points\")",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.display.sparkline"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "basis": "250px",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "24px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.alarm"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "config": {
+                    "expression": "\"TagDashboard/Alarm/\" + if({view.custom.alarmActive}, \"Active\", \"Inactive\")"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "path": "material/notifications"
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.alarm"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "config": {
+                    "expression": "\"TagDashboard/Alarm/\" + if({view.custom.alarmActive}, \"Active\", \"Inactive\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.custom.alarmActive}, {view.custom.alarmActiveName}, \"No Alarm\")"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {}
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "100px",
+          "shrink": 0
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onClick": {
+          "config": {
+            "script": "\tfolder \u003d self.view.params.folder\n\tif not folder:\n\t\ttagPath \u003d self.view.params.tagPath\n\t\tsystem.perspective.openDock(id\u003d\"tag\", params\u003d{\"tagPath\":tagPath})"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.classes": {
+        "binding": {
+          "config": {
+            "expression": "if(!{view.params.alternate}, \"TagDashboard/Page/Page\", \"TagDashboard/Page/Alternate\")"
+          },
+          "type": "expr"
+        }
+      }
+    },
+    "props": {
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

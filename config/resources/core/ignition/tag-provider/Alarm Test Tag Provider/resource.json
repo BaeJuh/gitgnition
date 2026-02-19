@@ -1,0 +1,14 @@
+{
+  "scope": "A",
+  "description": "Alarm Test Tag Provider",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {
+    "uuid": "a8466e89-251e-4109-81ca-de766f617351",
+    "enabled": true
+  }
+}

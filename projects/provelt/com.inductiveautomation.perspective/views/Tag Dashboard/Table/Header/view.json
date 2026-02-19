@@ -1,0 +1,161 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 32,
+      "width": 781
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Small Title"
+        },
+        "position": {
+          "basis": "200px",
+          "shrink": 0
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "params": {
+            "icon": "",
+            "text": "Tag"
+          },
+          "path": "Tag Dashboard/Small Title",
+          "style": {
+            "marginRight": "5px"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Small Title_0"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "params": {
+            "icon": "",
+            "text": "Value"
+          },
+          "path": "Tag Dashboard/Small Title",
+          "style": {
+            "marginRight": "5px"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Small Title_2"
+        },
+        "position": {
+          "basis": "130px",
+          "shrink": 0
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "params": {
+            "icon": "",
+            "text": "Timestamp"
+          },
+          "path": "Tag Dashboard/Small Title",
+          "style": {
+            "marginRight": "5px"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Small Title_1"
+        },
+        "position": {
+          "basis": "220px",
+          "shrink": 0
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "params": {
+            "icon": "",
+            "text": "History"
+          },
+          "path": "Tag Dashboard/Small Title"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(messageType\u003d\"refresh-history\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "props": {
+          "path": "material/refresh",
+          "style": {
+            "classes": "TagDashboard/SmallTitle/Icon TagDashboard/SmallTitle/Title",
+            "cursor": "pointer",
+            "marginRight": "5px",
+            "paddingRight": "6px"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Small Title_3"
+        },
+        "position": {
+          "basis": "100px",
+          "shrink": 0
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "params": {
+            "icon": "",
+            "text": "Alarm"
+          },
+          "path": "Tag Dashboard/Small Title"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "classes": "TagDashboard/Page/Page"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

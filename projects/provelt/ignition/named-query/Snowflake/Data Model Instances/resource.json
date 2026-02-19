@@ -1,0 +1,70 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Snowflake",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "9f61f96129d0b0c067988d8e3041c4c29d250c16c39e0a94e6364618658f2de8",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "admin",
+      "timestamp": "2025-02-12T17:06:02Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "groupId",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "edgeNodeId",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "search",
+        "sqlType": 7
+      },
+      {
+        "type": "QueryString",
+        "identifier": "stageDB",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "dataModel",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "dataModelVersion",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "deviceId",
+        "sqlType": 7
+      }
+    ]
+  }
+}

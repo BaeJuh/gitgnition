@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Motor",
+    "typeId": null,
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "memory",
+        "name": "motor",
+        "value": 20,
+        "tagType": "AtomicTag"
+      }
+    ]
+  }
+]

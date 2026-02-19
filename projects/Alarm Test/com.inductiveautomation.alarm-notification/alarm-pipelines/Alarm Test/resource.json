@@ -1,0 +1,16 @@
+{
+  "scope": "G",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "data.bin"
+  ],
+  "attributes": {
+    "lastModificationSignature": "f35df605ca15a0f8275a3208e196e5b3ec96c8f7e8e165bc7b8f6aea41475a1a",
+    "lastModification": {
+      "actor": "jhbae@orcait.net",
+      "timestamp": "2026-01-16T08:29:08Z"
+    }
+  }
+}

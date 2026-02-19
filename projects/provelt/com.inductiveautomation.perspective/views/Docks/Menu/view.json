@@ -1,0 +1,60 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 260
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Features"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.items": {
+            "binding": {
+              "config": {
+                "path": "page.props.path"
+              },
+              "transforms": [
+                {
+                  "code": "\tret \u003d [\n  {\n    \"target\": \"/\",\n    \"items\": [],\n    \"navIcon\": {},\n    \"label\": {\n      \"text\": \"Home\",\n      \"icon\": {\n        \"path\": \"material/home\"\n      }\n    },\n    \"showHeader\": False,\n    \"style\": {\n      \"classes\": \"\",\n      \"fontWeight\": \"bold\" if value \u003d\u003d \"/\" else \"normal\"\n    }\n  },\n  {\n    \"target\": \"/tags\",\n    \"items\": [],\n    \"navIcon\": {},\n    \"label\": {\n      \"text\": \"Tags\",\n      \"icon\": {\n        \"path\": \"ignition/add_child\"\n      }\n    },\n    \"showHeader\": False,\n    \"style\": {\n      \"classes\": \"\",\n      \"fontWeight\": \"bold\" if value \u003d\u003d \"/tags\" else \"normal\"\n    }\n  },\n  {\n  \"target\": \"\",\n  \"items\": [\n    {\n      \"target\": \"/snowflake/dashboard\",\n      \"items\": [],\n      \"navIcon\": {\n        \"path\": \"\"\n      },\n      \"label\": {\n        \"text\": \"Dashboard\",\n        \"icon\": {\n          \"path\": \"material/dashboard\"\n        }\n      },\n      \"visible\": True,\n      \"enabled\": True,\n      \"showHeader\": True,\n      \"resetOnClick\": False,\n      \"backActionText\": \"\",\n      \"style\": {\n        \"classes\": \"\",\n        \"fontWeight\": \"bold\" if value \u003d\u003d \"/snowflake/dashboard\" else \"normal\"\n      }\n    },\n    {\n      \"target\": \"/snowflake/history\",\n      \"items\": [],\n      \"navIcon\": {\n        \"path\": \"\"\n      },\n      \"label\": {\n        \"text\": \"History\",\n        \"icon\": {\n          \"path\": \"material/trending_up\"\n        }\n      },\n      \"visible\": True,\n      \"enabled\": True,\n      \"showHeader\": True,\n      \"resetOnClick\": False,\n      \"backActionText\": \"\",\n      \"style\": {\n        \"classes\": \"\",\n        \"fontWeight\": \"bold\" if value \u003d\u003d \"/snowflake/history\" else \"normal\"\n      }\n    }\n  ],\n  \"navIcon\": {\n    \"path\": \"material/chevron_right\"\n  },\n  \"label\": {\n    \"text\": \"Snowflake\",\n    \"icon\": {\n      \"path\": \"material/dashboard\"\n    }\n  },\n  \"showHeader\": False,\n  \"style\": {\n    \"classes\": \"\",\n    \"fontWeight\": \"bold\" if value \u003d\u003d \"/snowflake/dashboard\" or value \u003d\u003d \"/snowflake/history\" else \"normal\"\n  }\n},\n  {\n    \"target\": \"/diagnostics\",\n    \"items\": [],\n    \"navIcon\": {},\n    \"label\": {\n      \"text\": \"Diagnostics\",\n      \"icon\": {\n        \"path\": \"material/search\"\n      }\n    },\n    \"showHeader\": False,\n    \"style\": {\n      \"classes\": \"\",\n      \"fontWeight\": \"bold\" if value \u003d\u003d \"/diagnostics\" else \"normal\"\n    }\n  }\n]\n\treturn ret",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "backActionStyle": {
+            "classes": "Menu/All_Header"
+          },
+          "backActionText": "All Features",
+          "itemStyle": {
+            "classes": "Menu/Item"
+          },
+          "style": {
+            "classes": "Menu/Menu"
+          }
+        },
+        "type": "ia.navigation.menutree"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "classes": "Menu/Menu"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "custom": {},
+  "params": {
+    "orientation": "column",
+    "states": [
+      {
+        "selectedStyle": {
+          "backgroundColor": "#FFF809",
+          "classes": ""
+        },
+        "text": "Hand",
+        "unselectedStyle": {
+          "classes": ""
+        },
+        "value": 2
+      },
+      {
+        "selectedStyle": {
+          "backgroundColor": "#FF2709",
+          "classes": ""
+        },
+        "text": "Off",
+        "unselectedStyle": {
+          "classes": ""
+        },
+        "value": 0
+      },
+      {
+        "selectedStyle": {
+          "backgroundColor": "#62ED2A",
+          "classes": ""
+        },
+        "text": "Auto",
+        "unselectedStyle": {
+          "classes": ""
+        },
+        "value": 1
+      }
+    ],
+    "tagPath": ""
+  },
+  "propConfig": {
+    "params.orientation": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.states": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 156,
+      "width": 127
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "MultiStateButton"
+        },
+        "position": {
+          "height": 0.9148,
+          "width": 0.8783,
+          "x": 0.0608,
+          "y": 0.0426
+        },
+        "propConfig": {
+          "props.controlValue": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}"
+              },
+              "type": "tag"
+            }
+          },
+          "props.indicatorValue": {
+            "binding": {
+              "config": {
+                "path": "this.props.controlValue"
+              },
+              "type": "property"
+            }
+          },
+          "props.orientation": {
+            "binding": {
+              "config": {
+                "path": "view.params.orientation"
+              },
+              "type": "property"
+            }
+          },
+          "props.states": {
+            "binding": {
+              "config": {
+                "path": "view.params.states"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.input.multi-state-button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

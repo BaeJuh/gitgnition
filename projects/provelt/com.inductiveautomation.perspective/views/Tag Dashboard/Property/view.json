@@ -1,0 +1,102 @@
+{
+  "custom": {},
+  "params": {
+    "key": "historyEnabled",
+    "value": "True"
+  },
+  "propConfig": {
+    "params.key": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 28
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "120px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.key"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderBottomColor": "#878D96",
+            "borderBottomStyle": "solid",
+            "borderBottomWidth": "1px",
+            "borderLeftColor": "#878D96",
+            "borderLeftStyle": "solid",
+            "borderLeftWidth": "1px",
+            "classes": "TagDashboard/Menu/Text",
+            "padding": "2px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.value"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderBottomColor": "#878D96",
+            "borderBottomStyle": "solid",
+            "borderBottomWidth": "1px",
+            "borderLeftColor": "#878D96",
+            "borderLeftStyle": "solid",
+            "borderLeftWidth": "1px",
+            "borderRightColor": "#878D96",
+            "borderRightStyle": "solid",
+            "borderRightWidth": "1px",
+            "classes": "TagDashboard/Menu/Text",
+            "overflow": "hidden",
+            "padding": "2px"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

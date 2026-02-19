@@ -1,0 +1,80 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 829,
+      "width": 260
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "icon": "filter_list",
+            "text": "Filters"
+          },
+          "path": "Snowflake/Title"
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "close",
+              "pageScope": true,
+              "script": "\tsystem.perspective.closeDock(\"dataModel\")",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Metrics"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.params": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "session.custom.filters"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Snowflake/Metrics",
+          "style": {
+            "margin": "10px"
+          }
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Snowflake/Dock/Dock"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

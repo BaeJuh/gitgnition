@@ -1,0 +1,51 @@
+[
+  {
+    "valueSource": "memory",
+    "dataType": "String",
+    "name": "Test String",
+    "tagType": "AtomicTag"
+  },
+  {
+    "valueSource": "memory",
+    "name": "memtag1",
+    "defaultValue": 45,
+    "tagType": "AtomicTag"
+  },
+  {
+    "valueSource": "memory",
+    "dataType": "Boolean",
+    "alarms": [
+      {
+        "setpointA": 0.0,
+        "activePipeline": "samplequickstart/New Pipeline",
+        "name": "Alarm",
+        "enabled": false
+      }
+    ],
+    "name": "AlarmTest",
+    "defaultValue": false,
+    "tagType": "AtomicTag",
+    "enabled": true
+  },
+  {
+    "valueSource": "derived",
+    "deriveExpressionGetter": "({source} - 32) * (5/9)",
+    "deriveExpressionSetter": "{value} * (5/9) + 32",
+    "sourceTagPath": "[~]memtag1",
+    "name": "mem1_derived",
+    "tagType": "AtomicTag"
+  },
+  {
+    "valueSource": "expr",
+    "expression": "3*423",
+    "dataType": "Float4",
+    "name": "temp_f",
+    "tagType": "AtomicTag"
+  },
+  {
+    "valueSource": "reference",
+    "sourceTagPath": "[~]memtag1",
+    "name": "mem1_ref",
+    "tagType": "AtomicTag"
+  }
+]

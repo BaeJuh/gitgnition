@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Snowflake",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "1369f3ea0c94753477fec4109b01a27065efdbea175e42c0360fa6f1304ccc2e",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "admin",
+      "timestamp": "2025-02-12T00:26:16Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "groupId",
+        "sqlType": 7
+      },
+      {
+        "type": "QueryString",
+        "identifier": "stageDB",
+        "sqlType": 7
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "var(--neutral-10)",
+      "borderStyle": "none",
+      "color": "var(--neutral-80)",
+      "fontSize": "14px",
+      "lineHeight": "16px",
+      "textTransform": "uppercase",
+      "fill": "var(--neutral-80)"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "backgroundColor": "var(--callToActionHighlight)"
+      }
+    }
+  ]
+}

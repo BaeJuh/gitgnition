@@ -1,0 +1,223 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 260
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "20px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/timelapse",
+              "style": {
+                "classes": "TagDashboard/Menu/Icon"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "TagDashboard/Menu/Item"
+              },
+              "text": "History Duration"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Dropdown"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "session.custom.settings.historyDuration"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "options": [
+            {
+              "label": "1 Minute",
+              "value": 1
+            },
+            {
+              "label": "5 Minutes",
+              "value": 5
+            },
+            {
+              "label": "15 Minutes",
+              "value": 15
+            },
+            {
+              "label": "30 Minutes",
+              "value": 30
+            },
+            {
+              "label": "45 Minutes",
+              "value": 45
+            },
+            {
+              "label": "1 Hour",
+              "value": 60
+            },
+            {
+              "label": "2 Hours",
+              "value": 120
+            },
+            {
+              "label": "3 Hours",
+              "value": 180
+            },
+            {
+              "label": "4 Hours",
+              "value": 240
+            },
+            {
+              "label": "5 Hours",
+              "value": 300
+            },
+            {
+              "label": "6 Hours",
+              "value": 360
+            },
+            {
+              "label": "12 Hours",
+              "value": 720
+            },
+            {
+              "label": "1 Day",
+              "value": 1440
+            },
+            {
+              "label": "1 Week",
+              "value": 10080
+            },
+            {
+              "label": "1 Month",
+              "value": 40320
+            }
+          ],
+          "style": {
+            "classes": "TagDashboard/Menu/Text"
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "20px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/edit",
+              "style": {
+                "classes": "TagDashboard/Menu/Icon"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "TagDashboard/Menu/Item"
+              },
+              "text": "Allow Tag Edits"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_1"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginTop": "10px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "ToggleSwitch"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.selected": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "session.custom.settings.tagEdit"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.input.toggle-switch"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "TagDashboard/Menu/Menu"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

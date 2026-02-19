@@ -1,0 +1,100 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "TextField"
+        },
+        "position": {
+          "height": 32,
+          "width": 150,
+          "x": 102,
+          "y": 98
+        },
+        "props": {
+          "placeholder": "Enter User Name"
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "TextArea"
+        },
+        "position": {
+          "height": 173,
+          "width": 294,
+          "x": 102,
+          "y": 171
+        },
+        "props": {
+          "placeholder": "Enter Message"
+        },
+        "type": "ia.input.text-area"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tsender \u003d \"sender\" # 자기 자신 여기서는 sender\n\treceiver \u003d self.getSibling(\"TextField\").props.text\n\tcontent \u003d self.getSibling(\"TextArea\").props.text\n\timportant \u003d self.getSibling(\"Checkbox\").props.selected\n\t\n#\tAlarm.sendAlarm(sender, receiver, content)\n\tAlarm.sendAlarmMsg(sender, receiver, content, important)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "height": 34,
+          "width": 98,
+          "x": 298,
+          "y": 389
+        },
+        "props": {
+          "text": "SUBMIT"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "Checkbox"
+        },
+        "position": {
+          "height": 36,
+          "rotate": {
+            "anchor": "50% 39%"
+          },
+          "width": 110,
+          "x": 272,
+          "y": 97
+        },
+        "props": {
+          "text": "Important",
+          "textPosition": "left"
+        },
+        "type": "ia.input.checkbox"
+      },
+      {
+        "meta": {
+          "name": "TextField_0"
+        },
+        "position": {
+          "height": 101,
+          "width": 443,
+          "x": 284,
+          "y": 536
+        },
+        "type": "ia.input.text-field"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

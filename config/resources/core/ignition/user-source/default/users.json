@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "uuid": "80db954d-7706-42ac-a84b-26cfcb1e9dc8",
+      "username": "jhbae@orcait.net",
+      "schedule": "Always",
+      "password": "[77541370]db0f4603ddf692d52a5ae564491d8e062b89535b05f04b3225861182d3c1bb35",
+      "passwordDate": "20251218.144745381+0900",
+      "passwordHistory": [],
+      "createdDate": "20251218.144745380+0900",
+      "lastModifiedDate": "20251218.144745380+0900",
+      "roles": [
+        "f4e425f1-3cb7-45c7-8270-8bf80c9f91b4"
+      ],
+      "extraProps": [],
+      "scheduleAdjustments": [],
+      "contactInfos": []
+    }
+  ],
+  "roles": [
+    {
+      "uuid": "f4e425f1-3cb7-45c7-8270-8bf80c9f91b4",
+      "rolename": "Administrator",
+      "createdDate": "20251218.144745380+0900",
+      "lastModifiedDate": "20251218.144745380+0900"
+    }
+  ]
+}

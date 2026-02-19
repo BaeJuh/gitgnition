@@ -1,0 +1,250 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 580
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label_5"
+        },
+        "position": {
+          "basis": "20px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "Breakpoints"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Breakpoints"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.controlValue": {
+                "binding": {
+                  "config": {
+                    "expression": "0"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.indicatorValue": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.controlValue"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.states": {
+                "binding": {
+                  "config": {
+                    "path": "session.custom.dashboard.objects.edit.sizes"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn sorted([{\n\t  \"text\": \"%dpx\" % r,\n\t  \"value\": r,\n\t  \"selectedStyle\": {\n\t    \"classes\": \"\",\n\t    \"backgroundColor\": \"#AAAAAA\"\n\t  },\n\t  \"unselectedStyle\": {\n\t    \"classes\": \"\"\n\t  }\n\t} for r in value], key \u003d lambda i: i[\"value\"])",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "defaultSelectedStyle": {
+                "paddingLeft": "6px",
+                "paddingRight": "6px"
+              },
+              "defaultUnselectedStyle": {
+                "paddingLeft": "6px",
+                "paddingRight": "6px"
+              },
+              "orientation": "row"
+            },
+            "type": "ia.input.multi-state-button"
+          }
+        ],
+        "meta": {
+          "name": "Breakpoints"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "paddingBottom": "2px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Spacer7"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Dashboard"
+        },
+        "position": {
+          "basis": "400px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.availableWidgets": {
+            "binding": {
+              "config": {
+                "queryPath": "Dashboard/Widget/Installed Widgets",
+                "returnFormat": "dataset"
+              },
+              "transforms": [
+                {
+                  "code": "\tvalue \u003d system.dataset.toPyDataSet(value)\n\treturn dashboard.getInstalledWidgets(value)",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.fixed.cellSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.cellSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.columnCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridCols"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.columnGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridColGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.rowCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridRows"
+              },
+              "type": "property"
+            }
+          },
+          "props.fixed.rowGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridRowGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.grid": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.grid"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.columnCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridCols"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.columnGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridColGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.rowCount": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridRows"
+              },
+              "type": "property"
+            }
+          },
+          "props.stretch.rowGutterSize": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.edit.gridRowGutterSize"
+              },
+              "type": "property"
+            }
+          },
+          "props.widgets": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "size": "toInt({../Breakpoints/Breakpoints.props.controlValue})",
+                  "widgets": "{session.custom.dashboard.objects.edit.widgets}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tsize \u003d value[\"size\"]\n\twidgets \u003d self.session.custom.dashboard.objects.edit.widgets\n\twidgets \u003d dashboard.getWidgets(widgets, size, True)\n\treturn [] if value \u003d\u003d None else widgets",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            },
+            "onChange": {
+              "enabled": null,
+              "script": "\tif origin \u003d\u003d \"Browser\":\n\t\tdashboard.addUpdateWidget(self)"
+            }
+          }
+        },
+        "props": {
+          "editingToggle": false,
+          "fixed": {},
+          "isEditing": true,
+          "stretch": {}
+        },
+        "type": "ia.display.dashboard"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

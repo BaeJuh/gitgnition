@@ -1,0 +1,446 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 764,
+      "width": 897
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Snowflake/Section",
+                    "marginBottom": "10px"
+                  },
+                  "text": "Step 1: Provide Model Name"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Label_10"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Model Name"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Model Name"
+                },
+                "position": {
+                  "basis": "30px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Snowflake/Form",
+                    "marginBottom": "10px"
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Snowflake/Section",
+                    "marginBottom": "10px"
+                  },
+                  "text": "Step 2: Select Process Value"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Metrics"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "props": {
+                  "params": {
+                    "aggregation": "AVG",
+                    "avgCols": "",
+                    "avgRawCols": "",
+                    "axis": "separate",
+                    "cols": "",
+                    "dataModel": null,
+                    "dataModel_DB": null,
+                    "deviceId": null,
+                    "edgeNodeId": null,
+                    "edgeNodeId_DB": null,
+                    "endDate": {
+                      "$": [
+                        "ts",
+                        192,
+                        1714416147774
+                      ],
+                      "$ts": 1714417199000
+                    },
+                    "firstAvgCol": null,
+                    "firstAvgRawCol": null,
+                    "firstCol": null,
+                    "fixedRows": 1000,
+                    "groupId": null,
+                    "groupId_DB": null,
+                    "instance": null,
+                    "interval": "minute",
+                    "metrics": [],
+                    "metricsEnabled": [],
+                    "queryMode": "interval",
+                    "selection": "single",
+                    "startDate": {
+                      "$": [
+                        "ts",
+                        192,
+                        1714416147774
+                      ],
+                      "$ts": 1714406400000
+                    },
+                    "valid": false
+                  },
+                  "path": "Snowflake/Metrics"
+                },
+                "type": "ia.display.view"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "basis": "300px",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Snowflake/Section",
+                    "marginBottom": "10px"
+                  },
+                  "text": "Step 3: Select Data to Train Model"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Label_6"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{.../FlexContainer/Metrics.props.params.valid}"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontStyle": "italic",
+                    "marginBottom": "10px"
+                  },
+                  "text": "Please select filters on the left to see history"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "TimeSeriesChart"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": ".../FlexContainer/Metrics.props.params.valid"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.plots": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "axis": "{.../FlexContainer/Metrics.props.params.axis}",
+                          "metricsEnabled": "{.../FlexContainer/Metrics.props.params.metricsEnabled}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tret \u003d []\n\t\n\tdef getTrend(name, row):\n\t\treturn {\n\t\t  \"visible\": True,\n\t\t  \"type\": \"line\",\n\t\t  \"series\": \"History\",\n\t\t  \"interpolation\": \"curveLinear\",\n\t\t  \"breakLine\": True,\n\t\t  \"stack\": True,\n\t\t  \"radius\": 2,\n\t\t  \"axis\": name,\n\t\t  \"columns\": [\n\t\t  \t{\n\t\t  \t  \"key\": name,\n\t\t  \t  \"color\": row[\"color\"],\n\t\t  \t  \"styles\": {\n\t\t  \t    \"normal\": {\n\t\t  \t      \"stroke\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"width\": None,\n\t\t  \t        \"dashArray\": None,\n\t\t  \t        \"opacity\": None\n\t\t  \t      },\n\t\t  \t      \"fill\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"opacity\": None\n\t\t  \t      }\n\t\t  \t    },\n\t\t  \t    \"highlighted\": {\n\t\t  \t      \"stroke\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"width\": None,\n\t\t  \t        \"dashArray\": None,\n\t\t  \t        \"opacity\": None\n\t\t  \t      },\n\t\t  \t      \"fill\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"opacity\": None\n\t\t  \t      }\n\t\t  \t    },\n\t\t  \t    \"selected\": {\n\t\t  \t      \"stroke\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"width\": None,\n\t\t  \t        \"dashArray\": None,\n\t\t  \t        \"opacity\": None\n\t\t  \t      },\n\t\t  \t      \"fill\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"opacity\": None\n\t\t  \t      }\n\t\t  \t    },\n\t\t  \t    \"muted\": {\n\t\t  \t      \"stroke\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"width\": None,\n\t\t  \t        \"dashArray\": None,\n\t\t  \t        \"opacity\": None\n\t\t  \t      },\n\t\t  \t      \"fill\": {\n\t\t  \t        \"color\": \"\",\n\t\t  \t        \"opacity\": None\n\t\t  \t      }\n\t\t  \t    }\n\t\t  \t  }\n\t\t  \t}\n\t\t  ],\n\t\t  \"baselines\": []\n\t\t}\n\t\t\n\tdef getAxis(name, row):\n\t\treturn {\n\t\t  \"name\": name,\n\t\t  \"min\": row[\"axisMin\"],\n\t\t  \"max\": row[\"axisMax\"],\n\t\t  \"alignment\": \"left\",\n\t\t  \"width\": 60,\n\t\t  \"label\": {\n\t\t    \"visible\": True,\n\t\t    \"text\": row[\"axisTitle\"],\n\t\t    \"offset\": 0,\n\t\t    \"font\": {\n\t\t      \"color\": row[\"color\"],\n\t\t      \"size\": 12\n\t\t    },\n\t\t    \"style\": {\n\t\t      \"classes\": \"\"\n\t\t    }\n\t\t  },\n\t\t  \"tick\": {\n\t\t    \"color\": \"\",\n\t\t    \"count\": \"Auto\",\n\t\t    \"label\": {\n\t\t      \"format\": \"Auto\",\n\t\t      \"font\": {\n\t\t        \"color\": \"\",\n\t\t        \"size\": 10\n\t\t      },\n\t\t      \"style\": {\n\t\t        \"classes\": \"\"\n\t\t      }\n\t\t    },\n\t\t    \"style\": {\n\t\t      \"classes\": \"\"\n\t\t    }\n\t\t  },\n\t\t  \"grid\": {\n\t\t    \"visible\": True,\n\t\t    \"color\": \"\",\n\t\t    \"opacity\": 0.1,\n\t\t    \"dashArray\": 0,\n\t\t    \"style\": {\n\t\t      \"classes\": \"\"\n\t\t    }\n\t\t  },\n\t\t  \"style\": {\n\t\t    \"classes\": \"\"\n\t\t  }\n\t\t}\n\t\n\tif value[\"axis\"] \u003d\u003d \"separate\":\t\n\t\tfor row in value[\"metricsEnabled\"]:\n\t\t\tname \u003d row[\"name\"].upper()\n\t\t\t\t\n\t\t\tret.append({\n\t\t\t  \"relativeWeight\": 1,\n\t\t\t  \"trends\": [getTrend(name, row)],\n\t\t\t  \"axes\": [getAxis(name, row)],\n\t\t\t  \"markers\": []\n\t\t\t})\n\telse:\n\t\ttrends \u003d []\n\t\taxes \u003d []\n\t\tfor row in value[\"metricsEnabled\"]:\n\t\t\tname \u003d row[\"name\"].upper()\n\t\t\ttrends.append(getTrend(name, row))\n\t\t\taxes.append(getAxis(name, row))\n\t\t\t\n\t\tret.append({\n\t\t  \"relativeWeight\": 1,\n\t\t  \"trends\": trends,\n\t\t  \"axes\": axes,\n\t\t  \"markers\": []\n\t\t})\n\t\n\treturn ret",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  },
+                  "props.series[0].data": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "dates": "{../ChartRangeSelector.props.selectedRange}",
+                          "params": "{.../FlexContainer/Metrics.props.params}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tqueryMode \u003d value[\"params\"][\"queryMode\"]\n\tparams \u003d {\n\t\t\"groupId\":value[\"params\"][\"groupId_DB\"],\n\t\t\"edgeNodeId\":value[\"params\"][\"edgeNodeId_DB\"],\n\t\t\"dataModel\":value[\"params\"][\"dataModel_DB\"],\n\t\t\"startDate\":system.date.toMillis(value[\"dates\"][\"start\"]),\n\t\t\"endDate\":system.date.toMillis(value[\"dates\"][\"end\"]),\n\t\t\"deviceId\":value[\"params\"][\"deviceId\"],\n\t\t\"instanceName\":value[\"params\"][\"instance\"],\n\t\t\"avgRawCols\":value[\"params\"][\"firstAvgRawCol\"]\n\t}\n\t\n\tif queryMode \u003d\u003d \"interval\":\n\t\tparams[\"interval\"] \u003d value[\"params\"][\"interval\"]\n\t\tres \u003d system.db.runNamedQuery(\"Snowflake/History Interval\", params)\n\telif queryMode \u003d\u003d \"fixed\":\n\t\tparams[\"cols\"] \u003d value[\"params\"][\"firstCol\"]\n\t\tparams[\"fixedRows\"] \u003d value[\"params\"][\"fixedRows\"]\n\t\tparams[\"avgCols\"] \u003d value[\"params\"][\"firstAvgCol\"]\n\t\tres \u003d system.db.runNamedQuery(\"Snowflake/History\", params)\n\t\n\treturn res",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "series": [
+                    {
+                      "name": "History"
+                    }
+                  ],
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "timeAxis": {
+                    "grid": {
+                      "opacity": 0.1,
+                      "visible": true
+                    }
+                  },
+                  "timeRange": {
+                    "visible": false
+                  }
+                },
+                "type": "ia.chart.timeseries"
+              },
+              {
+                "meta": {
+                  "name": "ChartRangeSelector"
+                },
+                "position": {
+                  "basis": "100px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": ".../FlexContainer/Metrics.props.params.valid"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.areaStyles.colors": {
+                    "binding": {
+                      "config": {
+                        "path": ".../FlexContainer/Metrics.props.params.metricsEnabled"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn [row[\"color\"] for row in value]",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "path": ".../FlexContainer/Metrics.props.params"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tqueryMode \u003d value[\"queryMode\"]\n\tparams \u003d {\n\t\t\"groupId\":value[\"groupId_DB\"],\n\t\t\"edgeNodeId\":value[\"edgeNodeId_DB\"],\n\t\t\"dataModel\":value[\"dataModel_DB\"],\n\t\t\"startDate\":system.date.toMillis(value[\"startDate\"]),\n\t\t\"endDate\":system.date.toMillis(value[\"endDate\"]),\n\t\t\"deviceId\":value[\"deviceId\"],\n\t\t\"instanceName\":value[\"instance\"],\n\t\t\"avgRawCols\":value[\"firstAvgRawCol\"]\n\t}\n\t\n\tif queryMode \u003d\u003d \"interval\":\n\t\tparams[\"interval\"] \u003d value[\"interval\"]\n\t\tres \u003d system.db.runNamedQuery(\"Snowflake/History Interval\", params)\n\telif queryMode \u003d\u003d \"fixed\":\n\t\tparams[\"cols\"] \u003d value[\"firstCol\"]\n\t\tparams[\"fixedRows\"] \u003d value[\"fixedRows\"]\n\t\tparams[\"avgCols\"] \u003d value[\"firstAvgCol\"]\n\t\tres \u003d system.db.runNamedQuery(\"Snowflake/History\", params)\n\t\n\treturn res",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.selectedRange.end": {
+                    "binding": {
+                      "config": {
+                        "path": ".../FlexContainer/Metrics.props.params.endDate"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.selectedRange.start": {
+                    "binding": {
+                      "config": {
+                        "path": ".../FlexContainer/Metrics.props.params.startDate"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "areaStyles": {},
+                  "selectedRange": {},
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "timeAxis": {
+                    "tick": {
+                      "label": {
+                        "format": "M-D-YYYY h:mm:ss"
+                      }
+                    }
+                  }
+                },
+                "type": "ia.chart.chartrangeselector"
+              },
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Snowflake/Section",
+                    "marginBottom": "10px"
+                  },
+                  "text": "Step 4: Create Model"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Progress"
+                },
+                "position": {
+                  "basis": "20px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "false"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "mode": "indeterminate",
+                  "style": {
+                    "marginBottom": "10px"
+                  }
+                },
+                "type": "ia.display.progress"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\timport re\n\timport traceback\n\t\n\tmodelName \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Model Name\").props.text\n\tgroupId \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.groupId_DB\n\tedgeNodeId \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.edgeNodeId_DB\n\tdataModel \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.dataModel_DB\n\tdeviceId \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.deviceId\n\tinstanceName \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.instance\n\tstartDate \u003d self.getSibling(\"ChartRangeSelector\").props.selectedRange.start\n\tendDate \u003d self.getSibling(\"ChartRangeSelector\").props.selectedRange.end\n\tcolumn \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.firstCol\n\tavgCol \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.firstAvgCol\n\tavgRawCol \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.firstAvgRawCol\n\tqueryMode \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.queryMode\n\tfixedRows \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.fixedRows\n\tinterval \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.interval\n\taggregation \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.aggregation\n\tvalid \u003d self.parent.parent.getChild(\"FlexContainer\").getChild(\"Metrics\").props.params.valid\n\t\n\tdef sendMessage(message):\n\t\tparams \u003d {\"message\":message}\n\t\tsystem.perspective.openPopup(id\u003d\"message\", view\u003d\"Snowflake/Message\", params\u003dparams, title\u003d\"Message\", showCloseIcon\u003dTrue, draggable\u003dTrue, resizble\u003dTrue, modal\u003dTrue, overlayDismiss\u003dTrue)\n\t\n\tif not valid:\n\t\tsendMessage(\"Please select a metric\")\n\telif modelName \u003d\u003d None or modelName \u003d\u003d \"\":\n\t\tsendMessage(\"Please select a model name\")\n\telif re.match(\"^[A-Za-z0-9_]*$\", modelName) \u003d\u003d None:\n\t\tsendMessage(\"Model name must only contain numbers and letters (no special characters or whitespaces)\")\n\telse:\n\t\tself.props.enabled \u003d False\n\t\tself.getSibling(\"Progress\").position.display \u003d True\n\t\t\n\t\tparams \u003d {\n\t\t\t\"modelName\":modelName,\n\t\t\t\"groupId\":groupId,\n\t\t\t\"edgeNodeId\":edgeNodeId,\n\t\t\t\"dataModel\":dataModel,\n\t\t\t\"startDate\":\"%s\" % system.date.toMillis(startDate),\n\t\t\t\"endDate\":\"%s\" % system.date.toMillis(endDate),\n\t\t\t\"deviceId\":deviceId,\n\t\t\t\"instanceName\":instanceName,\n\t\t\t\"col\":column[4:],\n\t\t\t\"aggregation\":aggregation\n\t\t}\n\t\t\n\t\ttry:\n\t\t\tif queryMode \u003d\u003d \"interval\":\n\t\t\t\tparams[\"interval\"] \u003d interval\n\t\t\t\tres \u003d system.db.runNamedQuery(\"Snowflake/AD/Create Model Interval\", params)\n\t\t\telif queryMode \u003d\u003d \"fixed\":\n\t\t\t\tparams[\"fixedRows\"] \u003d \"%d\" % fixedRows\n\t\t\t\tparams[\"rawCol\"] \u003d column\n\t\t\t\tparams[\"avgCol\"] \u003d avgCol\n\t\t\t\tparams[\"avgRawCol\"] \u003d avgRawCol\n\t\t\t\tres \u003d system.db.runNamedQuery(\"Snowflake/AD/Create Model\", params)\n\t\t\t\t\n\t\t\tsendMessage(\"Model created successfully\")\n\t\t\tsystem.perspective.closePopup(\"ad-train-model\")\n\t\t\tsystem.perspective.sendMessage(\"stats\", {})\n\t\texcept:\n\t\t\tsendMessage(\"Error creating model: %s\" % traceback.format_exc())\n\t\t\t\n\t\tself.props.enabled \u003d True\n\t\tself.getSibling(\"Progress\").position.display \u003d False"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Button"
+                },
+                "position": {
+                  "basis": "30px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Create Model"
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer_0"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginLeft": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "style": {
+            "margin": "10px",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Snowflake/Dock/Dock"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

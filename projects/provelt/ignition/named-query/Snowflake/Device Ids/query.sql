@@ -1,0 +1,12 @@
+SELECT 
+	dm.DEVICE_ID label,
+	dm.DEVICE_ID value
+FROM 
+	{stageDB}.SPARKPLUG_TEMPLATE_INSTANCE_REGISTRY dm
+WHERE 
+	dm.GROUP_ID = :groupId AND 
+	dm.EDGE_NODE_ID = :edgeNodeId
+GROUP BY 
+	dm.DEVICE_ID
+ORDER BY 
+	dm.DEVICE_ID	

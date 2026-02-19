@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "color": "#535C69",
+      "fontSize": "12px",
+      "fontWeight": "bolder",
+      "textTransform": "uppercase"
+    }
+  }
+}

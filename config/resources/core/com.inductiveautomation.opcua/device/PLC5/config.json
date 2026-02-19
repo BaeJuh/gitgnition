@@ -1,0 +1,18 @@
+{
+  "profile": {
+    "type": "PLC5"
+  },
+  "settings": {
+    "advanced": {
+      "browseCacheTimeout": 240000,
+      "disableProcessorBrowse": false,
+      "useZeroTnsConnections": false
+    },
+    "connectivity": {
+      "hostname": "192.168.50.30",
+      "localAddress": "",
+      "path": "",
+      "timeout": 2000
+    }
+  }
+}

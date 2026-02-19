@@ -1,0 +1,237 @@
+{
+  "custom": {},
+  "params": {
+    "automaticSelection": false,
+    "expanded": false,
+    "filters": {},
+    "foldersOnly": false,
+    "parentPath": "",
+    "tagPath": "[default]Ramp",
+    "useFiltersChildren": false
+  },
+  "propConfig": {
+    "params.automaticSelection": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.expanded": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.filters": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.foldersOnly": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.parentPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.useFiltersChildren": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 476,
+      "width": 250
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onItemClicked": {
+              "config": {
+                "script": "\tself.handleSelection(event.itemPath, event.data.path, event.data.hasChildren)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Tree"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.items": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "date": "now(0)",
+                  "expanded": "{view.params.expanded}",
+                  "filters": "{view.params.filters}",
+                  "foldersOnly": "{view.params.foldersOnly}",
+                  "mode": "{view.params.mode}",
+                  "parentPath": "{view.params.parentPath}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tret \u003d Framework.Tags.browseTags(self, value[\"parentPath\"], dict(value[\"filters\"]), value[\"expanded\"], value[\"foldersOnly\"])\n\treturn ret",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.selectionData": {
+            "onChange": {
+              "enabled": null,
+              "script": "\tif origin \u003d\u003d \"Browser\":\n\t\tselectionData \u003d self.props.selectionData\n\t\tif self.view.params.automaticSelection and selectionData !\u003d None and len(selectionData):\n\t\t\tif \"value\" in selectionData[0] and \"path\" in selectionData[0].value:\n\t\t\t\tpath \u003d selectionData[0].value.path\n\t\t\t\tself.view.params.tagPath \u003d path"
+            }
+          }
+        },
+        "props": {
+          "appearance": {
+            "defaultNodeIcons": {
+              "collapsed": {
+                "color": "#5F707E",
+                "path": "material/folder"
+              },
+              "empty": {
+                "color": "#869DB1",
+                "path": "material/stop"
+              },
+              "expanded": {
+                "color": "#5F707E",
+                "path": "material/folder_open"
+              }
+            },
+            "expandIcons": {
+              "collapsed": {
+                "color": "#869DB1",
+                "path": "material/arrow_right"
+              },
+              "empty": {
+                "color": "#869DB1"
+              },
+              "expanded": {
+                "color": "#869DB1",
+                "path": "material/arrow_drop_down"
+              }
+            }
+          }
+        },
+        "scripts": {
+          "customMethods": [
+            {
+              "name": "handleSelection",
+              "params": [
+                "itemPath",
+                "tagPath",
+                "hasChildren"
+              ],
+              "script": "\tfoldersOnly \u003d self.view.params.foldersOnly\n\tuseFilters \u003d self.view.params.useFiltersChildren\n\t\n\tif hasChildren:\n\t\tfilters \u003d None\n\t\tif useFilters:\n\t\t\tfilters \u003d dict(self.view.params.filters)\n\t\t\t\t\n\t\tret \u003d Framework.Tags.browseTags(self, tagPath, filters, False, foldersOnly)\n\t\t\n\t\titems \u003d self.props\n\t\tfor i in range(0, len(itemPath)-1):\n\t\t\tidx \u003d itemPath[i]\n\t\t\titems \u003d items.items[idx]\n\t\t\titems.expanded \u003d True\n\t\titems.items \u003d ret\n\t\t\n\t\tif (len(itemPath) - 1):\n\t\t\titemPath \u003d \"/\".join([str(itemPath[i]) for i in range(0, len(itemPath)-1)])\n\t\t\tself.props.selection \u003d [itemPath]\n\t\t\tself.props.selectionData \u003d [\n\t\t\t  {\n\t\t\t\t\"itemPath\": itemPath,\n\t\t\t\t\"value\": items.data\n\t\t\t  }\n\t\t\t]\n\t\telse:\n\t\t\tself.props.selection \u003d []\n\t\t\tself.props.selectionData \u003d []"
+            },
+            {
+              "name": "handleExpand",
+              "params": [
+                "payload"
+              ],
+              "script": "\titemPath \u003d []\n\titems \u003d self.props.items\n\ttagPath \u003d payload[\"tagPath\"]\n\t\n\tif tagPath !\u003d \"\":\n\t\tbracketPos \u003d tagPath.index(\"]\")+1\n\t\ttagProvider \u003d tagPath[0:bracketPos]\n\t\tpaths \u003d [tagProvider]\n\t\tif tagPath[bracketPos:] !\u003d \"\":\n\t\t\tpaths.extend(tagPath[bracketPos:].split(\"/\"))\n\t\t\n\t\tfullPath \u003d \"\"\n\t\tfor j in range(len(paths)):\n\t\t\tpath \u003d paths[j]\n\t\t\tif j \u003e 1:\n\t\t\t\tfullPath +\u003d \"/\" + path\n\t\t\telse:\n\t\t\t\tfullPath +\u003d path\n\t\t\tfor i in range(len(items)):\n\t\t\t\titem \u003d items[i]\n\t\t\t\tif item.data.path \u003d\u003d fullPath:\n\t\t\t\t\titems \u003d item.items\n\t\t\t\t\titemPath.append(i)\n\t\t\t\t\tbreak\n\t\n\titemPath.append(0)\n\tself.handleSelection(itemPath, tagPath, True)"
+            }
+          ],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "expand-folder",
+              "pageScope": true,
+              "script": "\tself.handleExpand(payload)",
+              "sessionScope": false,
+              "viewScope": false
+            },
+            {
+              "messageType": "tag-refresh",
+              "pageScope": true,
+              "script": "\tself.handleExpand(payload)",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.tree"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tpath \u003d self.getSibling(\"Tree\").props.selectionData[0].value.path\n\tself.view.params.tagPath \u003d path"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Select"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "!{view.params.automaticSelection}"
+              },
+              "type": "expr"
+            }
+          },
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "path": "../Tree.props.selection"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn len(value) \u003e 0",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/check_circle"
+            }
+          },
+          "style": {
+            "borderRadius": "0px",
+            "classes": "Framework/TagPicker/Button"
+          },
+          "text": "Select"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Framework/TagPicker/Container"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

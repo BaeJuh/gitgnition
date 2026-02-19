@@ -1,0 +1,14 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "var(--neutral-20)",
+      "borderColor": "var(--neutral-60)",
+      "borderWidth": "1px",
+      "color": "var(--neutral-100)",
+      "fontSize": "14px",
+      "lineHeight": "16px",
+      "textTransform": "uppercase",
+      "fill": "var(--neutral-50)"
+    }
+  }
+}

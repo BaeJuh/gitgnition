@@ -1,0 +1,662 @@
+{
+  "custom": {
+    "scale": 1,
+    "x": 0,
+    "y": 0
+  },
+  "params": {
+    "altText": "Unable to show image",
+    "controls": {
+      "in": true,
+      "mode": false,
+      "out": true,
+      "reset": true,
+      "zoom": true
+    },
+    "fit": {
+      "height": 100,
+      "mode": "contain",
+      "scroll": false,
+      "width": 100
+    },
+    "popupID": "",
+    "source": "",
+    "tint": {
+      "color": "#CCCCCC",
+      "enabled": false
+    }
+  },
+  "propConfig": {
+    "custom.scale": {
+      "persistent": true
+    },
+    "custom.x": {
+      "persistent": true
+    },
+    "custom.y": {
+      "persistent": true
+    },
+    "params.altText": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.controls": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.fit": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.popupID": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.source": {
+      "onChange": {
+        "enabled": null,
+        "script": "\tself.custom.scale \u003d 1\n\tself.custom.x \u003d 0\n\tself.custom.y \u003d 0"
+      },
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tint": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Image"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.altText": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.altText"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.fit": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.fit"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.source": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.source"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.style.transform": {
+                    "binding": {
+                      "config": {
+                        "expression": "\"scale(\"+{view.custom.scale}+\") translate(\"+{view.custom.x}+\"px,\"+{view.custom.y}+\"px)\""
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.tint": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.tint"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "cursor": "grab",
+                    "transition": "transform 100ms linear"
+                  }
+                },
+                "type": "ia.display.image"
+              }
+            ],
+            "meta": {
+              "name": "Image"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "alignItems": "center",
+              "direction": "column",
+              "style": {
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "FitModeNone"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.fit.mode} \u003d \u0027none\u0027"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "alignContent": "center",
+          "alignItems": "center",
+          "justify": "center",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Image"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.fit.mode} !\u003d \u0027none\u0027"
+              },
+              "type": "expr"
+            }
+          },
+          "props.altText": {
+            "binding": {
+              "config": {
+                "path": "view.params.altText"
+              },
+              "type": "property"
+            }
+          },
+          "props.fit": {
+            "binding": {
+              "config": {
+                "path": "view.params.fit"
+              },
+              "type": "property"
+            }
+          },
+          "props.source": {
+            "binding": {
+              "config": {
+                "path": "view.params.source"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.transform": {
+            "binding": {
+              "config": {
+                "expression": "\"scale(\"+{view.custom.scale}+\") translate(\"+{view.custom.x}+\"px,\"+{view.custom.y}+\"px)\""
+              },
+              "type": "expr"
+            }
+          },
+          "props.tint": {
+            "binding": {
+              "config": {
+                "path": "view.params.tint"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "cursor": "grab",
+            "transition": "transform 100ms linear"
+          }
+        },
+        "type": "ia.display.image"
+      },
+      {
+        "events": {
+          "dom": {
+            "onPointerMove": {
+              "config": {
+                "script": "\tif event.buttons \u003e 0:\n\t\tself.view.custom.x +\u003d event.movementX/self.view.custom.scale\n\t\tself.view.custom.y +\u003d event.movementY/self.view.custom.scale"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onWheel": {
+              "config": {
+                "script": "\tif event.deltaY \u003c 0:\n\t\tself.view.custom.scale *\u003d 1.1\n\telse:\n\t\tself.view.custom.scale /\u003d 1.1"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Overlay"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "props": {
+          "alignItems": "flex-end",
+          "justify": "flex-end",
+          "style": {
+            "cursor": "grab",
+            "user-select": "none"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Mode"
+            },
+            "position": {
+              "basis": "8em",
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.controls.mode"
+                  },
+                  "enabled": false,
+                  "type": "property"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.fit.mode"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "dropdownOptionStyle": {
+                "borderStyle": "none",
+                "textAlign": "center"
+              },
+              "options": [
+                {
+                  "label": "Actual Size",
+                  "value": "none"
+                },
+                {
+                  "label": "Fill",
+                  "value": "fill"
+                },
+                {
+                  "label": "Contain",
+                  "value": "contain"
+                }
+              ],
+              "placeholder": {
+                "text": "Fit Mode ..."
+              },
+              "search": {
+                "enabled": false
+              },
+              "style": {
+                "backgroundColor": "#FFFFFF00",
+                "borderStyle": "none",
+                "color": "#555555",
+                "cursor": "pointer",
+                "filter": "invert(100%)",
+                "mix-blend-mode": "difference",
+                "user-select": "none"
+              },
+              "textAlign": "center"
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "meta": {
+              "name": "Zoom"
+            },
+            "position": {
+              "basis": "6em",
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.controls.zoom"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.placeholder.text": {
+                "binding": {
+                  "config": {
+                    "expression": "round({view.custom.scale}*100)+\"%\""
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.custom.scale"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "dropdownOptionStyle": {
+                "borderStyle": "none",
+                "textAlign": "center"
+              },
+              "options": [
+                {
+                  "label": "25%",
+                  "value": 0.25
+                },
+                {
+                  "label": "50%",
+                  "value": 0.5
+                },
+                {
+                  "label": "100%",
+                  "value": 1
+                },
+                {
+                  "label": "150%",
+                  "value": 1.5
+                },
+                {
+                  "label": "200%",
+                  "value": 2
+                },
+                {
+                  "label": "500%",
+                  "value": 5
+                }
+              ],
+              "placeholder": {},
+              "search": {
+                "enabled": false
+              },
+              "style": {
+                "backgroundColor": "#FFFFFF00",
+                "borderStyle": "none",
+                "color": "#555555",
+                "cursor": "pointer",
+                "filter": "invert(100%)",
+                "mix-blend-mode": "difference",
+                "user-select": "none"
+              },
+              "textAlign": "center"
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.custom.scale *\u003d 1.1"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "In"
+            },
+            "position": {
+              "basis": "28px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.controls.in"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "path": "material/zoom_in",
+              "style": {
+                "color": "#555555",
+                "cursor": "pointer",
+                "filter": "invert(100%)",
+                "marginLeft": 4,
+                "mix-blend-mode": "difference"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.custom.scale /\u003d 1.1"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Out"
+            },
+            "position": {
+              "basis": "28px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.controls.out"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "path": "material/zoom_out",
+              "style": {
+                "color": "#555555",
+                "cursor": "pointer",
+                "filter": "invert(100%)",
+                "marginLeft": 4,
+                "mix-blend-mode": "difference"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.view.custom.scale \u003d 1\n\tself.view.custom.x \u003d 0\n\tself.view.custom.y \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Reset",
+              "tooltip": {
+                "enabled": true,
+                "location": "center-right",
+                "text": "Reset to 100%"
+              }
+            },
+            "position": {
+              "basis": "28px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.custom.scale} !\u003d 1"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "path": "material/zoom_out_map",
+              "style": {
+                "color": "#555555",
+                "cursor": "pointer",
+                "filter": "invert(100%)",
+                "marginLeft": 4,
+                "mix-blend-mode": "difference"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "Controls"
+        },
+        "position": {
+          "height": 0.0001,
+          "width": 1
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "style": {
+            "overflow": "visible",
+            "paddingLeft": 4,
+            "paddingTop": 4
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "draggable": true,
+                    "id": "{view.params.popupID}",
+                    "modal": false,
+                    "overlayDismiss": false,
+                    "resizable": true,
+                    "showCloseIcon": true,
+                    "type": "close",
+                    "viewPath": "",
+                    "viewportBound": false
+                  },
+                  "scope": "C",
+                  "type": "popup"
+                }
+              }
+            },
+            "meta": {
+              "name": "Close"
+            },
+            "position": {
+              "basis": "28px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.popupID} !\u003d null \u0026\u0026 {view.params.popupID} !\u003d \u0027\u0027"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "path": "material/close",
+              "style": {
+                "color": "#555555",
+                "cursor": "pointer",
+                "filter": "invert(100%)",
+                "marginRight": 4,
+                "marginTop": 4,
+                "mix-blend-mode": "difference"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "Close"
+        },
+        "position": {
+          "height": 0.0001,
+          "width": 1
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "justify": "flex-end",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

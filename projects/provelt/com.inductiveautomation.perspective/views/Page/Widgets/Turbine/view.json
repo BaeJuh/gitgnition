@@ -1,0 +1,1097 @@
+{
+  "custom": {},
+  "params": {
+    "tagPath": "[default]AWS Wind Farms/Demo Wind Farm 1/Wind Farm Asset/Turbine Asset 1"
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 187,
+      "width": 510
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "turbine"
+        },
+        "position": {
+          "height": 158,
+          "width": 171,
+          "x": -11.5,
+          "y": 5
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "d": "m344.785 476.138h-44.913c-8.029 0-14.358-6.837-13.739-14.843l17.26-223.056h37.871l17.26 223.056c.619 8.005-5.709 14.843-13.739 14.843z",
+                      "fill": {
+                        "paint": "#909ba6"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m358.524 461.295-17.26-223.056h-30l17.26 223.056c.619 8.005-5.71 14.843-13.739 14.843h30c8.03 0 14.359-6.838 13.739-14.843z",
+                      "fill": {
+                        "paint": "#7e8b96"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m322.329 24.876c-8.816 0-15.963 7.147-15.963 15.963v173.018h34.184l7.454-34.537c7.214-33.422 6.967-68.023-.721-101.339l-9.4-40.732c-1.672-7.242-8.121-12.373-15.554-12.373z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m499.304 314.816c3.966-7.874.799-17.472-7.075-21.438l-154.521-77.836-15.379 30.53 27.491 22.195c26.604 21.478 57.617 36.824 90.83 44.946l40.606 9.929c7.22 1.764 14.704-1.688 18.048-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m145.354 314.816c-3.966-7.874-.799-17.472 7.075-21.438l154.521-77.836 15.379 30.53-27.491 22.195c-26.603 21.478-57.616 36.824-90.829 44.946l-40.606 9.929c-7.221 1.764-14.705-1.688-18.049-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "cx": "321.518",
+                      "cy": "224.353",
+                      "fill": {
+                        "paint": "#dce6eb"
+                      },
+                      "name": "circle",
+                      "r": "30.748",
+                      "type": "circle"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                }
+              ],
+              "name": "group",
+              "type": "group"
+            }
+          ],
+          "viewBox": "71 0 501.014 501.014"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 15,
+          "width": 78,
+          "x": 7,
+          "y": 166
+        },
+        "props": {
+          "style": {
+            "fontSize": "12px"
+          },
+          "text": "Asset ID:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "height": 15,
+          "width": 228,
+          "x": 70,
+          "y": 166
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/assetId"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "12px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_1"
+        },
+        "position": {
+          "height": 30,
+          "width": 108,
+          "x": 146.5,
+          "y": 122
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          },
+          "text": "Wind Direction:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_2"
+        },
+        "position": {
+          "height": 30,
+          "width": 82,
+          "x": 254.46250915527344,
+          "y": 51.5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/RotationsPerMinute"
+              },
+              "transforms": [
+                {
+                  "expression": "numberFormat({value}, \"#,##0.00\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderColor": "var(--neutral-50)",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_3"
+        },
+        "position": {
+          "height": 30,
+          "width": 108,
+          "x": 146.5,
+          "y": 87
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          },
+          "text": "Wind Speed"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_4"
+        },
+        "position": {
+          "height": 30,
+          "width": 82,
+          "x": 254.46250915527344,
+          "y": 86.5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Wind Speed"
+              },
+              "transforms": [
+                {
+                  "expression": "numberFormat({value}, \"#,##0.00\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderColor": "var(--neutral-50)",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_5"
+        },
+        "position": {
+          "height": 30,
+          "width": 108,
+          "x": 146.5,
+          "y": 52
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          },
+          "text": "Rotations / min:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_6"
+        },
+        "position": {
+          "height": 30,
+          "width": 82,
+          "x": 254.46250915527344,
+          "y": 16.5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Torque"
+              },
+              "transforms": [
+                {
+                  "expression": "numberFormat({value}, \"#,##0.00\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderColor": "var(--neutral-50)",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_7"
+        },
+        "position": {
+          "height": 30,
+          "width": 108,
+          "x": 146.509,
+          "y": 17
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          },
+          "text": "Torque:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_8"
+        },
+        "position": {
+          "height": 30,
+          "width": 82,
+          "x": 254.46250915527344,
+          "y": 121.5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Wind Direction"
+              },
+              "transforms": [
+                {
+                  "expression": "numberFormat({value}, \"#,##0.00\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderColor": "var(--neutral-50)",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "custom": {
+          "tags": [
+            {}
+          ]
+        },
+        "meta": {
+          "name": "Sparkline"
+        },
+        "position": {
+          "height": 30,
+          "width": 92,
+          "x": 405,
+          "y": 17
+        },
+        "propConfig": {
+          "custom.tagPath": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.tagPath} + \"/Torque\""
+              },
+              "type": "expr"
+            }
+          },
+          "custom.tags[0].path": {
+            "binding": {
+              "config": {
+                "path": "this.custom.tagPath"
+              },
+              "type": "property"
+            }
+          },
+          "props.points": {
+            "binding": {
+              "config": {
+                "aggregate": "MinMax",
+                "avoidScanClassValidation": true,
+                "dateRange": {
+                  "mostRecent": "5",
+                  "mostRecentUnits": "MIN"
+                },
+                "ignoreBadQuality": false,
+                "polling": {
+                  "enabled": true,
+                  "rate": "60"
+                },
+                "preventInterpolation": false,
+                "returnFormat": "Wide",
+                "returnSize": {
+                  "numRows": "100",
+                  "type": "FIXED"
+                },
+                "tags": "{this.custom.tags}",
+                "valueFormat": "DATASET"
+              },
+              "type": "tag-history"
+            }
+          },
+          "props.range.high": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{this.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.EngHigh"
+              },
+              "type": "tag"
+            }
+          },
+          "props.range.low": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{this.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.EngLow"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "range": {}
+        },
+        "type": "ia.display.sparkline"
+      },
+      {
+        "meta": {
+          "name": "Label_9"
+        },
+        "position": {
+          "height": 30,
+          "width": 57,
+          "x": 342.5035625,
+          "y": 17
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Torque.EngUnit"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_10"
+        },
+        "position": {
+          "height": 30,
+          "width": 57,
+          "x": 342.5,
+          "y": 52
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/RotationsPerMinute.EngUnit"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_11"
+        },
+        "position": {
+          "height": 30,
+          "width": 57,
+          "x": 342.5,
+          "y": 87
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Wind Speed.EngUnit"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_12"
+        },
+        "position": {
+          "height": 30,
+          "width": 57,
+          "x": 342.5,
+          "y": 122
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Wind Direction.EngUnit"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "custom": {
+          "tags": [
+            {}
+          ]
+        },
+        "meta": {
+          "name": "Sparkline_0"
+        },
+        "position": {
+          "height": 30,
+          "width": 92,
+          "x": 405,
+          "y": 52
+        },
+        "propConfig": {
+          "custom.tagPath": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.tagPath} + \"/RotationsPerMinute\""
+              },
+              "type": "expr"
+            }
+          },
+          "custom.tags[0].path": {
+            "binding": {
+              "config": {
+                "path": "this.custom.tagPath"
+              },
+              "type": "property"
+            }
+          },
+          "props.points": {
+            "binding": {
+              "config": {
+                "aggregate": "MinMax",
+                "avoidScanClassValidation": true,
+                "dateRange": {
+                  "mostRecent": "5",
+                  "mostRecentUnits": "MIN"
+                },
+                "ignoreBadQuality": false,
+                "polling": {
+                  "enabled": true,
+                  "rate": "60"
+                },
+                "preventInterpolation": false,
+                "returnFormat": "Wide",
+                "returnSize": {
+                  "numRows": "100",
+                  "type": "FIXED"
+                },
+                "tags": "{this.custom.tags}",
+                "valueFormat": "DATASET"
+              },
+              "type": "tag-history"
+            }
+          },
+          "props.range.high": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{this.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.EngHigh"
+              },
+              "type": "tag"
+            }
+          },
+          "props.range.low": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{this.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.EngLow"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "range": {}
+        },
+        "type": "ia.display.sparkline"
+      },
+      {
+        "custom": {
+          "tags": [
+            {}
+          ]
+        },
+        "meta": {
+          "name": "Sparkline_1"
+        },
+        "position": {
+          "height": 30,
+          "width": 92,
+          "x": 405,
+          "y": 87
+        },
+        "propConfig": {
+          "custom.tagPath": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.tagPath} + \"/Wind Speed\""
+              },
+              "type": "expr"
+            }
+          },
+          "custom.tags[0].path": {
+            "binding": {
+              "config": {
+                "path": "this.custom.tagPath"
+              },
+              "type": "property"
+            }
+          },
+          "props.points": {
+            "binding": {
+              "config": {
+                "aggregate": "MinMax",
+                "avoidScanClassValidation": true,
+                "dateRange": {
+                  "mostRecent": "5",
+                  "mostRecentUnits": "MIN"
+                },
+                "ignoreBadQuality": false,
+                "polling": {
+                  "enabled": true,
+                  "rate": "60"
+                },
+                "preventInterpolation": false,
+                "returnFormat": "Wide",
+                "returnSize": {
+                  "numRows": "100",
+                  "type": "FIXED"
+                },
+                "tags": "{this.custom.tags}",
+                "valueFormat": "DATASET"
+              },
+              "type": "tag-history"
+            }
+          },
+          "props.range.high": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{this.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.EngHigh"
+              },
+              "type": "tag"
+            }
+          },
+          "props.range.low": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{this.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.EngLow"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "range": {}
+        },
+        "type": "ia.display.sparkline"
+      },
+      {
+        "custom": {
+          "tags": [
+            {}
+          ]
+        },
+        "meta": {
+          "name": "Sparkline_2"
+        },
+        "position": {
+          "height": 30,
+          "width": 92,
+          "x": 405,
+          "y": 122
+        },
+        "propConfig": {
+          "custom.tagPath": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.tagPath} + \"/Wind Direction\""
+              },
+              "type": "expr"
+            }
+          },
+          "custom.tags[0].path": {
+            "binding": {
+              "config": {
+                "path": "this.custom.tagPath"
+              },
+              "type": "property"
+            }
+          },
+          "props.points": {
+            "binding": {
+              "config": {
+                "aggregate": "MinMax",
+                "avoidScanClassValidation": true,
+                "dateRange": {
+                  "mostRecent": "5",
+                  "mostRecentUnits": "MIN"
+                },
+                "ignoreBadQuality": false,
+                "polling": {
+                  "enabled": true,
+                  "rate": "60"
+                },
+                "preventInterpolation": false,
+                "returnFormat": "Wide",
+                "returnSize": {
+                  "numRows": "100",
+                  "type": "FIXED"
+                },
+                "tags": "{this.custom.tags}",
+                "valueFormat": "DATASET"
+              },
+              "type": "tag-history"
+            }
+          },
+          "props.range.high": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{this.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.EngHigh"
+              },
+              "type": "tag"
+            }
+          },
+          "props.range.low": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{this.custom.tagPath}"
+                },
+                "tagPath": "{tagPath}.EngLow"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "range": {}
+        },
+        "type": "ia.display.sparkline"
+      },
+      {
+        "meta": {
+          "name": "turbine_0"
+        },
+        "position": {
+          "height": 158,
+          "width": 171,
+          "x": -11.5,
+          "y": 5
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "d": "m344.785 476.138h-44.913c-8.029 0-14.358-6.837-13.739-14.843l17.26-223.056h37.871l17.26 223.056c.619 8.005-5.709 14.843-13.739 14.843z",
+                      "fill": {
+                        "paint": "#909ba6"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m358.524 461.295-17.26-223.056h-30l17.26 223.056c.619 8.005-5.71 14.843-13.739 14.843h30c8.03 0 14.359-6.838 13.739-14.843z",
+                      "fill": {
+                        "paint": "#7e8b96"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m322.329 24.876c-8.816 0-15.963 7.147-15.963 15.963v173.018h34.184l7.454-34.537c7.214-33.422 6.967-68.023-.721-101.339l-9.4-40.732c-1.672-7.242-8.121-12.373-15.554-12.373z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m499.304 314.816c3.966-7.874.799-17.472-7.075-21.438l-154.521-77.836-15.379 30.53 27.491 22.195c26.604 21.478 57.617 36.824 90.83 44.946l40.606 9.929c7.22 1.764 14.704-1.688 18.048-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m145.354 314.816c-3.966-7.874-.799-17.472 7.075-21.438l154.521-77.836 15.379 30.53-27.491 22.195c-26.603 21.478-57.616 36.824-90.829 44.946l-40.606 9.929c-7.221 1.764-14.705-1.688-18.049-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "cx": "321.518",
+                      "cy": "224.353",
+                      "fill": {
+                        "paint": "#dce6eb"
+                      },
+                      "name": "circle",
+                      "r": "30.748",
+                      "type": "circle"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                }
+              ],
+              "name": "group",
+              "type": "group"
+            }
+          ],
+          "viewBox": "71 0 501.014 501.014"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "turbine_1"
+        },
+        "position": {
+          "height": 158,
+          "width": 171,
+          "x": -11.5,
+          "y": 5
+        },
+        "propConfig": {
+          "props.elements[0].fill.paint": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Alarm"
+              },
+              "transforms": [
+                {
+                  "fallback": "#000000",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": 0,
+                      "output": "#008000"
+                    },
+                    {
+                      "input": 1,
+                      "output": "#FF0000"
+                    }
+                  ],
+                  "outputType": "color",
+                  "type": "map"
+                }
+              ],
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "d": "M322.329 24.876 C313.513 24.876 306.366 32.023 306.366 40.839 L306.366 197.5914 L306.366 197.5914 C297.2333 202.7733 291.0143 212.4951 290.777 223.6887 L290.777 223.6887 L152.429 293.378 C144.555 297.344 141.388 306.942 145.354 314.816 C148.1126 320.292 153.6886 323.5998 159.6101 323.5998 C160.8667 323.5998 162.1389 323.4508 163.403 323.142 L204.009 313.213 C237.222 305.091 268.235 289.745 294.838 268.267 L301.4847 262.9008 L286.133 461.295 C285.514 469.301 291.843 476.138 299.872 476.138 L344.785 476.138 C345.7165 476.138 346.6251 476.046 347.5026 475.8708 L347.5026 475.8708 C354.1118 474.5515 358.958 468.5145 358.541 461.5421 L358.541 461.5421 C358.536 461.4599 358.5304 461.3775 358.524 461.295 L343.1723 262.9 L343.1723 262.9 L349.82 268.267 C376.424 289.745 407.437 305.091 440.65 313.213 L481.256 323.142 C482.5199 323.4508 483.7919 323.5998 485.0484 323.5998 C490.9694 323.5998 496.5453 320.292 499.304 314.816 L499.304 314.816 C503.27 306.942 500.103 297.344 492.229 293.378 L352.2303 222.8573 L352.2303 222.8573 C351.8465 214.845 348.396 207.6366 343.027 202.3802 L343.027 202.3802 L348.004 179.32 C355.218 145.898 354.971 111.297 347.283 77.981 L337.883 37.249 C336.211 30.007 329.762 24.876 322.329 24.876 L322.329 24.876 Z",
+                  "name": "path",
+                  "stroke": {
+                    "paint": "none"
+                  },
+                  "type": "path"
+                }
+              ],
+              "fill": {
+                "opacity": ".25"
+              },
+              "name": "group",
+              "stroke": {
+                "opacity": "0.502",
+                "paint": "rgb(128,128,128)"
+              },
+              "type": "group"
+            }
+          ],
+          "viewBox": "71 0 501.014 501.014"
+        },
+        "type": "ia.shapes.svg"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

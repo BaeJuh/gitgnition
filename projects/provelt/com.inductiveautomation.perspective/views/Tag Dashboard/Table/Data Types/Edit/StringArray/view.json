@@ -1,0 +1,80 @@
+{
+  "custom": {},
+  "params": {
+    "tagPath": "[default]Writeable/ByteArrayTag"
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 200,
+      "width": 522
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "TextArea"
+            },
+            "position": {
+              "basis": "200px",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "indirect",
+                    "references": {
+                      "tagPath": "{view.params.tagPath}"
+                    },
+                    "tagPath": "{tagPath}"
+                  },
+                  "transforms": [
+                    {
+                      "expression": "jsonFormat({value})",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "tag"
+                },
+                "onChange": {
+                  "enabled": null,
+                  "script": "\tif origin \u003d\u003d \"Browser\":\n\t\ttagPath \u003d self.view.params.tagPath\n\t\tvalue \u003d system.util.jsonDecode(currentValue.value)\n\t\tsystem.tag.writeBlocking([tagPath], [value])"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "TagDashboard/Value"
+              }
+            },
+            "type": "ia.input.text-area"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.flex"
+  }
+}

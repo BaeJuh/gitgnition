@@ -1,0 +1,15 @@
+{
+  "base": {
+    "style": {}
+  },
+  "variants": [
+    {
+      "pseudo": "focus",
+      "style": {
+        "borderStyle": "none",
+        "borderWidth": "0px",
+        "outlineStyle": "none"
+      }
+    }
+  ]
+}

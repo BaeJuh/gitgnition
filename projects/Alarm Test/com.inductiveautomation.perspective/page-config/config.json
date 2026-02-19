@@ -1,0 +1,22 @@
+{
+  "pages": {
+    "/": {
+      "title": "",
+      "viewPath": "View"
+    },
+    "/new-page": {
+      "title": "",
+      "viewPath": ""
+    },
+    "/receive": {
+      "viewPath": "ReceivePage"
+    },
+    "/send": {
+      "title": "",
+      "viewPath": "SendPage"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "title": "alarm-test",
+  "description": "알람 기능 구현 테스팅",
+  "enabled": true,
+  "inheritable": false,
+  "parent": ""
+}

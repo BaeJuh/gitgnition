@@ -1,0 +1,17 @@
+{
+  "scope": "G",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "tags.json"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "quickstart",
+      "timestamp": "2025-12-18T05:48:21Z"
+    },
+    "config": {},
+    "lastModificationSignature": "472b748f8fb4b0c463f7cd2c7034b33cbd98491ee63492cc3caf854a56860a45"
+  }
+}

@@ -1,0 +1,614 @@
+{
+  "custom": {},
+  "params": {
+    "tagPath": "[default]AWS Wind Farms/Demo Wind Farm 1/Wind Farm Asset"
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 187,
+      "width": 510
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "turbine"
+        },
+        "position": {
+          "height": 94.96946564885495,
+          "width": 98.49264705882354,
+          "x": 17.649628474121094,
+          "y": 10.006248474121094
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "d": "m344.785 476.138h-44.913c-8.029 0-14.358-6.837-13.739-14.843l17.26-223.056h37.871l17.26 223.056c.619 8.005-5.709 14.843-13.739 14.843z",
+                      "fill": {
+                        "paint": "#909ba6"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m358.524 461.295-17.26-223.056h-30l17.26 223.056c.619 8.005-5.71 14.843-13.739 14.843h30c8.03 0 14.359-6.838 13.739-14.843z",
+                      "fill": {
+                        "paint": "#7e8b96"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m322.329 24.876c-8.816 0-15.963 7.147-15.963 15.963v173.018h34.184l7.454-34.537c7.214-33.422 6.967-68.023-.721-101.339l-9.4-40.732c-1.672-7.242-8.121-12.373-15.554-12.373z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m499.304 314.816c3.966-7.874.799-17.472-7.075-21.438l-154.521-77.836-15.379 30.53 27.491 22.195c26.604 21.478 57.617 36.824 90.83 44.946l40.606 9.929c7.22 1.764 14.704-1.688 18.048-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m145.354 314.816c-3.966-7.874-.799-17.472 7.075-21.438l154.521-77.836 15.379 30.53-27.491 22.195c-26.603 21.478-57.616 36.824-90.829 44.946l-40.606 9.929c-7.221 1.764-14.705-1.688-18.049-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "cx": "321.518",
+                      "cy": "224.353",
+                      "fill": {
+                        "paint": "#dce6eb"
+                      },
+                      "name": "circle",
+                      "r": "30.748",
+                      "type": "circle"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                }
+              ],
+              "name": "group",
+              "type": "group"
+            }
+          ],
+          "viewBox": "71 0 501.014 501.014"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 15,
+          "width": 78,
+          "x": 7,
+          "y": 166
+        },
+        "props": {
+          "style": {
+            "fontSize": "12px"
+          },
+          "text": "Asset ID:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "height": 15,
+          "width": 228,
+          "x": 70,
+          "y": 166
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/assetId"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": "12px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_2"
+        },
+        "position": {
+          "height": 30,
+          "width": 214.18046354553871,
+          "x": 277.971,
+          "y": 51.5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Location"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderColor": "var(--neutral-50)",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_3"
+        },
+        "position": {
+          "height": 30,
+          "width": 131,
+          "x": 146.5,
+          "y": 87
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          },
+          "text": "Reliability Manager:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_4"
+        },
+        "position": {
+          "height": 30,
+          "width": 215.01062038098655,
+          "x": 278.034,
+          "y": 86.5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Reliability Manager"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderColor": "var(--neutral-50)",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_5"
+        },
+        "position": {
+          "height": 30,
+          "width": 131,
+          "x": 146.5,
+          "y": 52
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          },
+          "text": "Location:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_6"
+        },
+        "position": {
+          "height": 30,
+          "width": 214.18046354553871,
+          "x": 277.971,
+          "y": 16.5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/Code"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderColor": "var(--neutral-50)",
+            "borderStyle": "solid",
+            "borderWidth": "1px",
+            "fontSize": "14px",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_7"
+        },
+        "position": {
+          "height": 30,
+          "width": 131,
+          "x": 146.51091666666665,
+          "y": 17
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          },
+          "text": "Code:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_1"
+        },
+        "position": {
+          "height": 30,
+          "width": 131,
+          "x": 146.5,
+          "y": 122
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px"
+          },
+          "text": "SiteWise Feedback:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "TextField"
+        },
+        "position": {
+          "height": 30,
+          "width": 215.01062038098655,
+          "x": 278.034,
+          "y": 122
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}/SiteWise Feedback"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "turbine_0"
+        },
+        "position": {
+          "height": 94.96946564885495,
+          "width": 98.49264705882354,
+          "x": 42.0136484741211,
+          "y": 41.116948474121095
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "d": "m344.785 476.138h-44.913c-8.029 0-14.358-6.837-13.739-14.843l17.26-223.056h37.871l17.26 223.056c.619 8.005-5.709 14.843-13.739 14.843z",
+                      "fill": {
+                        "paint": "#909ba6"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m358.524 461.295-17.26-223.056h-30l17.26 223.056c.619 8.005-5.71 14.843-13.739 14.843h30c8.03 0 14.359-6.838 13.739-14.843z",
+                      "fill": {
+                        "paint": "#7e8b96"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m322.329 24.876c-8.816 0-15.963 7.147-15.963 15.963v173.018h34.184l7.454-34.537c7.214-33.422 6.967-68.023-.721-101.339l-9.4-40.732c-1.672-7.242-8.121-12.373-15.554-12.373z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m499.304 314.816c3.966-7.874.799-17.472-7.075-21.438l-154.521-77.836-15.379 30.53 27.491 22.195c26.604 21.478 57.617 36.824 90.83 44.946l40.606 9.929c7.22 1.764 14.704-1.688 18.048-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m145.354 314.816c-3.966-7.874-.799-17.472 7.075-21.438l154.521-77.836 15.379 30.53-27.491 22.195c-26.603 21.478-57.616 36.824-90.829 44.946l-40.606 9.929c-7.221 1.764-14.705-1.688-18.049-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "cx": "321.518",
+                      "cy": "224.353",
+                      "fill": {
+                        "paint": "#dce6eb"
+                      },
+                      "name": "circle",
+                      "r": "30.748",
+                      "type": "circle"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                }
+              ],
+              "name": "group",
+              "type": "group"
+            }
+          ],
+          "viewBox": "71 0 501.014 501.014"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "turbine_1"
+        },
+        "position": {
+          "height": 94.96946564885495,
+          "width": 98.49264705882354,
+          "x": -0.49375152587890625,
+          "y": 58.0367484741211
+        },
+        "props": {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "d": "m344.785 476.138h-44.913c-8.029 0-14.358-6.837-13.739-14.843l17.26-223.056h37.871l17.26 223.056c.619 8.005-5.709 14.843-13.739 14.843z",
+                      "fill": {
+                        "paint": "#909ba6"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m358.524 461.295-17.26-223.056h-30l17.26 223.056c.619 8.005-5.71 14.843-13.739 14.843h30c8.03 0 14.359-6.838 13.739-14.843z",
+                      "fill": {
+                        "paint": "#7e8b96"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m322.329 24.876c-8.816 0-15.963 7.147-15.963 15.963v173.018h34.184l7.454-34.537c7.214-33.422 6.967-68.023-.721-101.339l-9.4-40.732c-1.672-7.242-8.121-12.373-15.554-12.373z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m499.304 314.816c3.966-7.874.799-17.472-7.075-21.438l-154.521-77.836-15.379 30.53 27.491 22.195c26.604 21.478 57.617 36.824 90.83 44.946l40.606 9.929c7.22 1.764 14.704-1.688 18.048-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "d": "m145.354 314.816c-3.966-7.874-.799-17.472 7.075-21.438l154.521-77.836 15.379 30.53-27.491 22.195c-26.603 21.478-57.616 36.824-90.829 44.946l-40.606 9.929c-7.221 1.764-14.705-1.688-18.049-8.326z",
+                      "fill": {
+                        "paint": "#b9c3cd"
+                      },
+                      "name": "path",
+                      "type": "path"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                },
+                {
+                  "elements": [
+                    {
+                      "cx": "321.518",
+                      "cy": "224.353",
+                      "fill": {
+                        "paint": "#dce6eb"
+                      },
+                      "name": "circle",
+                      "r": "30.748",
+                      "type": "circle"
+                    }
+                  ],
+                  "name": "group",
+                  "type": "group"
+                }
+              ],
+              "name": "group",
+              "type": "group"
+            }
+          ],
+          "viewBox": "71 0 501.014 501.014"
+        },
+        "type": "ia.shapes.svg"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

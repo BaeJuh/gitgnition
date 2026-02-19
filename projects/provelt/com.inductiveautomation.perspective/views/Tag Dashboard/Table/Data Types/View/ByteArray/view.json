@@ -1,0 +1,148 @@
+{
+  "custom": {
+    "readOnly": false
+  },
+  "params": {
+    "tagPath": "[default]Writeable/WriteableString1"
+  },
+  "propConfig": {
+    "custom.readOnly": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}.ReadOnly"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 32,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \"None\" if value \u003d\u003d None else \"Array[%d]\" % len(value)",
+                  "type": "script"
+                }
+              ],
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "TagDashboard/Value"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\ttagPath \u003d self.view.params.tagPath\n\ttagName \u003d system.tag.readBlocking([tagPath+\".Name\"])[0].value\n\tbytes \u003d system.tag.readBlocking([tagPath])[0].value\n\tsystem.perspective.download(tagName, bytes, \"application/octet-stream\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon_0"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "props": {
+          "path": "material/cloud_download",
+          "style": {
+            "classes": "TagDashboard/Title/Icon",
+            "cursor": "pointer"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\ttagPath \u003d self.view.params.tagPath\n\tTagDashboard.editTag(tagPath)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{session.custom.settings.tagEdit} \u0026\u0026 !{view.custom.readOnly}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "material/edit",
+          "style": {
+            "cursor": "pointer",
+            "marginLeft": "5px"
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

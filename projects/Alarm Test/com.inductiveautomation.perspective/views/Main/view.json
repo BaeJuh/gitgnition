@@ -1,0 +1,191 @@
+{
+  "custom": {
+    "viewLocation": "main"
+  },
+  "params": {},
+  "propConfig": {
+    "custom.viewLocation": {
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "AlarmStatusTable"
+        },
+        "position": {
+          "height": 559,
+          "width": 791,
+          "x": 6,
+          "y": 152
+        },
+        "type": "ia.display.alarmstatustable"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tflag \u003d self.view.custom.viewLocation\n\t\n\tif flag \u003d\u003d \"main\":\n\t\tself.getSibling(\"EmbeddedView\").meta.visible \u003d True\n\t\tself.view.custom.viewLocation \u003d \"log\"\n\tif flag \u003d\u003d \"log\":\n\t\tself.getSibling(\"EmbeddedView\").meta.visible \u003d False\n\t\tself.view.custom.viewLocation \u003d \"main\""
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "height": 54,
+          "width": 165,
+          "x": 318,
+          "y": 56
+        },
+        "props": {
+          "text": "View Alarm Logs"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "EmbeddedView",
+          "visible": false
+        },
+        "position": {
+          "height": 600,
+          "width": "100%",
+          "y": 121
+        },
+        "props": {
+          "path": "AlarmLogs",
+          "useDefaultViewWidth": true
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tcurrentVisible \u003d self.getSibling(\"Table\").meta.visible\n#\tself.getSibling(\"Table\").meta.visible \u003d not currentVisible\n\t\n\tsystem.perspective.openPopup(\u0027AlarmLogPopup\u0027, \u0027popups/alarmPopup\u0027, \n\t    title\u003d u\u0027최근 알람 현황\u0027,\n\t    width\u003d700,\n\t    height\u003d500,\n\t    showCloseIcon\u003dTrue,\n\t    resizable\u003dTrue,\n\t    modal\u003dFalse,\n\t    overlayDismiss\u003dTrue\n\t)\n\t\n\tsystem.perspective.sendMessage(messageType\u003d\"update-alarm-log\", scope\u003d\"page\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "height": 50,
+          "width": 50,
+          "x": 738.997,
+          "y": 12.49657
+        },
+        "props": {
+          "path": "material/notifications_active",
+          "style": {
+            "cursor": "pointer"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 23,
+          "width": 23,
+          "x": 766.993,
+          "y": 9.4913
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "{this.props.text}!\u003d0"
+              },
+              "type": "expr"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "now(2000)"
+              },
+              "transforms": [
+                {
+                  "code": "\talarmList \u003d system.alarm.queryStatus(state\u003d[0])\n\t\n\talarmCount \u003d 0\n\t\n\tfor alarm in alarmList:\n\t\tif str(alarm.get(\"to\")) \u003d\u003d self.session.custom.userName:\n\t\t\talarmCount +\u003d 1\n\t\n\treturn alarmCount",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "#FF8C00",
+            "borderBottomLeftRadius": "50%",
+            "borderBottomRightRadius": "50%",
+            "borderStyle": "none",
+            "borderTopLeftRadius": "50%",
+            "borderTopRightRadius": "50%",
+            "color": "#FFFFFF",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Table",
+          "visible": false
+        },
+        "position": {
+          "height": 400,
+          "width": 718,
+          "x": 45.99,
+          "y": 43
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "queryPath": "AlarmLog"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "update-alarm-log",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.refreshBinding(\"props.data\")",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.table"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": -21,
+      "y": 0.000030517578125
+    },
+    "type": "ia.container.coord"
+  }
+}

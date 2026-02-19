@@ -1,0 +1,25 @@
+{
+  "profile": {
+    "browsePath": "",
+    "type": "com.inductiveautomation.MitsubishiTcpDeviceType"
+  },
+  "settings": {
+    "connectivity": {
+      "hostname": "10.20.4.25",
+      "localAddress": "",
+      "port": 1025,
+      "timeout": 5000
+    },
+    "deviceSettings": {
+      "destinationIoModuleNumber": 1023,
+      "destinationModuleStationNumber": 0,
+      "networkNumber": 0,
+      "pcNumber": 255,
+      "series": "iQR"
+    },
+    "requestOptimization": {
+      "maxGapSize": -1,
+      "writePriorityRatio": 5
+    }
+  }
+}

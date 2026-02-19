@@ -1,0 +1,103 @@
+{
+  "custom": {
+    "alarms": [
+      {
+        "id": "e5033e5c-6d16-479d-91fb-9e1e5e3e48e1",
+        "message": "alarm delay test",
+        "priority": "Low",
+        "sender": "sender",
+        "state": "Cleared, Unacknowledged",
+        "time": "2026-01-16 16:57:11"
+      }
+    ]
+  },
+  "params": {},
+  "propConfig": {
+    "custom.alarms": {
+      "binding": {
+        "config": {
+          "expression": "now(3000)"
+        },
+        "transforms": [
+          {
+            "code": "\tresult \u003d []\n\t\n\talarmList \u003d system.alarm.queryStatus(state\u003d[0])\n\t\n\tfor alarm in alarmList:\n\t\tto \u003d str(alarm.get(\"to\"))\n\t\t\n\t\tif to \u003d\u003d self.session.custom.userName:\n\t\t\traw_time \u003d alarm.get(\"activeTime\")\n\t\t\t\n\t\t\tif raw_time:\n\t\t\t\ttime_str \u003d system.date.format(raw_time, u\"yyyy-MM-dd HH:mm:ss\")\n\t\t\telse:\n\t\t\t\ttime_str \u003d u\"시간 정보 에러\"\n\t\t\t\n\t\t\tresult.append({\n\t\t\t\t\"id\": unicode(alarm.getId()),\n\t\t\t\t\"sender\": unicode(alarm.get(\"from\")),\n\t\t\t\t\"message\": unicode(alarm.get(\"msg\")),\n\t\t\t\t\"time\": time_str,\n\t\t\t\t\"priority\": unicode(alarm.getPriority()),\n\t\t\t\t\"state\": unicode(alarm.get(\"state\"))\n\t\t\t})\n\t\t\n\treturn result",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "NumericEntryField"
+        },
+        "position": {
+          "height": 32,
+          "rotate": {
+            "anchor": "50% 37%"
+          },
+          "width": 94,
+          "x": 353,
+          "y": 115
+        },
+        "propConfig": {
+          "props.value": {
+            "binding": {
+              "config": {
+                "expression": "len({view.custom.alarms})"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "type": "ia.input.numeric-entry-field"
+      },
+      {
+        "events": {
+          "component": {
+            "onRowClick": {
+              "config": {
+                "script": "\trow_data \u003d self.props.data[event.row]\n\t\n\talarm_id \u003d row_data.get(\"id\")\n\t\n\tsystem.alarm.acknowledge([alarm_id], u\"테이블에서 클릭하여 승인함\", self.session.custom.userName)\n\tself.refreshBinding(\"props.data\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "height": 400,
+          "width": 798,
+          "x": 2,
+          "y": 270
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "path": "view.custom.alarms"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.table"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 126,
+      "y": 18
+    },
+    "type": "ia.container.coord"
+  }
+}

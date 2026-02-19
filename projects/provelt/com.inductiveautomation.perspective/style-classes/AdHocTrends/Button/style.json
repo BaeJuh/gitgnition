@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "cursor": "pointer",
+      "marginLeft": "2px",
+      "marginRight": "2px",
+      "marginTop": "0px",
+      "fill": "var(--neutral-100)"
+    }
+  }
+}

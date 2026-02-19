@@ -1,0 +1,33 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Maria DB",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "8df7c2f5b91b795452a3165e9df7642017aac7877fb789a1949e6f4f57677333",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "jhbae@orcait.net",
+      "timestamp": "2026-01-15T00:14:08Z"
+    }
+  }
+}

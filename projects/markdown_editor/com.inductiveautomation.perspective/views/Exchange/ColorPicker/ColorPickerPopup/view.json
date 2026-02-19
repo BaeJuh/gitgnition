@@ -1,0 +1,182 @@
+{
+  "custom": {
+    "initialColor": "#FF4477"
+  },
+  "params": {
+    "color": "#FF4477",
+    "id": "",
+    "isBackground": false,
+    "title": "Color Picker"
+  },
+  "propConfig": {
+    "custom.initialColor": {
+      "persistent": true
+    },
+    "params.color": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.isBackground": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.title": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 290,
+      "width": 340
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "ColorPicker"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.params.color": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.color"
+                  },
+                  "type": "property"
+                },
+                "onChange": {
+                  "enabled": null,
+                  "script": "\tsystem.perspective.sendMessage(\u0027color-picked\u0027, {\n\t\t\u0027id\u0027: self.view.params.id,\n\t\t\u0027color\u0027: currentValue.value\n\t})\n"
+                }
+              }
+            },
+            "props": {
+              "path": "Exchange/ColorPicker/ColorPicker",
+              "style": {
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tsystem.perspective.sendMessage(\u0027color-picked\u0027, {\n\t\t\u0027id\u0027: self.view.params.id,\n\t\t\u0027color\u0027: self.view.custom.initialColor\n\t})\n\tsystem.perspective.closePopup(\u0027ColorPicker\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Cancel"
+                },
+                "position": {
+                  "basis": "50%"
+                },
+                "props": {
+                  "image": {
+                    "icon": {
+                      "path": "material/cancel"
+                    }
+                  },
+                  "primary": false,
+                  "text": "Cancel"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tsystem.perspective.sendMessage(\u0027color-picker-confirmed\u0027, {\n\t\t\u0027id\u0027: self.view.params.id,\n\t\t\u0027color\u0027: self.view.params.color,\n\t\t\u0027isBackground\u0027: self.view.params.isBackground\n\t})\n\tsystem.perspective.closePopup(\u0027ColorPicker\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Confirm"
+                },
+                "position": {
+                  "basis": "50%"
+                },
+                "props": {
+                  "image": {
+                    "icon": {
+                      "path": "material/check_circle_outline"
+                    }
+                  },
+                  "text": "Confirm"
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "Buttons"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "gap": 5,
+                "marginTop": 5,
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Body"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "padding": 5
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\tself.view.custom.initialColor \u003d self.view.params.color"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

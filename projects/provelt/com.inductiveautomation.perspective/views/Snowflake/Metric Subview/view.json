@@ -1,0 +1,156 @@
+{
+  "custom": {},
+  "params": {
+    "value": {}
+  },
+  "propConfig": {
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 64,
+      "width": 264
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label_8"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Snowflake/Bold Snowflake/Text"
+              },
+              "text": "Engineering Units"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_7"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif \"properties\" in value:\n\t\tif \"engUnit\" in value.properties:\n\t\t\treturn value.properties.engUnit.value\n\t\n\treturn \"\"",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Snowflake/Text",
+                "marginLeft": "5px"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "5px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label_8"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Snowflake/Bold Snowflake/Text"
+              },
+              "text": "Engineering Range"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_7"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tengHigh \u003d None\n\tengLow \u003d None\n\t\n\tif \"properties\" in value:\n\t\tif \"engHigh\" in value.properties:\n\t\t\tengHigh \u003d value.properties.engHigh.value\n\t\tif \"engLow\" in value.properties:\n\t\t\tengLow \u003d value.properties.engLow.value\n\t\n\tif engLow \u003d\u003d None and engHigh !\u003d None:\n\t\tengLow \u003d 0\n\t\n\treturn \"%s - %s\" % (engLow, engHigh) if engHigh !\u003d None and engLow !\u003d None else \"\"",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Snowflake/Text",
+                "marginLeft": "5px"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginBottom": "5px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "padding": "10px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

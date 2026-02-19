@@ -1,0 +1,751 @@
+{
+  "custom": {
+    "dateRange": {
+      "end": {
+        "$": [
+          "ts",
+          192,
+          1739564601833
+        ],
+        "$ts": 1739564601833
+      },
+      "now": {
+        "$": [
+          "ts",
+          192,
+          1739564601833
+        ],
+        "$ts": 1739564601833
+      },
+      "start": {
+        "$": [
+          "ts",
+          192,
+          1739564601833
+        ],
+        "$ts": 1739535801833
+      }
+    }
+  },
+  "params": {
+    "colorRanges": [
+      {
+        "color": "#de1b1b",
+        "end": 65,
+        "start": 0
+      },
+      {
+        "color": "#e89c3f",
+        "end": 85,
+        "start": 65
+      },
+      {
+        "color": "#1ec963",
+        "end": 100,
+        "start": 85
+      }
+    ],
+    "colors": {
+      "availability": "#63BEA2",
+      "oee": "#509FC6",
+      "performance": "#8F9FC9",
+      "quality": "#E88CC2"
+    },
+    "currentDateTimeShow": true,
+    "dateRange": {
+      "end": "auto",
+      "start": "auto"
+    },
+    "path": "[default]Exchange/PerspectiveOEEDashboard/OEEDashboardExample",
+    "settingsEnable": true,
+    "settingsShow": true,
+    "valuesToDisplay": {
+      "availability": true,
+      "oee": true,
+      "performance": true,
+      "quality": true
+    }
+  },
+  "propConfig": {
+    "custom.dateRange": {
+      "binding": {
+        "config": {
+          "struct": {
+            "end": "{view.params.dateRange.end}",
+            "start": "{view.params.dateRange.start}",
+            "update": "now(30000)"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\tstart \u003d \"\"\n\tend \u003d \"\"\n\t\n\tif value.start \u003d\u003d \"auto\" and value.end !\u003d \"auto\":\n\t\tend \u003d value.end\n\t\tstart \u003d system.date.addHours(end, -8)\n\telif value.end \u003d\u003d \"auto\" and value.start !\u003d \"auto\":\n\t\tstart  \u003d  value.start\n\t\tend \u003d system.date.addHours(start, 8)\n\telif value.start \u003d\u003d \"auto\" and value.end \u003d\u003d \"auto\":\n\t\tstart \u003d system.date.addHours(system.date.now(), -8)\n\t\tend \u003d system.date.now()\n\t\n\telse:\n\t\tstart \u003d value.start\n\t\tend \u003d value.end\n\t\n\treturn {\"start\":start, \"end\":end, \"now\":value.update}\n\t",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "params.colorRanges": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.colors": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.currentDateTimeShow": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.dateRange": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.path": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.settingsEnable": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.settingsShow": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.valuesToDisplay": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 700,
+      "width": 1200
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tif self.view.params.settingsShow:\n\t\tself.view.params.settingsShow \u003d False\n\telse:\n\t\tself.view.params.settingsShow \u003d True"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Icon",
+              "tooltip": {
+                "enabled": true,
+                "text": "Show/Hide Settings"
+              }
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "props": {
+              "path": "material/settings"
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "SettingsBar"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.settingsEnable"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "justify": "flex-end"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "props": {
+                  "text": "Values to Display",
+                  "textStyle": {
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "OEEToggleSwitch"
+                        },
+                        "position": {
+                          "basis": "36px"
+                        },
+                        "propConfig": {
+                          "props.selected": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "view.params.valuesToDisplay.oee"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "label": {
+                            "text": "OEE"
+                          }
+                        },
+                        "type": "ia.input.toggle-switch"
+                      },
+                      {
+                        "meta": {
+                          "name": "AvailabilityToggleSwitch"
+                        },
+                        "position": {
+                          "basis": "36px"
+                        },
+                        "propConfig": {
+                          "props.selected": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "view.params.valuesToDisplay.availability"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "label": {
+                            "text": "Availability"
+                          }
+                        },
+                        "type": "ia.input.toggle-switch"
+                      }
+                    ],
+                    "meta": {
+                      "name": "LeftOptions"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "direction": "column"
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "PerformanceToggleSwitch"
+                        },
+                        "position": {
+                          "basis": "36px"
+                        },
+                        "propConfig": {
+                          "props.selected": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "view.params.valuesToDisplay.performance"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "label": {
+                            "text": "Performance"
+                          }
+                        },
+                        "type": "ia.input.toggle-switch"
+                      },
+                      {
+                        "meta": {
+                          "name": "QualityToggleSwitch"
+                        },
+                        "position": {
+                          "basis": "36px"
+                        },
+                        "propConfig": {
+                          "props.selected": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "view.params.valuesToDisplay.quality"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "label": {
+                            "text": "Quality"
+                          }
+                        },
+                        "type": "ia.input.toggle-switch"
+                      }
+                    ],
+                    "meta": {
+                      "name": "RightOptions"
+                    },
+                    "position": {
+                      "basis": "200px"
+                    },
+                    "props": {
+                      "direction": "column"
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "RowFlex"
+                },
+                "position": {
+                  "basis": "150px"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "ValuesFlex"
+            },
+            "position": {
+              "basis": "500px",
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginLeft": 20
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "basis": "150px",
+                      "grow": 1
+                    },
+                    "props": {
+                      "text": "Start Date and Time",
+                      "textStyle": {
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.view.params.dateRange.start \u003d \"auto\""
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Button",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "Reset Start Time"
+                      }
+                    },
+                    "position": {
+                      "basis": "40px"
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "path": "material/restore"
+                        }
+                      },
+                      "style": {
+                        "marginRight": 10
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "50px",
+                  "grow": 1
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "DateTimeInput"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.dateRange.start"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "formattedValue": null,
+                  "style": {
+                    "marginLeft": 10,
+                    "marginRight": 10,
+                    "marginTop": 10
+                  }
+                },
+                "type": "ia.input.date-time-input"
+              }
+            ],
+            "meta": {
+              "name": "StartDate"
+            },
+            "position": {
+              "basis": "200px",
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginLeft": 20
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "basis": "150px",
+                      "grow": 1
+                    },
+                    "props": {
+                      "text": "End Date and Time",
+                      "textStyle": {
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.view.params.dateRange.end \u003d \"auto\""
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Button",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "Reset End Time"
+                      }
+                    },
+                    "position": {
+                      "basis": "40px"
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "path": "material/restore"
+                        }
+                      },
+                      "style": {
+                        "marginRight": 10
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "50px",
+                  "grow": 1
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "DateTimeInput"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.dateRange.end"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "formattedValue": null,
+                  "style": {
+                    "marginLeft": 10,
+                    "marginRight": 10,
+                    "marginTop": 10
+                  }
+                },
+                "type": "ia.input.date-time-input"
+              }
+            ],
+            "meta": {
+              "name": "EndDate"
+            },
+            "position": {
+              "basis": "200px",
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginLeft": 20
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Settings"
+        },
+        "position": {
+          "basis": "120px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "view.params.settingsShow"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "alignContent": "space-between",
+          "justify": "center",
+          "style": {
+            "backgroundColor": "var(--neutral-30)",
+            "borderBottomLeftRadius": 20,
+            "borderBottomRightRadius": 20,
+            "borderTopLeftRadius": 20,
+            "borderTopRightRadius": 20,
+            "margin": 10,
+            "padding": 10,
+            "paddingBottom": 15,
+            "paddingTop": 15
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "props": {
+              "style": {
+                "marginLeft": 10
+              },
+              "text": "Current Date and Time",
+              "textStyle": {
+                "fontWeight": "bold"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "DateAndTime"
+            },
+            "position": {
+              "basis": "32px",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.dateRange.now"
+                  },
+                  "transforms": [
+                    {
+                      "formatType": "datetime",
+                      "formatValue": {
+                        "date": "medium",
+                        "time": "short"
+                      },
+                      "type": "format"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "marginLeft": 10
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "CurrentDateAndTime"
+        },
+        "position": {
+          "basis": "40px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.currentDateTimeShow"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "var(--neutral-30)",
+            "borderBottomLeftRadius": 20,
+            "borderBottomRightRadius": 20,
+            "borderTopLeftRadius": 20,
+            "borderTopRightRadius": 20,
+            "marginBottom": 5,
+            "marginLeft": 10,
+            "marginRight": 10,
+            "padding": 10,
+            "paddingBottom": 15,
+            "paddingTop": 15
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "colorRanges": "{view.params.colorRanges}",
+                  "colors": "{view.params.colors}",
+                  "dateRange": "{view.custom.dateRange}",
+                  "path": "{view.params.path}",
+                  "valuesToDisplay": "{view.params.valuesToDisplay}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tdata \u003d []\n\toptions \u003d [\"OEE\", \"Availability\", \"Performance\", \"Quality\"]\n\tfor item in options:\n\t\tif value.valuesToDisplay[str(item).lower()]:\n\t\t\tdata.append({\n\t\t\t  \"instanceStyle\": {\n\t\t\t    \"classes\": \"\"\n\t\t\t  },\n\t\t\t  \"instancePosition\": {},\n\t\t\t  \"color\": value.colors[str(item).lower()],\n\t\t\t  \"colorRanges\": value.colorRanges,\n\t\t\t  \"graph\": True,\n\t\t\t  \"stats\": True,\n\t\t\t  \"dateRange\": value.dateRange,\n\t\t\t  \"name\": item,\n\t\t\t  \"path\": value.path + \"/\" + item\n\t\t\t})\n\t\n\treturn data",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "elementStyle": {
+            "marginLeft": 5
+          },
+          "justify": "center",
+          "path": "Exchange/PerspectiveOEEDashboard/EmbeddedViews/GaugeAndGraph",
+          "style": {
+            "marginBottom": 5,
+            "marginRight": 5,
+            "marginTop": 5
+          },
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

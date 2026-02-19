@@ -1,0 +1,78 @@
+{
+  "custom": {
+    "edit_content": ""
+  },
+  "params": {},
+  "propConfig": {
+    "custom.edit_content": {
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "IFrame"
+        },
+        "position": {
+          "height": 391,
+          "width": 495,
+          "x": 26,
+          "y": 24
+        },
+        "props": {
+          "src": "http://localhost:8088/texteditor.html"
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "quill-data",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tsystem.perspective.print(\"payload here: \")\n\thtml_data \u003d payload.get(\"content\", \"\")\n\t\n\tself.view.custom.edit_content \u003d html_data",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.iframe"
+      },
+      {
+        "meta": {
+          "name": "Markdown"
+        },
+        "position": {
+          "height": 366,
+          "width": 497,
+          "x": 26,
+          "y": 414
+        },
+        "propConfig": {
+          "props.source": {
+            "binding": {
+              "config": {
+                "path": "view.custom.edit_content"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "markdown": {
+            "escapeHtml": false
+          },
+          "style": {
+            "borderStyle": "solid"
+          }
+        },
+        "type": "ia.display.markdown"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

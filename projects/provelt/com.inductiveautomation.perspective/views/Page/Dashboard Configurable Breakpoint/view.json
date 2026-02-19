@@ -1,0 +1,115 @@
+{
+  "custom": {},
+  "params": {
+    "configuration": {
+      "large": {
+        "viewParams": {
+          "size": 480
+        },
+        "viewPath": "Page/Dashboard Component"
+      },
+      "small": {
+        "viewParams": {
+          "size": 0
+        },
+        "viewPath": "Page/Dashboard Component"
+      }
+    }
+  },
+  "propConfig": {
+    "params.configuration": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.configuration.large": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.configuration.small": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.configuration.small.viewParams": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.configuration.small.viewParams.size": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.configuration.small.viewPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Large"
+        },
+        "position": {
+          "size": "large"
+        },
+        "propConfig": {
+          "props.params": {
+            "binding": {
+              "config": {
+                "path": "view.params.configuration.large.viewParams"
+              },
+              "type": "property"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.configuration.large.viewPath"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Small"
+        },
+        "propConfig": {
+          "props.params": {
+            "binding": {
+              "config": {
+                "path": "view.params.configuration.small.viewParams"
+              },
+              "type": "property"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.configuration.small.viewPath"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.breakpoint": {
+        "binding": {
+          "config": {
+            "path": "view.params.configuration.large.viewParams.size"
+          },
+          "type": "property"
+        }
+      }
+    },
+    "type": "ia.container.breakpt"
+  }
+}

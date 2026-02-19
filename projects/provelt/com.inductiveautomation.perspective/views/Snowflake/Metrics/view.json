@@ -1,0 +1,1112 @@
+{
+  "custom": {},
+  "params": {
+    "aggregation": "AVG",
+    "axis": "separate",
+    "dataModel": null,
+    "dataModelVersion": null,
+    "deviceId": null,
+    "edgeNodeId": null,
+    "fixedRows": 1000,
+    "groupId": null,
+    "instance": null,
+    "interval": "minute",
+    "metrics": [],
+    "queryMode": "fixed",
+    "selection": "multiple"
+  },
+  "propConfig": {
+    "params.aggregation": {
+      "paramDirection": "output"
+    },
+    "params.avgCols": {
+      "binding": {
+        "config": {
+          "struct": {
+            "aggregation": "{view.params.aggregation}",
+            "metricsEnabled": "{view.params.metricsEnabled}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\treturn \",\".join([\"%s(res.%s) %s\" % (value[\"aggregation\"], val[\"name\"], val[\"name\"]) for val in value[\"metricsEnabled\"]])",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "paramDirection": "output"
+    },
+    "params.avgRawCols": {
+      "binding": {
+        "config": {
+          "struct": {
+            "aggregation": "{view.params.aggregation}",
+            "metricsEnabled": "{view.params.metricsEnabled}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\treturn \",\".join([\"%s(dm.%s) %s\" % (value[\"aggregation\"], val[\"name\"], val[\"name\"]) for val in value[\"metricsEnabled\"]])",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "paramDirection": "output"
+    },
+    "params.axis": {
+      "paramDirection": "output"
+    },
+    "params.cols": {
+      "binding": {
+        "config": {
+          "path": "view.params.metricsEnabled"
+        },
+        "transforms": [
+          {
+            "code": "\treturn \",\".join([\"raw.%s\" % val[\"name\"] for val in value])",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "paramDirection": "output"
+    },
+    "params.dataModel": {
+      "paramDirection": "output"
+    },
+    "params.dataModelVersion": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.dataModelVersion_DB": {
+      "binding": {
+        "config": {
+          "path": "view.params.dataModelVersion"
+        },
+        "transforms": [
+          {
+            "code": "\tif value \u003d\u003d None:\n\t\treturn None\n\treturn Snowflake.escapeDBValue(value)",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "paramDirection": "output",
+      "persistent": false
+    },
+    "params.dataModel_DB": {
+      "binding": {
+        "config": {
+          "path": "view.params.dataModel"
+        },
+        "transforms": [
+          {
+            "code": "\tif value \u003d\u003d None:\n\t\treturn None\n\treturn Snowflake.escapeDBValue(value)",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "paramDirection": "output"
+    },
+    "params.deviceId": {
+      "paramDirection": "output"
+    },
+    "params.edgeNodeId": {
+      "paramDirection": "output"
+    },
+    "params.edgeNodeId_DB": {
+      "binding": {
+        "config": {
+          "path": "view.params.edgeNodeId"
+        },
+        "transforms": [
+          {
+            "code": "\treturn Snowflake.escapeDBValue(value)",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "paramDirection": "output"
+    },
+    "params.endDate": {
+      "binding": {
+        "config": {
+          "expression": "toDate(dateFormat(now(0), \"yyyy-MM-dd HH:59:59\"))"
+        },
+        "type": "expr"
+      },
+      "paramDirection": "output"
+    },
+    "params.filters": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.firstAvgCol": {
+      "binding": {
+        "config": {
+          "struct": {
+            "aggregation": "{view.params.aggregation}",
+            "metricsEnabled": "{view.params.metricsEnabled}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\treturn None if len(value[\"metricsEnabled\"]) \u003d\u003d 0 else \"%s(res.%s) %s\" % (value[\"aggregation\"], value[\"metricsEnabled\"][0][\"name\"], value[\"metricsEnabled\"][0][\"name\"])",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "paramDirection": "output"
+    },
+    "params.firstAvgRawCol": {
+      "binding": {
+        "config": {
+          "struct": {
+            "aggregation": "{view.params.aggregation}",
+            "metricsEnabled": "{view.params.metricsEnabled}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\treturn None if len(value[\"metricsEnabled\"]) \u003d\u003d 0 else \"%s(dm.%s) %s\" % (value[\"aggregation\"], value[\"metricsEnabled\"][0][\"name\"], value[\"metricsEnabled\"][0][\"name\"])",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "paramDirection": "output"
+    },
+    "params.firstCol": {
+      "binding": {
+        "config": {
+          "path": "view.params.metricsEnabled"
+        },
+        "transforms": [
+          {
+            "code": "\treturn None if len(value) \u003d\u003d 0 else \"raw.%s\" % (value[0][\"name\"])",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "paramDirection": "output"
+    },
+    "params.fixedRows": {
+      "paramDirection": "output"
+    },
+    "params.groupId": {
+      "paramDirection": "output"
+    },
+    "params.groupId_DB": {
+      "binding": {
+        "config": {
+          "path": "view.params.groupId"
+        },
+        "transforms": [
+          {
+            "code": "\treturn Snowflake.escapeDBValue(value)",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "paramDirection": "output"
+    },
+    "params.instance": {
+      "paramDirection": "output"
+    },
+    "params.interval": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.metrics": {
+      "paramDirection": "output"
+    },
+    "params.metricsEnabled": {
+      "binding": {
+        "config": {
+          "path": "view.params.metrics"
+        },
+        "transforms": [
+          {
+            "code": "\tret \u003d []\n\t\n\tfor row in value:\n\t\tif row[\"enabled\"]:\n\t\t\tret.append(dict(row))\n\t\n\treturn ret",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "paramDirection": "output"
+    },
+    "params.queryMode": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.selection": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.startDate": {
+      "binding": {
+        "config": {
+          "expression": "toDate(dateFormat(dateArithmetic(now(0), -2, \"hour\"), \"yyyy-MM-dd HH:00:00\"))"
+        },
+        "type": "expr"
+      },
+      "paramDirection": "output"
+    },
+    "params.valid": {
+      "binding": {
+        "config": {
+          "struct": {
+            "dataModel": "{view.params.dataModel}",
+            "dataModelVersion": "{view.params.dataModelVersion}",
+            "deviceId": "{view.params.deviceId}",
+            "edgeNodeId": "{view.params.edgeNodeId}",
+            "endDate": "{view.params.endDate}",
+            "groupId": "{view.params.groupId}",
+            "instance": "{view.params.instance}",
+            "metrics": "{view.params.metrics}",
+            "startDate": "{view.params.startDate}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\tmetricEnabled \u003d False\n\tfor row in value.metrics:\n\t\tif row[\"enabled\"]:\n\t\t\tmetricEnabled \u003d True\n\t\t\tbreak\n\t\n\tif value.groupId \u003d\u003d None or value.groupId \u003d\u003d \"\":\n\t\treturn False\n\telif value.edgeNodeId \u003d\u003d None or value.edgeNodeId \u003d\u003d \"\":\n\t\treturn False\n\telif value.dataModel \u003d\u003d None or value.edgeNodeId \u003d\u003d \"\":\n\t\treturn False\n\telif value.dataModelVersion \u003d\u003d None:\n\t\treturn False\n\telif value.deviceId \u003d\u003d None or value.deviceId \u003d\u003d \"\":\n\t\treturn False\n\telif value.instance \u003d\u003d None or value.instance \u003d\u003d \"\":\n\t\treturn False\n\telif system.date.isBefore(value.endDate, value.startDate):\n\t\treturn False\n\telif not metricEnabled:\n\t\treturn False\n\t\n\t\n\treturn True",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "paramDirection": "output"
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 927,
+      "width": 290
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label_1"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "text": "Data Model"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Data Model"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "stageDB": "{session.custom.stageDB}"
+                },
+                "queryPath": "Snowflake/Data Models",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\tret \u003d []\n\t\n\tfor row in value:\n\t\tret.append({\"label\":row[\"LABEL\"], \"value\":row[\"VALUE\"]})\n\t\n\treturn ret",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "path": "view.params.dataModel"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "showClearIcon": true,
+          "style": {
+            "classes": "Snowflake/Form",
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label_12"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "text": "Data Model Version"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Data Model Version"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.definition": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "dataModel": "{../Data Model.props.value}",
+                  "dataModelVersion": "{this.props.value}",
+                  "stageDB": "{session.custom.stageDB}"
+                },
+                "queryPath": "Snowflake/Data Model Definition",
+                "returnFormat": "scalar"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn system.util.jsonDecode(value) if value !\u003d None and value !\u003d \"\" else {}",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "dataModel": "{../Data Model.props.value}",
+                  "stageDB": "{session.custom.stageDB}"
+                },
+                "queryPath": "Snowflake/Data Model Versions",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\tret \u003d []\n\t\n\tfor row in value:\n\t\tret.append({\"label\":row[\"LABEL\"], \"value\":row[\"VALUE\"]})\n\t\n\treturn ret",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "path": "view.params.dataModelVersion"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "showClearIcon": true,
+          "style": {
+            "classes": "Snowflake/Form",
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label_3"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "text": "Instance"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Instance"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "dataModel": "{../Data Model.props.value}",
+                  "dataModelVersion": "{../Data Model Version.props.value}",
+                  "stageDB": "{session.custom.stageDB}"
+                },
+                "queryPath": "Snowflake/Instances",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\tret \u003d []\n\t\n\tif value \u003d\u003d None:\n\t\treturn []\n\t\n\tfor row in value:\n\t\tpath \u003d row[\"GROUP_ID\"] + \"/\" + row[\"EDGE_NODE_ID\"] + \"/\" + row[\"DEVICE_ID\"] + \"/\" + row[\"TEMPLATE_PATH\"]\n\t\tret.append({\"label\":path, \"value\":{\n\t\t\t\"groupId\":row[\"GROUP_ID\"],\n\t\t\t\"edgeNodeId\":row[\"EDGE_NODE_ID\"],\n\t\t\t\"deviceId\":row[\"DEVICE_ID\"],\n\t\t\t\"instance\":row[\"TEMPLATE_PATH\"]\n\t\t}})\n\t\n\treturn ret",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.value.deviceId": {
+            "binding": {
+              "config": {
+                "path": "view.params.deviceId"
+              },
+              "type": "property"
+            }
+          },
+          "props.value.edgeNodeId": {
+            "binding": {
+              "config": {
+                "path": "view.params.edgeNodeId"
+              },
+              "type": "property"
+            }
+          },
+          "props.value.groupId": {
+            "binding": {
+              "config": {
+                "path": "view.params.groupId"
+              },
+              "type": "property"
+            }
+          },
+          "props.value.instance": {
+            "binding": {
+              "config": {
+                "path": "view.params.instance"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "showClearIcon": true,
+          "style": {
+            "classes": "Snowflake/Form",
+            "marginBottom": "10px"
+          },
+          "value": {}
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label_4"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "text": "Start Date"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Start Date"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.value": {
+            "binding": {
+              "config": {
+                "path": "view.params.startDate"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "formattedValue": "Feb 13, 2025 4:00 PM",
+          "style": {
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.input.date-time-input"
+      },
+      {
+        "meta": {
+          "name": "Label_5"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "text": "End Date"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "End Date"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.value": {
+            "binding": {
+              "config": {
+                "path": "view.params.endDate"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "formattedValue": "Feb 13, 2025 6:59 PM",
+          "style": {
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.input.date-time-input"
+      },
+      {
+        "meta": {
+          "name": "Label_6"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "text": "Metrics"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Pen List"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.instances": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "colors": "{session.custom.colors}",
+                      "dataModelDef": "{.../Data Model Version.custom.definition}",
+                      "metrics": "{view.params.metrics}",
+                      "selection": "{view.params.selection}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\timport random\n\tret \u003d []\n\t\n\ttry:\n\t\tif value.dataModelDef !\u003d None:\n\t\t\toldMetricsEnabled \u003d {}\n\t\t\toldMetricsColor \u003d {}\n\t\t\tfor metric in value.metrics:\n\t\t\t\toldMetricsEnabled[metric[\"name\"]] \u003d metric[\"enabled\"]\n\t\t\t\toldMetricsColor[metric[\"name\"]] \u003d metric[\"color\"]\n\t\t\n\t\t\tidx \u003d 0\n\t\t\tfor metric in value.dataModelDef[\"value\"][\"metrics\"]:\n\t\t\t\tdataType \u003d metric[\"dataType\"]\n\t\t\t\tif dataType in [\"Int32\",\"Int64\", \"Float\", \"Double\", \"Boolean\"]:\n\t\t\t\t\tname \u003d Snowflake.escapeDBValue(metric[\"name\"])\n\t\t\t\t\t\n\t\t\t\t\tif idx \u003c len(value.colors):\n\t\t\t\t\t\tcolor \u003d value.colors[idx]\n\t\t\t\t\telse:\n\t\t\t\t\t\tcolor \u003d \"#%06x\" % random.randint(0, 0xFFFFFF)\n\t\t\t\t\n\t\t\t\t\tenabled \u003d oldMetricsEnabled.get(name, True if value[\"selection\"] \u003d\u003d \"multiple\" else False)\n\t\t\t\t\tcolor \u003d oldMetricsColor.get(name, color)\n\t\t\t\t\t\n\t\t\t\t\taxisMin \u003d \"\"\n\t\t\t\t\taxisMax \u003d \"\"\n\t\t\t\t\taxisTitle \u003d name\n\t\t\t\t\tif \"properties\" in metric:\n\t\t\t\t\t\tif \"engUnit\" in metric[\"properties\"]:\n\t\t\t\t\t\t\taxisTitle \u003d \"%s (%s)\" % (name, metric[\"properties\"][\"engUnit\"][\"value\"])\n\t\t\t\t\t\tif \"engLow\" in metric[\"properties\"]:\n\t\t\t\t\t\t\taxisMin \u003d metric[\"properties\"][\"engLow\"][\"value\"]\n\t\t\t\t\t\tif \"engHigh\" in metric[\"properties\"]:\n\t\t\t\t\t\t\taxisMax \u003d metric[\"properties\"][\"engHigh\"][\"value\"]\n\t\t\t\t\n\t\t\t\t\tret.append({\"name\":name, \"enabled\":enabled, \"color\":color, \"axisMin\":axisMin, \"axisMax\":axisMax, \"axisTitle\":axisTitle, \"selection\":value[\"selection\"]})\n\t\t\t\t\tidx +\u003d 1\n\texcept:\n\t\tpass\n\t\t\n\treturn ret",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "elementPosition": {
+                "basis": "auto",
+                "shrink": 0
+              },
+              "path": "Snowflake/Pen",
+              "style": {
+                "marginLeft": "10px",
+                "overflow": "hidden"
+              },
+              "useDefaultViewWidth": false
+            },
+            "type": "ia.display.flex-repeater"
+          },
+          {
+            "meta": {
+              "name": "Label_6"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "len({../Pen List.props.instances}) \u003d 0"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "fontStyle": "italic",
+                "marginLeft": "5px",
+                "marginRight": "10px"
+              },
+              "text": "No Metrics"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Select All"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "len({../Pen List.props.instances}) \u003e 0 \u0026\u0026 {view.params.selection} \u003d \"multiple\""
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.selected": {
+                "binding": {
+                  "config": {
+                    "expression": "false"
+                  },
+                  "type": "expr"
+                },
+                "onChange": {
+                  "enabled": null,
+                  "script": "\tif origin \u003d\u003d \"Browser\":\n\t\tfor row in self.getSibling(\"Pen List\").props.instances:\n\t\t\trow.enabled \u003d currentValue.value"
+                }
+              }
+            },
+            "props": {
+              "checkedIcon": {
+                "color": {
+                  "enabled": "var(--neutral-100)"
+                },
+                "style": {
+                  "maxHeight": "17px"
+                }
+              },
+              "style": {
+                "color": "--neutral-90",
+                "fontSize": "11px",
+                "marginLeft": "28px"
+              },
+              "text": "Select/Unselect All",
+              "uncheckedIcon": {
+                "style": {
+                  "maxHeight": "17px"
+                }
+              }
+            },
+            "type": "ia.input.checkbox"
+          }
+        ],
+        "meta": {
+          "name": "Pens"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "classes": "Snowflake/Form",
+            "marginBottom": "10px",
+            "paddingBottom": "10px",
+            "paddingTop": "10px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Label_10"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "text": "Query Mode"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Query Mode"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.value": {
+            "binding": {
+              "config": {
+                "path": "view.params.queryMode"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "options": [
+            {
+              "label": "Fixed",
+              "value": "fixed"
+            },
+            {
+              "label": "Interval",
+              "value": "interval"
+            }
+          ],
+          "style": {
+            "classes": "Snowflake/Form",
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label_7"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{../Query Mode.props.value} \u003d \"fixed\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "text": "Fixed Rows"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Fixed Rows"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.fixedRows"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "inputBounds": {
+                "invalidStyle": {
+                  "classes": "Snowflake/Alarm/Active"
+                },
+                "maximum": 10000,
+                "minimum": 1
+              },
+              "style": {
+                "classes": "Snowflake/Form"
+              }
+            },
+            "type": "ia.input.numeric-entry-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{../Query Mode.props.value} \u003d \"fixed\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Label_11"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{../Query Mode.props.value} \u003d \"interval\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "text": "Interval"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Interval"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{../Query Mode.props.value} \u003d \"interval\""
+              },
+              "type": "expr"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "path": "view.params.interval"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "options": [
+            {
+              "label": "Second",
+              "value": "second"
+            },
+            {
+              "label": "Minute",
+              "value": "minute"
+            },
+            {
+              "label": "Hour",
+              "value": "hhour"
+            },
+            {
+              "label": "Day",
+              "value": "day"
+            }
+          ],
+          "style": {
+            "classes": "Snowflake/Form",
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label_8"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "text": "Aggregation Function"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Aggregation"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.value": {
+            "binding": {
+              "config": {
+                "path": "view.params.aggregation"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "options": [
+            {
+              "label": "Average",
+              "value": "AVG"
+            },
+            {
+              "label": "Minimum",
+              "value": "MIN"
+            },
+            {
+              "label": "Maximum",
+              "value": "MAX"
+            },
+            {
+              "label": "Median",
+              "value": "MEDIAN"
+            },
+            {
+              "label": "Any Value",
+              "value": "ANY_VALUE"
+            }
+          ],
+          "style": {
+            "classes": "Snowflake/Form",
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label_9"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.selection} !\u003d \"single\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "text": "Axis"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Axis"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.selection} !\u003d \"single\""
+              },
+              "type": "expr"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "path": "view.params.axis"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "options": [
+            {
+              "label": "Separate",
+              "value": "separate"
+            },
+            {
+              "label": "Combine",
+              "value": "combine"
+            }
+          ],
+          "style": {
+            "classes": "Snowflake/Form",
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tdataModel \u003d self.getSibling(\"Data Model\").props.value\n\tdataModelVersion \u003d self.getSibling(\"Data Model Version\").props.value\n\tinstance \u003d self.getSibling(\"Instance\").props.value.instance\n\tgroupId \u003d self.getSibling(\"Instance\").props.value.groupId\n\tedgeNodeId \u003d self.getSibling(\"Instance\").props.value.edgeNodeId\n\tdeviceId \u003d self.getSibling(\"Instance\").props.value.deviceId\t\n\tstartDate \u003d self.getSibling(\"Start Date\").props.value\n\tendDate \u003d self.getSibling(\"End Date\").props.value\n\tmetrics \u003d self.parent.getChild(\"Pens\").getChild(\"Pen List\").props.instances\n\taggregation \u003d self.getSibling(\"Aggregation\").props.value\n\taxis \u003d self.getSibling(\"Axis\").props.value\n\tqueryMode \u003d self.getSibling(\"Query Mode\").props.value\n\tfixedRows \u003d self.parent.getChild(\"FlexContainer\").getChild(\"Fixed Rows\").props.value\n\tinterval \u003d self.getSibling(\"Interval\").props.value\n\t\n\tmetricEnabled \u003d False\n\tnewMetrics \u003d []\n\tfor row in metrics:\n\t\tif row[\"enabled\"]:\n\t\t\tmetricEnabled \u003d True\n\t\t\t\n\t\tnewRow \u003d dict(row)\n\t\tnewMetrics.append(newRow)\n\t\n\tdef sendMessage(message):\n\t\tparams \u003d {\"message\":message}\n\t\tsystem.perspective.openPopup(id\u003d\"message\", view\u003d\"Snowflake/Message\", params\u003dparams, title\u003d\"Message\", showCloseIcon\u003dTrue, draggable\u003dTrue, resizble\u003dTrue, modal\u003dTrue, overlayDismiss\u003dTrue)\n\t\n\tif dataModel \u003d\u003d None or dataModel \u003d\u003d \"\":\n\t\tsendMessage(\"Please select a Data Model\")\n\telif dataModelVersion \u003d\u003d None:\n\t\tsendMessage(\"Please select a Data Model Version\")\n\telif instance \u003d\u003d None or instance \u003d\u003d \"\":\n\t\tsendMessage(\"Please select an Instance\")\n\telif system.date.isBefore(endDate, startDate):\n\t\tsendMessage(\"Start date must be before the end date\")\n\telif not metricEnabled:\n\t\tsendMessage(\"Please select at least one metric\")\n\telse:\n\t\tself.view.params.dataModel \u003d dataModel\n\t\tself.view.params.dataModelVersion \u003d dataModelVersion\n\t\tself.view.params.instance \u003d instance\n\t\tself.view.params.groupId \u003d groupId\n\t\tself.view.params.edgeNodeId \u003d edgeNodeId\n\t\tself.view.params.deviceId \u003d deviceId\n\t\tself.view.params.startDate \u003d startDate\n\t\tself.view.params.endDate \u003d endDate\n\t\tself.view.params.metrics \u003d newMetrics\n\t\tself.view.params.aggregation \u003d aggregation\n\t\tself.view.params.axis \u003d axis\n\t\tself.view.params.queryMode \u003d queryMode\n\t\tself.view.params.fixedRows \u003d fixedRows\n\t\tself.view.params.interval \u003d interval"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "props": {
+          "text": "Apply Filters"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

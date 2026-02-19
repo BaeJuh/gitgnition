@@ -1,0 +1,450 @@
+{
+  "custom": {
+    "imgShowing": "",
+    "showingIndex": 0,
+    "showingType": "image"
+  },
+  "params": {
+    "attachmentsTable": "mes.markdown_attachments",
+    "imgClicked": "",
+    "imgIDs": [],
+    "popupID": "Images"
+  },
+  "propConfig": {
+    "custom.imgShowing": {
+      "binding": {
+        "config": {
+          "path": "view.params.imgClicked"
+        },
+        "type": "property"
+      },
+      "onChange": {
+        "enabled": null,
+        "script": "\tind \u003d 0\n\tfor img in self.view.params.imgIDs:\n\t\tif img \u003d\u003d currentValue.value:\n\t\t\tbreak\n\t\tind +\u003d 1\n\tself.custom.showingIndex \u003d ind\n\t\n\tself.getChild(\"root\").getChild(\"VideoPlayer\").props.status.loadedData \u003d False"
+      },
+      "persistent": true
+    },
+    "custom.showingIndex": {
+      "persistent": true
+    },
+    "custom.showingType": {
+      "binding": {
+        "config": {
+          "expression": "try(\r\n\trunScript(\u0027exchange.markdownPlus.attachments.getFileType\u0027, 0, {view.custom.imgShowing}, {view.params.attachmentsTable}),\r\n\t\u0027image\u0027\r\n)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "params.attachmentsTable": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.imgClicked": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.imgIDs": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.popupID": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "PanZoomImage"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.showingType} \u003d \u0027image\u0027"
+              },
+              "type": "expr"
+            }
+          },
+          "props.params.source": {
+            "binding": {
+              "config": {
+                "expression": "\u0027/system/blob/markdown-plus/Exchange/MarkdownPlus/image?id\u003d\u0027 + {view.custom.imgShowing}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "Exchange/PanZoomImage/PanZoomImage"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "VideoPlayer"
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.showingType} \u003d \u0027video\u0027 \u0026\u0026 {this.props.status.loadedData}"
+              },
+              "type": "expr"
+            }
+          },
+          "position.height": {
+            "binding": {
+              "config": {
+                "expression": "if({this.props.status.loadedData},\r\n\t1,\r\n\t0\r\n)"
+              },
+              "type": "expr"
+            }
+          },
+          "position.width": {
+            "binding": {
+              "config": {
+                "expression": "if({this.props.status.loadedData} \u0026\u0026 {this.props.source} !\u003d \u0027\u0027,\r\n\t1,\r\n\t0\r\n)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.source": {
+            "binding": {
+              "config": {
+                "expression": "if({view.custom.showingType} \u003d \u0027video\u0027,\r\n\t\u0027/system/blob/markdown-plus/Exchange/MarkdownPlus/video?id\u003d\u0027 + {view.custom.imgShowing},\r\n\t\u0027\u0027\r\n)"
+              },
+              "type": "expr"
+            },
+            "onChange": {
+              "enabled": null,
+              "script": "\tif currentValue.value \u003d\u003d \u0027\u0027:\n\t\tself.props.controls.play \u003d False\n\t\tself.props.status.loadedData \u003d False"
+            }
+          }
+        },
+        "props": {
+          "autohideControls": true,
+          "style": {
+            "backgroundColor": "#00000000"
+          }
+        },
+        "type": "ia.display.video-player"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\u0027previous\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Previous",
+          "visible": false
+        },
+        "position": {
+          "height": 0.088,
+          "width": 0.0558,
+          "x": 0.0189,
+          "y": 0.42
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "len({view.params.imgIDs}) \u003e 1"
+              },
+              "type": "expr"
+            },
+            "persistent": true
+          }
+        },
+        "props": {
+          "path": "material/arrow_back",
+          "style": {
+            "color": "#555555",
+            "cursor": "pointer",
+            "filter": "invert(100%)",
+            "mix-blend-mode": "difference"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\u0027next\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Next",
+          "visible": false
+        },
+        "position": {
+          "height": 0.088,
+          "width": 0.0558,
+          "x": 0.9203,
+          "y": 0.42
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "len({view.params.imgIDs}) \u003e 1"
+              },
+              "type": "expr"
+            },
+            "persistent": true
+          }
+        },
+        "props": {
+          "path": "material/arrow_forward",
+          "style": {
+            "color": "#555555",
+            "cursor": "pointer",
+            "filter": "invert(100%)",
+            "mix-blend-mode": "difference"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Header"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "expression": "len({view.params.imgIDs}) \u003e 1"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "\u0027Image \u0027 + ({view.custom.showingIndex} + 1) + \u0027 of \u0027 + len({view.params.imgIDs})"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "color": "#555555",
+                "filter": "invert(100%)",
+                "fontFamily": "inherit",
+                "fontSize": 18,
+                "marginTop": 4,
+                "mix-blend-mode": "difference",
+                "overflow": "visible",
+                "textAlign": "center",
+                "user-select": "none",
+                "whiteSpace": "nowrap"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "height": 0.0001,
+          "width": 1
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "justify": "center",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "42px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/hourglass_empty"
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "text": "Loading..."
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Loading"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.showingType} \u003d \u0027video\u0027 \u0026\u0026 !{../VideoPlayer.props.status.loadedData}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "justify": "center"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "draggable": true,
+                    "id": "{view.params.popupID}",
+                    "modal": false,
+                    "overlayDismiss": false,
+                    "resizable": true,
+                    "showCloseIcon": true,
+                    "type": "close",
+                    "viewPath": "",
+                    "viewportBound": false
+                  },
+                  "scope": "C",
+                  "type": "popup"
+                }
+              }
+            },
+            "meta": {
+              "name": "Close"
+            },
+            "position": {
+              "basis": "28px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/close",
+              "style": {
+                "color": "#555555",
+                "cursor": "pointer",
+                "filter": "invert(100%)",
+                "marginRight": 4,
+                "marginTop": 4,
+                "mix-blend-mode": "difference"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "Close"
+        },
+        "position": {
+          "height": 0.001,
+          "width": 1
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "justify": "flex-end",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onKeyUp": {
+          "config": {
+            "script": "\tif event.key \u003d\u003d \u0027ArrowRight\u0027:\n\t\tsystem.perspective.sendMessage(\u0027next\u0027)\n\telif event.key \u003d\u003d \u0027ArrowLeft\u0027:\n\t\tsystem.perspective.sendMessage(\u0027previous\u0027)\n\telif event.key \u003d\u003d \u0027Escape\u0027:\n\t\tsystem.perspective.closePopup(self.view.params.popupID)"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      },
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\timport time\n\t\n\ttime.sleep(0.5)\n\t\n\tself.focus()\n"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "backgroundColor": "#000000",
+        "overflow": "hidden"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "next",
+          "pageScope": true,
+          "script": "\tind \u003d self.view.custom.showingIndex + 1\n\tif ind \u003d\u003d len(self.view.params.imgIDs):\n\t\tind \u003d 0\n\tself.view.custom.imgShowing \u003d self.view.params.imgIDs[ind]\n\tself.focus()",
+          "sessionScope": false,
+          "viewScope": false
+        },
+        {
+          "messageType": "previous",
+          "pageScope": true,
+          "script": "\tind \u003d self.view.custom.showingIndex - 1\n\tif ind \u003d\u003d -1:\n\t\tind \u003d len(self.view.params.imgIDs) - 1\n\tself.view.custom.imgShowing \u003d self.view.params.imgIDs[ind]\n\tself.focus()",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

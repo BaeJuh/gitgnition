@@ -1,0 +1,917 @@
+{
+  "custom": {
+    "birthMessage": null,
+    "color": "var(--neutral-80)",
+    "templateDef": null
+  },
+  "params": {
+    "dataModel": "",
+    "dataModelInstance": "",
+    "dataModelVersion": "",
+    "deviceId": "",
+    "edgeNodeId": "",
+    "groupId": ""
+  },
+  "propConfig": {
+    "custom.birthMessage": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "dataModel": "{view.params.dataModel}",
+            "dataModelVersion": "{view.params.dataModelVersion}",
+            "deviceId": "{view.params.deviceId}",
+            "edgeNodeId": "{view.params.edgeNodeId}",
+            "groupId": "{view.params.groupId}",
+            "instance": "{view.params.dataModelInstance}",
+            "stageDB": "{session.custom.stageDB}"
+          },
+          "queryPath": "Snowflake/Instance Birth",
+          "returnFormat": "json"
+        },
+        "transforms": [
+          {
+            "code": "\tif value !\u003d None and len(value):\n\t\treturn system.util.jsonDecode(value[0][\"TEMPLATE_DEFINITION\"])\n\treturn None",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.color": {
+      "binding": {
+        "config": {
+          "path": "view.custom.birthMessage"
+        },
+        "transforms": [
+          {
+            "code": "\tif value !\u003d None and \"properties\" in value:\n\t\tif \"typeColor\" in value.properties:\n\t\t\tfrom java.lang import Integer\n\t\t\treturn \"#%s\" % Integer.toHexString(value.properties.typeColor.value)[2:]\n\t\n\treturn \"var(--neutral-80)\"",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.templateDef": {
+      "binding": {
+        "config": {
+          "path": "view.params.templateDef"
+        },
+        "transforms": [
+          {
+            "code": "\ttry:\n\t\treturn system.util.jsonDecode(value)\n\texcept:\n\t\treturn {}",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "params.dataModel": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.dataModelInstance": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.dataModelVersion": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.deviceId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.edgeNodeId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.groupId": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 390
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.params.iconColor": {
+            "binding": {
+              "config": {
+                "path": "view.custom.color"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.dataModelInstance"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "icon": "layers",
+            "messageAction": {
+              "icon": "close",
+              "messageType": "close",
+              "payload": {}
+            }
+          },
+          "path": "Snowflake/Title",
+          "style": {
+            "marginBottom": "10px"
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "close",
+              "pageScope": true,
+              "script": "\tsystem.perspective.closeDock(\"dataModel\")",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label_8"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Snowflake/Bold"
+              },
+              "text": "Sparkplug Namespace"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_7"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.groupId} + \"/\" + {view.params.edgeNodeId} + \"/\" + {view.params.deviceId}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "marginBottom": "10px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_9"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Snowflake/Bold"
+              },
+              "text": "Documentation"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "TextArea"
+            },
+            "position": {
+              "basis": "100px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.birthMessage"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value !\u003d None and \"properties\" in value:\n\t\tif \"documentation\" in value.properties:\n\t\t\treturn value.properties.documentation.value\n\t\n\treturn \"\"",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "enabled": false,
+              "style": {
+                "backgroundColor": "unset",
+                "classes": "Snowflake/Text Snowflake/Form",
+                "cursor": "unset",
+                "marginBottom": "10px"
+              }
+            },
+            "type": "ia.input.text-area"
+          },
+          {
+            "meta": {
+              "name": "Label_10"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Snowflake/Bold"
+              },
+              "text": "Last Updated"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_11"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.birthMessage"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value !\u003d None and \"timestamp\" in value:\n\t\treturn system.date.format(system.date.fromMillis(value.timestamp), \"M/d/yyyy h:mm:ss a\")\n\t\n\treturn \"\"",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "marginBottom": "10px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_12"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Snowflake/Bold"
+              },
+              "text": "Parameters"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Table"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.birthMessage"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value !\u003d None and \"value\" in value:\n\t\tif \"parameters\" in value.value:\n\t\t\tparams \u003d []\n\t\t\tfor param in value.value.parameters:\n\t\t\t\tparams.append({\"name\":param[\"name\"], \"type\":param[\"type\"], \"value\":None if \"value\" not in param else param[\"value\"]})\n\t\t\treturn params\n\t\n\treturn []",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "bodyStyle": {
+                "classes": "Snowflake/Text"
+              },
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "name",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Name"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 2
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "type",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Type"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 1
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "value",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Value"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 2
+                }
+              ],
+              "emptyMessage": {
+                "noData": {
+                  "text": "No parameters"
+                }
+              },
+              "headerGroupStyle": {
+                "classes": "Snowflake/Section"
+              },
+              "pager": {
+                "bottom": false
+              },
+              "selection": {
+                "enableRowSelection": false
+              },
+              "style": {
+                "marginBottom": "10px"
+              },
+              "virtualized": false
+            },
+            "type": "ia.display.table"
+          },
+          {
+            "meta": {
+              "name": "Label_13"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Snowflake/Bold"
+              },
+              "text": "Metrics"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Table_0"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.birthMessage"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tret \u003d []\n\t\n\tif value !\u003d None and \"value\" in value:\n\t\tif \"metrics\" in value.value:\n\t\t\tfor metric in value.value.metrics:\n\t\t\t\tret.append({\"name\": metric[\"name\"], \"dataType\": metric[\"dataType\"], \"properties\": metric.get(\"properties\", {})})\n\t\n\treturn ret",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "bodyStyle": {
+                "classes": "Snowflake/Text"
+              },
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "name",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Name"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 3
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "dataType",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Type"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": 1
+                }
+              ],
+              "emptyMessage": {
+                "noData": {
+                  "text": "No metrics"
+                }
+              },
+              "headerGroupStyle": {
+                "classes": "Snowflake/Section"
+              },
+              "pager": {
+                "bottom": false
+              },
+              "rows": {
+                "subview": {
+                  "enabled": true,
+                  "viewPath": "Snowflake/Metric Subview"
+                }
+              },
+              "selection": {
+                "enableRowSelection": false
+              },
+              "style": {
+                "marginBottom": "10px"
+              },
+              "virtualized": false
+            },
+            "type": "ia.display.table"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "classes": "Snowflake/Margins"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Snowflake/Dock/Dock"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

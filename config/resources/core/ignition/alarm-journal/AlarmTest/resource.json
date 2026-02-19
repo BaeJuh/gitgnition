@@ -1,0 +1,14 @@
+{
+  "scope": "A",
+  "description": "Alarm test Alarm Journal",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {
+    "uuid": "bb61090d-43be-4f68-86e7-332be562f08d",
+    "enabled": true
+  }
+}

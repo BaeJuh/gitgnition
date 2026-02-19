@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "color": "#FFFFFF",
+      "fontSize": "24px",
+      "fontWeight": "normal",
+      "lineHeight": "19px",
+      "fill": "#FFFFFF"
+    }
+  }
+}

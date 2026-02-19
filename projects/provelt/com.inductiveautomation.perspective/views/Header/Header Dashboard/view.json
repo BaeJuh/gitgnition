@@ -1,0 +1,315 @@
+{
+  "custom": {},
+  "params": {},
+  "propConfig": {
+    "params.key": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 58
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer Start"
+        },
+        "position": {
+          "basis": "16px",
+          "shrink": 0
+        },
+        "props": {
+          "text": " "
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "id": "menu",
+                "type": "toggle"
+              },
+              "scope": "C",
+              "type": "dock"
+            }
+          }
+        },
+        "meta": {
+          "name": "Menu Dock"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "props": {
+          "path": "material/menu",
+          "style": {
+            "classes": "Header/Icon",
+            "cursor": "pointer",
+            "marginRight": "10px"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "24px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.icon"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn value !\u003d None",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.icon"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \"\" if value \u003d\u003d None else \"material/%s\" % value",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "Header/Icon",
+            "marginRight": "6px"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Dashboard"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.name"
+              },
+              "transforms": [
+                {
+                  "expression": "coalesce({value}, \"Welcome\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "Header/Title"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Dropdown"
+        },
+        "position": {
+          "basis": "124px"
+        },
+        "propConfig": {
+          "props.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "session.props.theme"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "options": [
+            {
+              "label": "light",
+              "value": "light"
+            },
+            {
+              "label": "light-cool",
+              "value": "light-cool"
+            },
+            {
+              "label": "light-warm",
+              "value": "light-warm"
+            },
+            {
+              "label": "dark",
+              "value": "dark"
+            },
+            {
+              "label": "dark-cool",
+              "value": "dark-cool"
+            },
+            {
+              "label": "dark-warm",
+              "value": "dark-warm"
+            }
+          ],
+          "search": {
+            "enabled": false
+          },
+          "style": {
+            "classes": "Header/DropDown"
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer"
+        },
+        "position": {
+          "basis": "10px",
+          "shrink": 0
+        },
+        "props": {
+          "text": " "
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tdashboard.editDashboard(self, False)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Edit"
+        },
+        "position": {
+          "basis": "24px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "session.custom.dashboard.objects.current.allow_edit"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn False if value \u003d\u003d None else value",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "material/edit",
+          "style": {
+            "classes": "Header/Icon",
+            "cursor": "pointer",
+            "marginRight": "6px"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tdashboard.refresh(self)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Refresh"
+        },
+        "position": {
+          "basis": "24px"
+        },
+        "props": {
+          "path": "material/refresh",
+          "style": {
+            "classes": "Header/Icon",
+            "cursor": "pointer"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Spacer End_0"
+        },
+        "position": {
+          "basis": "16px"
+        },
+        "props": {
+          "text": " "
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.backgroundColor": {
+        "binding": {
+          "config": {
+            "path": "session.props.theme"
+          },
+          "transforms": [
+            {
+              "code": "\tif \"dark\" in value:\n\t\treturn \"var(--neutral-10)\"\n\telse:\n\t\treturn \"\"",
+              "type": "script"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "style": {
+        "classes": "Header/Header"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

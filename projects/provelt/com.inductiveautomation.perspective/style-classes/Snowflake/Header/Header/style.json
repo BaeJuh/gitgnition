@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#003E69",
+      "fontSize": "14px",
+      "paddingLeft": "10px",
+      "paddingRight": "10px",
+      "fill": "#FFFFFF"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "base": {
+    "style": {
+      "cursor": "auto",
+      "fill": "var(--neutral-60)"
+    }
+  }
+}

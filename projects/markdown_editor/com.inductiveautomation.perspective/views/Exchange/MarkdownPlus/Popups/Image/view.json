@@ -1,0 +1,624 @@
+{
+  "custom": {
+    "dataID": null,
+    "imageType": "value",
+    "imgClick": "",
+    "loading": false,
+    "options": {
+      "align": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ],
+      "captionPosition": [
+        {
+          "label": "Bottom",
+          "value": ""
+        },
+        {
+          "label": "Top",
+          "value": "top"
+        },
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    "selections": {
+      "align": "center",
+      "caption": "",
+      "captionPosition": "",
+      "height": "",
+      "width": "50%"
+    },
+    "submitted": false
+  },
+  "events": {
+    "system": {
+      "onShutdown": {
+        "config": {
+          "script": "\timport java.lang.Exception\n\tif self.view.custom.dataID is not None and not self.view.custom.submitted:\n\t\ttry:\n\t\t\tsystem.db.runPrepUpdate(\u0027DELETE FROM \u0027 + self.view.params.attachmentsTable + \u0027 WHERE id \u003d ?\u0027, [self.view.custom.dataID])\n\t\texcept (java.lang.Exception, Exception) as e:\n\t\t\tsystem.perspective.print(str(e))"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "attachmentsTable": "",
+    "domID": "",
+    "fileSizeLimit": 160
+  },
+  "propConfig": {
+    "custom.dataID": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.imageType": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.imgClick": {
+      "access": "PRIVATE",
+      "onChange": {
+        "enabled": null,
+        "script": "\tsystem.perspective.print(\u0027imgClick \u003d \u0027 + str(currentValue.value))"
+      },
+      "persistent": true
+    },
+    "custom.loading": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.options": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.options.align": {
+      "access": "PRIVATE"
+    },
+    "custom.options.captionPosition": {
+      "access": "PRIVATE"
+    },
+    "custom.selections": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "custom.submitted": {
+      "access": "PRIVATE",
+      "persistent": true
+    },
+    "params.attachmentsTable": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.domID": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.fileSizeLimit": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 540,
+      "width": 640
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "42px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/hourglass_empty"
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "text": "Loading..."
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Loading"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.dataID} \u003d null \u0026\u0026 {view.custom.loading} "
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "justify": "center"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "events": {
+          "component": {
+            "onFileReceived": {
+              "config": {
+                "script": "\timport java.lang.Exception\n\ttry:\n\t\tself.view.custom.loading \u003d True\n\t\tself.view.custom.imageType \u003d exchange.markdownPlus.attachments.getImageType(event.file.name)\n\t\tself.view.custom.dataID \u003d system.db.runPrepUpdate(\u0027INSERT INTO \u0027 + self.view.params.attachmentsTable + \u0027 (type, filename, data, bytes_size) VALUES (\"\u0027 + self.view.custom.imageType + \u0027\", ?, ?, ?)\u0027, [event.file.name, event.file.getBytes(), event.file.size], getKey \u003d 1)\n\texcept (java.lang.Exception, Exception) as e:\n\t\tsystem.perspective.print(str(e))"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "FileUpload"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.dataID} \u003d null \u0026\u0026 !{view.custom.loading}"
+              },
+              "type": "expr"
+            }
+          },
+          "props.fileSizeLimit": {
+            "binding": {
+              "config": {
+                "path": "view.params.fileSizeLimit"
+              },
+              "type": "property"
+            }
+          },
+          "props.supportedFileTypes": {
+            "binding": {
+              "config": {
+                "expression": "runScript(\u0027exchange.markdownPlus.attachments.getImageFileTypes\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "maxUploads": 1
+        },
+        "type": "ia.input.fileupload"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "LabelWidth"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Width:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Width"
+                },
+                "position": {
+                  "basis": "6em",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.custom.selections.width"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "style": {
+                    "marginRight": 8
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "meta": {
+                  "name": "LabelHeight"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Height:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Height"
+                },
+                "position": {
+                  "basis": "6em",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.custom.selections.height"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "style": {
+                    "marginRight": 8
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "meta": {
+                  "name": "LabelAlign"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Align:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Align"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.options.align"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.custom.selections.align"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "marginRight": 4
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "Position"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "gap": 5,
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "Markdown"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.params.markdownText": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.custom.dataID} \u003d null,\r\n\t\u0027\u0027,\r\n\t\u0027\u003c[\u0027 + {view.custom.imageType} + \u0027?id\u003d\u0027 + {view.custom.dataID} \r\n\t\t+ \u0027 width\u003d\u0027 + {view.custom.selections.width} \r\n\t\t+ if({view.custom.selections.height} !\u003d \u0027\u0027, \u0027 height\u003d\u0027 + {view.custom.selections.height}, \u0027\u0027) \r\n\t\t+ \u0027 align\u003d\u0027 + {view.custom.selections.align} \r\n\t\t+ if({view.custom.selections.caption} \u003d \u0027\u0027,\r\n\t\t\t\u0027\u0027,\r\n\t\t\t\u0027 caption\u0027 + if({view.custom.selections.captionPosition} \u003d \u0027\u0027, \u0027\u0027, \u0027 \u0027 +  {view.custom.selections.captionPosition})\r\n\t\t\t+ \u0027\u003d\u0027 + {view.custom.selections.caption}\r\n\t\t) \r\n\t\t+ \u0027]\u003e\u0027\r\n)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "html": ""
+              },
+              "path": "Exchange/MarkdownPlus/MarkdownPlus"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Caption:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "CaptionPosition"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.options.captionPosition"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.custom.selections.captionPosition"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "marginRight": 4
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "Caption"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "gap": 5,
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "TextArea"
+            },
+            "position": {
+              "basis": "4em",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.custom.selections.caption"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "deferUpdates": false,
+              "placeholder": "Caption..."
+            },
+            "type": "ia.input.text-area"
+          }
+        ],
+        "meta": {
+          "name": "ImageData"
+        },
+        "position": {
+          "display": false,
+          "grow": 1
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.dataID} !\u003d null"
+              },
+              "type": "expr"
+            },
+            "persistent": true
+          }
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": 8,
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\u0027Image\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Cancel"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/cancel"
+                }
+              },
+              "primary": false,
+              "style": {
+                "paddingLeft": 4,
+                "paddingRight": 4
+              },
+              "text": "Cancel"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tself.view.getChild(\"root\").submit()"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Insert"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/check_circle_outline"
+                }
+              },
+              "style": {
+                "paddingLeft": 4,
+                "paddingRight": 4
+              },
+              "text": "Insert"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "Buttons"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.dataID} !\u003d null"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "justify": "flex-end",
+          "style": {
+            "gap": 8,
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "justify": "space-between",
+      "style": {
+        "gap": 12,
+        "padding": "0.6em"
+      }
+    },
+    "scripts": {
+      "customMethods": [
+        {
+          "name": "submit",
+          "params": [],
+          "script": "\tsystem.perspective.sendMessage(\u0027insert-image\u0027, {\n\t\t\u0027domID\u0027: self.view.params.domID,\n\t\t\u0027type\u0027: self.view.custom.imageType,\n\t\t\u0027id\u0027: self.view.custom.dataID,\n\t\t\u0027width\u0027: self.view.custom.selections.width,\n\t\t\u0027height\u0027: self.view.custom.selections.height,\n\t\t\u0027align\u0027: self.view.custom.selections.align,\n\t\t\u0027captionPosition\u0027: self.view.custom.selections.captionPosition,\n\t\t\u0027caption\u0027: self.view.custom.selections.caption\n\t})\n\tself.view.custom.submitted \u003d True\n\tsystem.perspective.closePopup(\u0027Image\u0027)"
+        }
+      ],
+      "extensionFunctions": null,
+      "messageHandlers": []
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "color": "#535C69",
+      "fontSize": "12px",
+      "fontWeight": "bolder",
+      "marginLeft": "5px",
+      "textTransform": "uppercase",
+      "fill": "#535C69"
+    }
+  }
+}

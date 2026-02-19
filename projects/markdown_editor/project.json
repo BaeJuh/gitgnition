@@ -1,0 +1,7 @@
+{
+  "title": "Markdown+",
+  "description": "A Markdown editor that allows for previewing the formatted text, inserting special characters, emojis, images/videos and file attachments, applying formatting to selected text, and adding user @Mentions.",
+  "enabled": true,
+  "inheritable": false,
+  "parent": ""
+}

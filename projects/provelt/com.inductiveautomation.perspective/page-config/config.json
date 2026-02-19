@@ -1,0 +1,111 @@
+{
+  "pages": {
+    "/": {
+      "title": "",
+      "viewPath": "Page/MQTT"
+    },
+    "/alarms": {
+      "title": "",
+      "viewPath": "Page/Alarms"
+    },
+    "/charts": {
+      "viewPath": "Page/Charts"
+    },
+    "/dashboard/:dashboard": {
+      "title": "Dashboard",
+      "viewPath": "Page/Dashboard"
+    },
+    "/diagnostics": {
+      "title": "Diagnostics",
+      "viewPath": "Page/Diagnostics"
+    },
+    "/snowflake/dashboard": {
+      "docks": {
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "auto",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "dataModel",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 500,
+            "viewParams": {},
+            "viewPath": "Snowflake/Data Model"
+          }
+        ]
+      },
+      "title": "Snowflake Dashboard",
+      "viewPath": "Snowflake/Dashboard"
+    },
+    "/snowflake/history": {
+      "docks": {
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "show",
+            "iconUrl": "material/filter_list",
+            "id": "historyFilters",
+            "modal": false,
+            "resizable": true,
+            "show": "auto",
+            "size": 250,
+            "viewParams": {},
+            "viewPath": "Snowflake/History Filters"
+          }
+        ]
+      },
+      "title": "Snowflake History",
+      "viewPath": "Snowflake/History"
+    },
+    "/tags": {
+      "title": "Tags",
+      "viewPath": "Page/Tag Dashboard"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom",
+    "left": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 768,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "menu",
+        "modal": false,
+        "resizable": false,
+        "show": "auto",
+        "size": 210,
+        "viewParams": {},
+        "viewPath": "Docks/Menu Dashboard"
+      }
+    ],
+    "top": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 480,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "",
+        "modal": false,
+        "resizable": false,
+        "show": "visible",
+        "size": 58,
+        "viewParams": {
+          "breakpointLarge": "768",
+          "breakpointMedium": "500",
+          "params": {},
+          "path": "Header/Header"
+        },
+        "viewPath": "Framework/Breakpoint"
+      }
+    ]
+  }
+}

@@ -1,0 +1,575 @@
+{
+  "custom": {},
+  "params": {
+    "interval": 60,
+    "pollRate": 300
+  },
+  "propConfig": {
+    "params.interval": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.pollRate": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 283,
+      "width": 525
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "125px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "classes": "Card_Label"
+                  },
+                  "text": "Total Alarms"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat(\r\n\tsum({/root.custom.alarmSummary}, \"total\"),\r\n\t\"###0\")"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn value if value else 0",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Bold_Text"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Total Alarms"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Card_Item Card_Item_Border",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "125px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "classes": "Card_Label"
+                  },
+                  "text": "Total Duration"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat(floor(sum({/root.custom.alarmSummary}, \"totalTime\") / 3600), \"00\") + \":\" +\r\nnumberFormat(floor((sum({/root.custom.alarmSummary}, \"totalTime\") % 3600) / 60), \"00\") + \":\" + \r\nnumberFormat(((sum({/root.custom.alarmSummary}, \"totalTime\") % 3600) % 60), \"00\") "
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn value if value else \"00:00:00\"",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Bold_Text"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Total Duration"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Card_Item Card_Item_Border",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "125px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "classes": "Card_Label"
+                  },
+                  "text": "Total Unacknowledged"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat(\r\n\tsum({/root.custom.alarmSummary}, \"unacknowledged\"),\r\n\t\"###0\")"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn value if value else 0",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "classes": "Bold_Text"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Total Unacknowledged"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Card_Item Card_Item_Border",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "125px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "classes": "Card_Label"
+                  },
+                  "text": "Avg Time to Ack"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat(floor(sum({/root.custom.alarmSummary}, \"acknowledgeTime\") / 3600), \"00\") + \":\" +\r\nnumberFormat(floor((sum({/root.custom.alarmSummary}, \"acknowledgeTime\") % 3600) / 60), \"00\") + \":\" + \r\nnumberFormat(((sum({/root.custom.alarmSummary}, \"acknowledgeTime\") % 3600) % 60), \"00\") "
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn value if value else \"00:00:00\"",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Bold_Text"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Avg Time to Ack"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Card_Item Card_Item_Border",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "125px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "classes": "Card_Label"
+                  },
+                  "text": "Avg Time to Clear"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "numberFormat(floor(sum({/root.custom.alarmSummary}, \"clearTime\") / 3600), \"00\") + \":\" +\r\nnumberFormat(floor((sum({/root.custom.alarmSummary}, \"clearTime\") % 3600) / 60), \"00\") + \":\" + \r\nnumberFormat(((sum({/root.custom.alarmSummary}, \"clearTime\") % 3600) % 60), \"00\") "
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn value if value else \"00:00:00\"",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Bold_Text"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Avg Time to Clear"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Card_Item Card_Item_Border",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "125px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "classes": "Card_Label"
+                  },
+                  "text": "Most Frequent"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "try(toDataset({/root.custom.mostFrequent})[\"displaypath\"], \"\") + \" - \" +\r\n\r\nnumberFormat(\r\n\ttoInt(try(toDataset({/root.custom.mostFrequent})[\"total\"], 0)),\r\n\t\"###0\") + \r\n\r\n\" (\" + \r\n\t\r\nnumberFormat(\r\n\ttry(toInt(try(toDataset({/root.custom.mostFrequent})[\"total\"], 0)) / toInt(sum({/root.custom.alarmSummary}, \"total\")), 0),\r\n\t\"##0.#%\") + \r\n\r\n\")\""
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn value if value else \"\"",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "classes": "Bold_Text"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Most Frequent Alarm"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Card_Item Card_Item_Border",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "125px",
+                  "shrink": 0
+                },
+                "props": {
+                  "alignVertical": "center",
+                  "style": {
+                    "classes": "Card_Label"
+                  },
+                  "text": "Longest Duration"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "hasDelegate": true,
+                  "name": "Value"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "try(toDataset({/root.custom.longestDuration})[\"displaypath\"], \"\") + \" - \" +\r\n\r\nnumberFormat(\r\n\ttoInt(try(toDataset({/root.custom.longestDuration})[\"total\"], 0)),\r\n\t\"###0\") + \r\n\r\n\" (\" + \r\n\t\r\nnumberFormat(\r\n\ttry(toInt(try(toDataset({/root.custom.longestDuration})[\"total\"], 0)) / toInt(sum({/root.custom.alarmSummary}, \"totalTime\")), 0),\r\n\t\"##0.#%\") + \r\n\r\n\")\""
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn value if value else \"\"",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Bold_Text"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Longest Duration Alarm"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Card_Item",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Alarm Summary"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.alarmSummary": {
+        "binding": {
+          "config": {
+            "parameters": {
+              "app": "null",
+              "endDate": "{this.custom.endDate}",
+              "startDate": "{this.custom.startDate}"
+            },
+            "queryPath": "Alarms/Alarm Summary",
+            "returnFormat": "dataset"
+          },
+          "type": "query"
+        }
+      },
+      "custom.endDate": {
+        "binding": {
+          "config": {
+            "expression": "now({view.params.pollRate}*1000)"
+          },
+          "type": "expr"
+        }
+      },
+      "custom.longestDuration": {
+        "binding": {
+          "config": {
+            "parameters": {
+              "app": "null",
+              "endDate": "{this.custom.endDate}",
+              "startDate": "{this.custom.startDate}"
+            },
+            "queryPath": "Alarms/Longest Duration Alarm",
+            "returnFormat": "dataset"
+          },
+          "type": "query"
+        }
+      },
+      "custom.mostFrequent": {
+        "binding": {
+          "config": {
+            "parameters": {
+              "app": "null",
+              "endDate": "{this.custom.endDate}",
+              "startDate": "{this.custom.startDate}"
+            },
+            "queryPath": "Alarms/Most Frequent Alarm",
+            "returnFormat": "dataset"
+          },
+          "type": "query"
+        }
+      },
+      "custom.startDate": {
+        "binding": {
+          "config": {
+            "expression": "dateArithmetic({this.custom.endDate}, -1 * {view.params.interval}, \"minute\")"
+          },
+          "type": "expr"
+        }
+      }
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

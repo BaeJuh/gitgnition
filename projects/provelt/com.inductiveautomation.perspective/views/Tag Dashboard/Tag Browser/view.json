@@ -1,0 +1,93 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 260
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Small Title"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.params.messageAction.payload.tagPath": {
+            "binding": {
+              "config": {
+                "path": "session.custom.tagPath"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "icon": "",
+            "messageAction": {
+              "icon": "refresh",
+              "messageType": "tag-refresh",
+              "payload": {}
+            },
+            "text": "Browse Tags"
+          },
+          "path": "Tag Dashboard/Small Title",
+          "style": {
+            "borderRightColor": "#CCCCCC",
+            "borderRightStyle": "solid",
+            "borderRightWidth": "1px"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Tag Picker"
+        },
+        "position": {
+          "basis": "320px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.params.tagPath": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "session.custom.tagPath"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "automaticSelection": true,
+            "expanded": false,
+            "filters": {},
+            "foldersOnly": true,
+            "mode": "realtime",
+            "parentPath": "",
+            "useFiltersChildren": false
+          },
+          "path": "Framework/Tag Picker/Tag Picker",
+          "style": {
+            "backgroundColor": "#FFFFFF"
+          }
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

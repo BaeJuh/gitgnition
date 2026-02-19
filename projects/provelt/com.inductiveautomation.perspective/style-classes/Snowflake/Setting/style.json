@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "color": "var(--neutral-80)",
+      "fontSize": "12px",
+      "textTransform": "uppercase"
+    }
+  }
+}

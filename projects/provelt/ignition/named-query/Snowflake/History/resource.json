@@ -1,0 +1,90 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "Snowflake",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "06caaa83dd76b3d777d3feb8fd40018823b2f2e2ce3c25ae2c2f0f99d8125c1d",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "admin",
+      "timestamp": "2025-02-13T18:55:07Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "groupId",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "edgeNodeId",
+        "sqlType": 7
+      },
+      {
+        "type": "QueryString",
+        "identifier": "dataModel",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "startDate",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "endDate",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "deviceId",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "instanceName",
+        "sqlType": 7
+      },
+      {
+        "type": "QueryString",
+        "identifier": "cols",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "fixedRows",
+        "sqlType": 2
+      },
+      {
+        "type": "QueryString",
+        "identifier": "avgRawCols",
+        "sqlType": 7
+      },
+      {
+        "type": "QueryString",
+        "identifier": "avgCols",
+        "sqlType": 7
+      }
+    ]
+  }
+}

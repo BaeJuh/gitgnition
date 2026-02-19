@@ -1,0 +1,19 @@
+{
+  "scope": "A",
+  "description": "",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "jhbae@orcait.net",
+      "timestamp": "2025-12-22T03:00:28Z"
+    },
+    "uuid": "335f8e43-9d6e-4eb4-84fe-f225195ee686",
+    "lastModificationSignature": "b9d62fb33919a9c4b5b7ea27b07545297e709cf1d8dab6dea838abd73041bb8a",
+    "enabled": false
+  }
+}

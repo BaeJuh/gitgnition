@@ -1,0 +1,89 @@
+[
+  {
+    "name": "Alarm",
+    "typeId": null,
+    "parameters": {
+      "Sender": {
+        "dataType": "String",
+        "value": null
+      },
+      "Reciever": {
+        "dataType": "String",
+        "value": null
+      }
+    },
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "memory",
+        "dataType": "String",
+        "name": "Content",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Boolean",
+        "name": "Important",
+        "value": false,
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "String",
+        "name": "Receiver",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "String",
+        "name": "Sender",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Boolean",
+        "alarms": [
+          {
+            "mode": "Equality",
+            "setpointA": 1.0,
+            "activePipeline": "Alarm Test/Alarm Test",
+            "name": "Alarm",
+            "msg": {
+              "bindType": "Tag",
+              "value": "[.]Content"
+            },
+            "important": {
+              "bindType": "Tag",
+              "value": "[.]Important"
+            },
+            "activeCondition": {
+              "bindType": "Expression",
+              "value": "{value}"
+            },
+            "from": {
+              "bindType": "Tag",
+              "value": "[.]Sender"
+            },
+            "to": {
+              "bindType": "Tag",
+              "value": "[.]Receiver"
+            },
+            "uuid": {
+              "bindType": "Tag",
+              "value": "[.]UUID"
+            }
+          }
+        ],
+        "name": "Trigger",
+        "value": false,
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "String",
+        "name": "UUID",
+        "tagType": "AtomicTag"
+      }
+    ]
+  }
+]

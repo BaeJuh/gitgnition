@@ -1,0 +1,9 @@
+SELECT 
+	nmr.GROUP_ID label,
+	nmr.GROUP_ID value
+FROM 
+	{stageDB}.SPARKPLUG_EDGE_NODE_REGISTRY nmr
+GROUP BY 
+	nmr.GROUP_ID
+ORDER BY 
+	nmr.GROUP_ID

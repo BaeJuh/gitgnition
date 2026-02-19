@@ -1,0 +1,63 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 265
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "expression": "now(10000)"
+              },
+              "transforms": [
+                {
+                  "code": "\tinstances \u003d []\n\tres \u003d system.tag.browse(path\u003d\"[MQTT Engine]Engine Info/MQTT Clients/Default Set\", filter\u003d{\"tagType\":\"Folder\"})\n\tfor result in res.getResults():\n\t\tinstances.append({\"server\":result[\"name\"]})\n\treturn instances",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "elementPosition": {
+            "basis": "auto",
+            "grow": 0,
+            "shrink": 0
+          },
+          "elementStyle": {
+            "marginBottom": "10px"
+          },
+          "loading": {
+            "order": "with-parent"
+          },
+          "path": "MQTT/Server",
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false,
+          "wrap": "wrap"
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

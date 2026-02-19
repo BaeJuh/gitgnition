@@ -1,0 +1,117 @@
+{
+  "custom": {},
+  "params": {
+    "interval": 60,
+    "limit": 10,
+    "pollRate": 300
+  },
+  "propConfig": {
+    "params.interval": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.limit": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.pollRate": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 193,
+      "width": 371
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "PieChart"
+        },
+        "position": {
+          "basis": "375px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "path": "/root.custom.alarmFrequency"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn value if value else [{\u0027cnt\u0027:1,\u0027displaypath\u0027:\u0027No Results...\u0027}]",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "colors": [
+            "#003F69",
+            "#9ED23E",
+            "#F68F1E",
+            "#F06240",
+            "#FFC800",
+            "#808080",
+            "#994499"
+          ],
+          "cutoutRadius": 60,
+          "showLabels": false,
+          "style": {
+            "fontSize": "10px"
+          }
+        },
+        "type": "ia.chart.pie"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.alarmFrequency": {
+        "binding": {
+          "config": {
+            "parameters": {
+              "app": "null",
+              "endDate": "{this.custom.endDate}",
+              "limit": "{view.params.limit}",
+              "startDate": "{this.custom.startDate}"
+            },
+            "queryPath": "Alarms/Alarms Frequency",
+            "returnFormat": "json"
+          },
+          "type": "query"
+        }
+      },
+      "custom.endDate": {
+        "binding": {
+          "config": {
+            "expression": "now({view.params.pollRate}*1000)"
+          },
+          "type": "expr"
+        }
+      },
+      "custom.startDate": {
+        "binding": {
+          "config": {
+            "expression": "dateArithmetic({this.custom.endDate}, -1 * {view.params.interval}, \"minute\")"
+          },
+          "type": "expr"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

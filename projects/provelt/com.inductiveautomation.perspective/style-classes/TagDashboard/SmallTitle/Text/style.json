@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "color": "#535C69",
+      "fontSize": "16px",
+      "fontWeight": "500",
+      "marginLeft": "6px",
+      "fill": "var(--neutral-90)"
+    }
+  }
+}

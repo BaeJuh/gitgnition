@@ -1,0 +1,116 @@
+{
+  "custom": {
+    "dbValid": true,
+    "hasDashboards": false
+  },
+  "params": {},
+  "propConfig": {
+    "custom.dbValid": {
+      "binding": {
+        "config": {
+          "path": "session.custom.dbValid"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.hasDashboards": {
+      "binding": {
+        "config": {
+          "path": "session.custom.dashboard.dashboards.dashboards"
+        },
+        "transforms": [
+          {
+            "code": "\treturn len(value) \u003e 0",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 303,
+      "width": 520
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "No Dashboards"
+        },
+        "position": {
+          "basis": "320px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.dbValid} \u0026\u0026 {session.custom.dashboard.dashboards.valid} \u0026\u0026 !{view.custom.hasDashboards}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "Page/Configuration/No Dashboards"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "No Database Connected"
+        },
+        "position": {
+          "basis": "320px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "!{view.custom.dbValid}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "Page/Configuration/No Database Connected"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "No Database Tables"
+        },
+        "position": {
+          "basis": "320px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{view.custom.dbValid} \u0026\u0026 !{session.custom.dashboard.dashboards.valid}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "Page/Configuration/No Database Tables"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "profile": {
+    "type": "EmailNotificationProfileType"
+  },
+  "settings": {
+    "advanced": {
+      "debugModeEnabled": false,
+      "smtpTimeout": 10000,
+      "startTlsEnabled": false
+    },
+    "settings": {
+      "emailProfile": "Alarm Email",
+      "port": 25,
+      "sslEnabled": false,
+      "useSmtpProfile": true
+    },
+    "twoWay": {
+      "httpsLinkEnabled": false,
+      "twoWayEnabled": false
+    },
+    "twoWayPop3": {
+      "pop3DeleteMessage": false,
+      "pop3PollingInterval": 60000,
+      "pop3Port": 110,
+      "pop3SslEnabled": false,
+      "pop3TwoWayEnabled": false
+    }
+  }
+}

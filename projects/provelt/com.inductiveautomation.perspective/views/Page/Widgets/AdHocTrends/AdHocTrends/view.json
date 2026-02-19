@@ -1,0 +1,2993 @@
+{
+  "custom": {
+    "axes": [],
+    "colors": [
+      {
+        "color": "rgba(242,24,24,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(24,87,242,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(151,242,24,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(242,24,215,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(24,242,205,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(242,142,24,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(78,24,242,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(33,242,24,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(242,24,97,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(24,160,242,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(224,242,24,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(196,24,242,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(24,242,132,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(242,69,24,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(24,42,242,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(106,242,24,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(242,24,170,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(24,233,242,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(242,187,24,1)",
+        "pen": null
+      },
+      {
+        "color": "rgba(123,24,242,1)",
+        "pen": null
+      }
+    ],
+    "combineAxes": false,
+    "dateRange": {
+      "endDate": 1596227841802,
+      "startDate": 1596227541802
+    },
+    "debug": {
+      "column": "axis",
+      "row": 0,
+      "rowIndex": 0,
+      "value": "Sine0"
+    },
+    "endPicker": 1596211372433,
+    "historicalTags": false,
+    "pens": [],
+    "realtime": true,
+    "realtimeAmount": 5,
+    "realtimeUnit": "MIN",
+    "refresh": {
+      "$": [
+        "ts",
+        192,
+        1596227841802
+      ],
+      "$ts": 1596227841802
+    },
+    "selectionEnd": {
+      "$": [
+        "ts",
+        0,
+        1596211372633
+      ],
+      "$ts": 0
+    },
+    "selectionStart": {
+      "$": [
+        "ts",
+        0,
+        1596211372633
+      ],
+      "$ts": 0
+    },
+    "splitPlots": false,
+    "startPicker": 1596210472431,
+    "tags": [],
+    "tooltip": "",
+    "xTrace": false
+  },
+  "params": {},
+  "propConfig": {
+    "custom.axes": {
+      "persistent": true
+    },
+    "custom.colors": {
+      "binding": {
+        "config": {
+          "expression": "true"
+        },
+        "transforms": [
+          {
+            "code": "\timport colorsys\n\tcolors \u003d []\n\tgr \u003d 0.61803398875\n\thue \u003d 1.0\n\t\n\tfor i in range(20):\n\t\trgb \u003d colorsys.hsv_to_rgb(hue, 0.90, 0.95)\n\t\tcolors.append({\u0027color\u0027: \"rgba(%i,%i,%i,1)\" %(rgb[0] * 255, rgb[1] * 255, rgb[2] * 255), \u0027pen\u0027: None})\n\t\thue +\u003d gr\n\treturn colors\n\t",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.combineAxes": {
+      "persistent": true
+    },
+    "custom.dateRange": {
+      "binding": {
+        "config": {
+          "struct": {
+            "endPicker": "toMillis({view.custom.endPicker})",
+            "realtime": "{view.custom.realtime}",
+            "realtimeAmount": "{view.custom.realtimeAmount}",
+            "realtimeUnit": "{view.custom.realtimeUnit}",
+            "selectionEnd": "toMillis({view.custom.selectionEnd})",
+            "selectionStart": "toMillis({view.custom.selectionStart})",
+            "startPicker": "toMillis({view.custom.startPicker})"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\t\n\tif value.realtime:\n\t\tendDate \u003d system.date.now()\n\t\tif value.realtimeUnit \u003d\u003d \u0027SEC\u0027:\n\t\t\tstartDate \u003d system.date.addSeconds(endDate, -value.realtimeAmount)\n\t\telif value.realtimeUnit \u003d\u003d \u0027MIN\u0027:\n\t\t\tstartDate \u003d system.date.addMinutes(endDate, -value.realtimeAmount)\n\t\telse:\n\t\t\tstartDate \u003d system.date.addHours(endDate, -value.realtimeAmount)\n\n\t\treturn {\u0027startDate\u0027: system.date.toMillis(startDate), \u0027endDate\u0027: system.date.toMillis(endDate)}\n\telse:\n\t\tstartDate \u003d value.selectionStart if value.selectionStart \u003e value.startPicker and value.selectionStart \u003c value.endPicker else value.startPicker\n\t\tendDate \u003d value.selectionEnd if value.selectionEnd \u003e value.startPicker and value.selectionEnd \u003c value.endPicker  else value.endPicker\n\n\t\treturn {\u0027startDate\u0027: startDate, \u0027endDate\u0027: endDate}\n\t\n\t\n\t",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "custom.endPicker": {
+      "binding": {
+        "config": {
+          "expression": "toMillis(now(0))"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.historicalTags": {
+      "persistent": true
+    },
+    "custom.pens": {
+      "persistent": true
+    },
+    "custom.realtime": {
+      "persistent": true
+    },
+    "custom.realtimeAmount": {
+      "persistent": true
+    },
+    "custom.realtimeUnit": {
+      "persistent": true
+    },
+    "custom.refresh": {
+      "binding": {
+        "config": {
+          "expression": "now(2500)"
+        },
+        "transforms": [
+          {
+            "code": "\tif self.view.custom.realtime:\n\t\tself.view.refreshBinding(\u0027custom.dateRange\u0027)\n\treturn value",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.selectionEnd": {
+      "binding": {
+        "config": {
+          "path": "view.custom.endPicker"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.selectionStart": {
+      "binding": {
+        "config": {
+          "path": "view.custom.startPicker"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.splitPlots": {
+      "persistent": true
+    },
+    "custom.startPicker": {
+      "binding": {
+        "config": {
+          "expression": "toMillis(dateArithmetic(now(0), -15, \"MIN\"))"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.tags": {
+      "persistent": true
+    },
+    "custom.xTrace": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 932
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/show_chart",
+              "style": {
+                "classes": "AdHocTrends/Button"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "AdHocTrends/Title"
+              },
+              "text": "AdHoc Trends"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Tooltip"
+                },
+                "position": {
+                  "basis": "0px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.visibility": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.tooltip"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027visible\u0027 if value \u003d\u003d self.props.text else \u0027hidden\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "AdHocTrends/Tooltip",
+                    "margin": "40px 0px 0px -40px",
+                    "minHeight": "40px",
+                    "position": "absolute",
+                    "width": "120px",
+                    "zIndex": 1
+                  },
+                  "text": "Split Plots"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tif self.view.custom.splitPlots:\n\t\tfor i in range(len(self.view.custom.pens)):\n\t\t\tself.view.custom.pens[i][\u0027plot\u0027] \u003d 0\n\t\tself.view.custom.splitPlots \u003d False\n\telse:\n\t\tself.view.custom.combineAxes \u003d False\n\t\tfor i in range(len(self.view.custom.pens)):\n\t\t\tself.view.custom.pens[i][\u0027plot\u0027] \u003d i\n\t\tself.view.custom.splitPlots \u003d True\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Icon"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.border": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.splitPlots"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u00274px inset gray\u0027 if value else \u0027\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "material/format_line_spacing",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onMouseEnter": {
+                  "config": {
+                    "script": "\tself.view.custom.tooltip \u003d self.getChild(\u0027Tooltip\u0027).props.text\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onMouseLeave": {
+                  "config": {
+                    "script": "\tself.getChild(\u0027Tooltip\u0027).props.style.visibility \u003d \u0027hidden\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Split"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "AdHocTrends/Button"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Tooltip"
+                },
+                "position": {
+                  "basis": "0px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.visibility": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.tooltip"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027visible\u0027 if value \u003d\u003d self.props.text else \u0027hidden\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "AdHocTrends/Tooltip",
+                    "margin": "40px 0px 0px -40px",
+                    "minHeight": "40px",
+                    "position": "absolute",
+                    "width": "120px",
+                    "zIndex": 1
+                  },
+                  "text": "Combine Axes"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tif not self.view.custom.splitPlots:\n\t\tsingleAxis \u003d False\n\t\tfor axis in self.view.custom.axes:\n\t\t\tif axis[\u0027singleAxis\u0027]:\n\t\t\t\tsingleAxis \u003d True\n\t\t\t\tbreak\n\t\t\n\t\tif not singleAxis and len(self.view.custom.axes) \u003e 0:\n\t\t\tself.view.custom.axes[0][\u0027singleAxis\u0027] \u003d True\n\t\tself.view.custom.combineAxes \u003d not self.view.custom.combineAxes\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Icon"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.border": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.combineAxes"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u00274px inset gray\u0027 if value else \u0027\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.custom.splitPlots}, \u0027AdHocTrends/DisabledIcon\u0027, \u0027\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "material/settings_ethernet"
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onMouseEnter": {
+                  "config": {
+                    "script": "\tself.view.custom.tooltip \u003d self.getChild(\u0027Tooltip\u0027).props.text\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onMouseLeave": {
+                  "config": {
+                    "script": "\tself.getChild(\u0027Tooltip\u0027).props.style.visibility \u003d \u0027hidden\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "CombineAxes"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "AdHocTrends/Button"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Tooltip"
+                },
+                "position": {
+                  "basis": "0px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.visibility": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.tooltip"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027visible\u0027 if value \u003d\u003d self.props.text else \u0027hidden\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "AdHocTrends/Tooltip",
+                    "margin": "40px 0px 0px -40px",
+                    "minHeight": "40px",
+                    "position": "absolute",
+                    "width": "120px",
+                    "zIndex": 1
+                  },
+                  "text": "X-Trace"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tself.view.custom.xTrace \u003d not self.view.custom.xTrace"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Icon"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.border": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.xTrace"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u00274px inset gray\u0027 if value else \u0027\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "material/linear_scale",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onMouseEnter": {
+                  "config": {
+                    "script": "\tself.view.custom.tooltip \u003d self.getChild(\u0027Tooltip\u0027).props.text\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onMouseLeave": {
+                  "config": {
+                    "script": "\tself.getChild(\u0027Tooltip\u0027).props.style.visibility \u003d \u0027hidden\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Xtrace"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "AdHocTrends/Button"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "Spacer2"
+            },
+            "position": {
+              "basis": "0px",
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "maxWidth": "20px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Tooltip"
+                },
+                "position": {
+                  "basis": "0px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.visibility": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.tooltip"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027visible\u0027 if value \u003d\u003d self.props.text else \u0027hidden\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "AdHocTrends/Tooltip",
+                    "margin": "40px 0px 0px -40px",
+                    "minHeight": "40px",
+                    "position": "absolute",
+                    "width": "120px",
+                    "zIndex": 1
+                  },
+                  "text": "Step Back"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tif not self.view.custom.realtime:\n\t\tselectionEnd \u003d self.view.custom.selectionEnd if isinstance(self.view.custom.selectionEnd, long) else self.view.custom.selectionEnd.getTime()\n\t\tselectionStart \u003d self.view.custom.selectionStart if isinstance(self.view.custom.selectionStart, long) else self.view.custom.selectionStart.getTime()\n\t\tdifference \u003d selectionEnd - selectionStart\n\t\tself.view.custom.selectionStart \u003d selectionStart - difference\n\t\tself.view.custom.selectionEnd \u003d selectionEnd - difference "
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Icon"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.custom.realtime}, \u0027AdHocTrends/DisabledIcon\u0027, \u0027\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "material/fast_rewind"
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onMouseEnter": {
+                  "config": {
+                    "script": "\tself.view.custom.tooltip \u003d self.getChild(\u0027Tooltip\u0027).props.text"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onMouseLeave": {
+                  "config": {
+                    "script": "\tself.getChild(\u0027Tooltip\u0027).props.style.visibility \u003d \u0027hidden\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Previous"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "AdHocTrends/Button"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Tooltip"
+                },
+                "position": {
+                  "basis": "0px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.visibility": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.tooltip"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027visible\u0027 if value \u003d\u003d self.props.text else \u0027hidden\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "AdHocTrends/Tooltip",
+                    "margin": "40px 0px 0px -40px",
+                    "minHeight": "40px",
+                    "position": "absolute",
+                    "width": "120px",
+                    "zIndex": 1
+                  },
+                  "text": "Real-time Mode"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tself.view.custom.realtime \u003d not self.view.custom.realtime"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Icon"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.border": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.realtime"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u00274px inset gray\u0027 if value else \u0027\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "material/play_arrow",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onMouseEnter": {
+                  "config": {
+                    "script": "\tself.view.custom.tooltip \u003d self.getChild(\u0027Tooltip\u0027).props.text\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onMouseLeave": {
+                  "config": {
+                    "script": "\tself.getChild(\u0027Tooltip\u0027).props.style.visibility \u003d \u0027hidden\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Realtime"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "AdHocTrends/Button"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Tooltip"
+                },
+                "position": {
+                  "basis": "0px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.visibility": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.tooltip"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027visible\u0027 if value \u003d\u003d self.props.text else \u0027hidden\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "AdHocTrends/Tooltip",
+                    "margin": "40px 0px 0px -40px",
+                    "minHeight": "40px",
+                    "position": "absolute",
+                    "width": "120px",
+                    "zIndex": 1
+                  },
+                  "text": "Step Forward"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tif not self.view.custom.realtime:\n\t\tselectionEnd \u003d self.view.custom.selectionEnd if isinstance(self.view.custom.selectionEnd, long) else self.view.custom.selectionEnd.getTime()\n\t\tselectionStart \u003d self.view.custom.selectionStart if isinstance(self.view.custom.selectionStart, long) else self.view.custom.selectionStart.getTime()\n\t\tdifference \u003d selectionEnd - selectionStart\n\t\tself.view.custom.selectionStart \u003d selectionStart + difference\n\t\tself.view.custom.selectionEnd \u003d selectionEnd + difference \n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Icon"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.custom.realtime}, \u0027AdHocTrends/DisabledIcon\u0027, \u0027\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "material/fast_forward"
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onMouseEnter": {
+                  "config": {
+                    "script": "\tself.view.custom.tooltip \u003d self.getChild(\u0027Tooltip\u0027).props.text"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onMouseLeave": {
+                  "config": {
+                    "script": "\tself.getChild(\u0027Tooltip\u0027).props.style.visibility \u003d \u0027hidden\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Next"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "AdHocTrends/Button"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Tooltip"
+                },
+                "position": {
+                  "basis": "0px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.visibility": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.tooltip"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027visible\u0027 if value \u003d\u003d self.props.text else \u0027hidden\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "AdHocTrends/Tooltip",
+                    "margin": "40px 0px 0px -40px",
+                    "minHeight": "40px",
+                    "position": "absolute",
+                    "width": "120px",
+                    "zIndex": 1
+                  },
+                  "text": "Step to End"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tif not self.view.custom.realtime:\n\t\tselectionEnd \u003d self.view.custom.selectionEnd if isinstance(self.view.custom.selectionEnd, long) else self.view.custom.selectionEnd.getTime()\n\t\tselectionStart \u003d self.view.custom.selectionStart if isinstance(self.view.custom.selectionStart, long) else self.view.custom.selectionStart.getTime()\n\t\tendPicker \u003d self.view.custom.endPicker if isinstance(self.view.custom.endPicker, long) else self.view.custom.endPicker.getTime()\n\t\tdifference \u003d selectionEnd - selectionStart\n\t\tself.view.custom.selectionEnd \u003d endPicker\n\t\tself.view.custom.selectionStart \u003d endPicker - difference\n\t\t "
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Icon"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.custom.realtime}, \u0027AdHocTrends/DisabledIcon\u0027, \u0027\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "material/skip_next"
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onMouseEnter": {
+                  "config": {
+                    "script": "\tself.view.custom.tooltip \u003d self.getChild(\u0027Tooltip\u0027).props.text"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onMouseLeave": {
+                  "config": {
+                    "script": "\tself.getChild(\u0027Tooltip\u0027).props.style.visibility \u003d \u0027hidden\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "End"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "AdHocTrends/Button"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "Spacer"
+            },
+            "position": {
+              "basis": "0px",
+              "grow": 1
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Tooltip"
+                },
+                "position": {
+                  "basis": "0px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.visibility": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.tooltip"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027visible\u0027 if value \u003d\u003d self.props.text else \u0027hidden\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "AdHocTrends/Tooltip",
+                    "margin": "40px 0px 0px -90px",
+                    "minHeight": "40px",
+                    "position": "absolute",
+                    "width": "120px",
+                    "zIndex": 1
+                  },
+                  "text": "Save data as CSV/XML"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tsystem.perspective.sendMessage(\u0027SaveData\u0027, {}, \u0027view\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Icon"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "props": {
+                  "path": "material/save",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onMouseEnter": {
+                  "config": {
+                    "script": "\tself.view.custom.tooltip \u003d self.getChild(\u0027Tooltip\u0027).props.text"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onMouseLeave": {
+                  "config": {
+                    "script": "\tself.getChild(\u0027Tooltip\u0027).props.style.visibility \u003d \u0027hidden\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "SaveData"
+            },
+            "position": {
+              "basis": "30px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "AdHocTrends/Button"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onMouseLeave": {
+              "config": {
+                "script": "\tself.view.custom.tooltip \u003d \u0027\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "TitleBar"
+        },
+        "position": {
+          "basis": "40px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "AdHocTrends/TitleBar"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.parent.getSibling(\u0027Tree\u0027).refreshBinding(\u0027props.items\u0027)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Refresh"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "color": "var(--neutral-100)",
+                      "path": "material/refresh",
+                      "style": {
+                        "classes": "AdHocTrends/Button"
+                      }
+                    },
+                    "type": "ia.display.icon"
+                  },
+                  {
+                    "meta": {
+                      "name": "HistoricalTags"
+                    },
+                    "position": {
+                      "grow": 1,
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.controlValue": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.custom.historicalTags"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.indicatorValue": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.historicalTags"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "buttonGap": 0,
+                      "defaultSelectedStyle": {
+                        "backgroundColor": "var(--neutral-30)",
+                        "color": "var(--neutral-100)"
+                      },
+                      "defaultUnselectedStyle": {
+                        "backgroundColor": "var(--neutral-40)",
+                        "color": "var(--neutral-60)"
+                      },
+                      "endButtonCornerRadius": 0,
+                      "orientation": "row",
+                      "states": [
+                        {
+                          "selectedStyle": {
+                            "classes": ""
+                          },
+                          "text": "Realtime",
+                          "unselectedStyle": {
+                            "classes": ""
+                          },
+                          "value": false
+                        },
+                        {
+                          "selectedStyle": {
+                            "classes": ""
+                          },
+                          "text": "Historical",
+                          "unselectedStyle": {
+                            "classes": ""
+                          },
+                          "value": true
+                        }
+                      ]
+                    },
+                    "type": "ia.input.multi-state-button"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "30px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.key": {
+                    "binding": {
+                      "config": {
+                        "aggregate": "MinMax",
+                        "avoidScanClassValidation": true,
+                        "dateRange": {
+                          "mostRecent": "1",
+                          "mostRecentUnits": "HOUR"
+                        },
+                        "ignoreBadQuality": false,
+                        "polling": {
+                          "enabled": false,
+                          "rate": "30"
+                        },
+                        "preventInterpolation": false,
+                        "returnFormat": "Wide",
+                        "returnSize": {
+                          "numRows": "100",
+                          "type": "FIXED"
+                        },
+                        "tags": [
+                          {
+                            "path": "[BuildAThon_Travis]Tanks/Tank 1/Level"
+                          }
+                        ],
+                        "valueFormat": "DATASET"
+                      },
+                      "type": "tag-history"
+                    }
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "custom": {
+                  "tags": []
+                },
+                "meta": {
+                  "name": "Tree"
+                },
+                "position": {
+                  "basis": "300px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.items": {
+                    "binding": {
+                      "config": {
+                        "expression": "{view.custom.historicalTags}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t#[{label, expanded, data, items[]}]\n\n\tdef browseHistoricalTags(path):\n\t\ttags \u003d []\n\t\t#results \u003d system.tag.browse(path).getResults()\n\t\tresults \u003d system.tag.browseHistoricalTags(path).getResults()\n\t\t\n\t\tif results !\u003d None:\n\t\t\tfor result in results:\n\t\t\t\tif result.hasChildren() \u003d\u003d True:\n\t\t\t\t\ttag \u003d {\u0027label\u0027: result.path.lastPathComponent, \u0027expanded\u0027: False, \u0027data\u0027: {\u0027folder\u0027: result.path}}\n\t\t\t\t\ttag[\u0027items\u0027] \u003d browseHistoricalTags(result.path)\n\t\t\t\t\tif len(tag[\u0027items\u0027]) \u003e 0:\n\t\t\t\t\t\ttags.append(tag)\n\t\t\t\telse:\n\t\t\t\t\ttags.append({\u0027label\u0027: result.path.lastPathComponent, \u0027data\u0027: {\u0027tag\u0027: result.path}})\n\t\treturn tags\n\t\t\n\t\n\t\n\tdef browseTags(path):\n\t\ttags \u003d []\n\t\tresults \u003d system.tag.browseTags(path)\n\n\t\tfor result in results:\n\t\t\tif result.isFolder() or result.isUDT():\n\t\t\t\ttag \u003d {\u0027label\u0027: result.name, \u0027expanded\u0027: False, \u0027data\u0027: {\u0027folder\u0027: result.fullPath}}\n\t\t\t\ttag[\u0027items\u0027] \u003d browseTags(result.fullPath)\n\t\t\t\tif len(tag[\u0027items\u0027]) \u003e 0:\n\t\t\t\t\ttags.append(tag)\n\t\t\telse:\n\t\t\t\ttags.append({\u0027label\u0027: result.name, \u0027data\u0027: {\u0027tag\u0027: result.fullPath}, \u0027items\u0027: [], \u0027expanded\u0027: False})\n\t\treturn tags\n\t\n\tif value:\n\t\ttags \u003d browseHistoricalTags(\u0027\u0027)\n\telse:\n\t\ttags \u003d browseTags(\u0027\u0027)\n\t\t\n\t\n\treturn tags",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.selection": {
+                    "binding": {
+                      "config": {
+                        "path": "this.props.items"
+                      },
+                      "enabled": false,
+                      "transforms": [
+                        {
+                          "code": "\ttags \u003d value\n\t\t\t\n\tshowByDefault \u003d [[\u0027Demo\u0027, \u0027ignition 8.0 demo server:default\u0027, \u0027hmi\u0027, \u0027flow1\u0027], [\u0027Demo\u0027, \u0027ignition 8.0 demo server:default\u0027, \u0027hmi\u0027, \u0027flow2\u0027]]\n\t\n\tdef selectTag(treePath, index, tags, itemPath):\n\t\tcount \u003d 0\n\t\tfor tag in tags:\n\t\t\tif tag[\u0027label\u0027] \u003d\u003d treePath[index]:\n\t\t\t\titemPath.append(str(count))\n\t\t\t\tif index \u003c len(treePath) and \u0027items\u0027 in tag:\n\t\t\t\t\tselectTag(treePath, index + 1, tag[\u0027items\u0027], itemPath)\n\t\t\t\tbreak\n\t\t\tcount +\u003d 1\n\t\treturn itemPath\n\n\tselections \u003d []\n\n\tfor treePath in showByDefault:\n\t\tselections.append(\u0027/\u0027.join(selectTag(treePath, 0, tags, [])))\n\treturn selections",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "appearance": {
+                    "defaultNodeIcons": {
+                      "collapsed": {
+                        "color": "#5F707E",
+                        "path": "material/folder"
+                      },
+                      "empty": {
+                        "color": "#869DB1",
+                        "path": "material/stop"
+                      },
+                      "expanded": {
+                        "color": "#5F707E",
+                        "path": "material/folder_open"
+                      }
+                    },
+                    "expandIcons": {
+                      "collapsed": {
+                        "color": "#869DB1",
+                        "path": "material/arrow_right"
+                      },
+                      "empty": {
+                        "color": "#869DB1"
+                      },
+                      "expanded": {
+                        "color": "#869DB1",
+                        "path": "material/arrow_drop_down"
+                      }
+                    }
+                  },
+                  "style": {
+                    "classes": "AdHocTrends/TagTree"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "messageHandlers": [
+                    {
+                      "messageType": "SelectTags",
+                      "pageScope": false,
+                      "script": "\ttags \u003d [tag for tag in self.view.custom.tags]\n\n\tnewTags \u003d []\n\tfor selectedTag in self.props.selectionData:\n\t\ttry:\n\t\t\tif selectedTag.value.tag not in tags:\n\t\t\t\tnewTags.append(selectedTag.value.tag)\n\t\texcept:\n\t\t\tpass\n\n\tif len(newTags) \u003e 0:\n\t\tpens \u003d []\n\t\tfor pen in self.view.custom.pens:\n\t\t\tcurrentPen \u003d {}\n\t\t\tfor key in pen:\n\t\t\t\tcurrentPen[key] \u003d pen[key]\n\t\t\tpens.append(currentPen)\n\t\t\t\n\t\taxes \u003d []\n\t\tfor axis in self.view.custom.axes:\n\t\t\tcurrentAxis \u003d {}\n\t\t\tfor key in axis:\n\t\t\t\tcurrentAxis[key] \u003d axis[key]\n\t\t\taxes.append(currentAxis)\n\t\n\t\tfor tag in newTags:\n\t\t\tcount \u003d -1\n\t\t\tif \u0027/\u0027 in tag:\n\t\t\t\tpenName \u003d tag.split(\u0027/\u0027)[-1]\n\t\t\telif \u0027]\u0027 in tag:\n\t\t\t\tpenName \u003d tag.split(\u0027]\u0027)[-1]\n\t\t\telse:\n\t\t\t\tpenName \u003d tag\n\t\t\t\t\n\t\t\tif penName in [pen[\u0027alias\u0027] for pen in pens]:\n\t\t\t\tpenName \u003d tag\n\t\t\t\t\n\t\t\tpen \u003d {}\n\t\t\tpen[\u0027visible\u0027] \u003d True\n\t\t\tpen[\u0027alias\u0027] \u003d penName\n\t\t\tpen[\u0027path\u0027] \u003d tag\n\t\t\tpen[\u0027axis\u0027] \u003d penName\n\t\t\tpen[\u0027delete\u0027] \u003d False\n\t\t\t\n\t\t\tpenColor \u003d \u0027#FF0000\u0027\n\t\t\t\n\t\t\tfor i in range(len(self.view.custom.colors)):\n\t\t\t\tcolor \u003d self.view.custom.colors[i]\n\t\t\t\tif color[\u0027pen\u0027] is None:\n\t\t\t\t\tpenColor \u003d color[\u0027color\u0027]\n\t\t\t\t\tself.view.custom.colors[i][\u0027pen\u0027] \u003d pen[\u0027path\u0027]\n\t\t\t\t\tbreak \n\t\t\t\n\t\t\tpen[\u0027color\u0027] \u003d penColor\n\t\t\tpen[\u0027plot\u0027] \u003d 0\n\t\t\t\n\t\t\taxis \u003d {}\n\t\t\taxis[\u0027name\u0027] \u003d penName\n\t\t\taxis[\u0027lowerBound\u0027] \u003d 0\n\t\t\taxis[\u0027upperBound\u0027] \u003d 100\n\t\t\taxis[\u0027singleAxis\u0027] \u003d False\n\t\t\taxis[\u0027autoRange\u0027] \u003d True\n\t\t\taxis[\u0027delete\u0027] \u003d False\n\t\t\t\n\t\t\ttags.append(tag)\n\t\t\tpens.append(pen)\n\t\t\taxes.append(axis)\n\t\t\n\t\tself.view.custom.tags \u003d tags\n\t\tself.view.custom.pens \u003d pens\n\t\tself.view.custom.axes \u003d axes\n",
+                      "sessionScope": false,
+                      "viewScope": true
+                    }
+                  ]
+                },
+                "type": "ia.display.tree"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tsystem.perspective.sendMessage(\u0027SelectTags\u0027, {}, \u0027view\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Button"
+                },
+                "position": {
+                  "basis": "44px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "AdHocTrends/AddTag"
+                  },
+                  "text": "Add Tags"
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "Tags"
+            },
+            "position": {
+              "basis": "250px",
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginRight": "4px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "meta": {
+                              "name": "Label"
+                            },
+                            "position": {
+                              "basis": "20px",
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "Start Date:"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "Date"
+                            },
+                            "position": {
+                              "basis": "40px",
+                              "shrink": 0
+                            },
+                            "propConfig": {
+                              "props.value": {
+                                "binding": {
+                                  "config": {
+                                    "bidirectional": true,
+                                    "path": "view.custom.startPicker"
+                                  },
+                                  "type": "property"
+                                }
+                              }
+                            },
+                            "props": {
+                              "formattedValue": "Jul 31, 2020 8:47 AM",
+                              "formattedValues": {
+                                "date": "Jul 31, 2020",
+                                "datetime": "Jul 31, 2020 8:47 AM",
+                                "time": "8:47 AM"
+                              },
+                              "style": {
+                                "height": "40px"
+                              }
+                            },
+                            "type": "ia.input.date-time-input"
+                          }
+                        ],
+                        "meta": {
+                          "name": "StartDate"
+                        },
+                        "position": {
+                          "basis": "200px",
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "column",
+                          "justify": "center",
+                          "style": {
+                            "overflow": "hidden"
+                          }
+                        },
+                        "type": "ia.container.flex"
+                      },
+                      {
+                        "children": [
+                          {
+                            "meta": {
+                              "name": "Label"
+                            },
+                            "position": {
+                              "basis": "20px",
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "End Date:"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "Date"
+                            },
+                            "position": {
+                              "basis": "40px",
+                              "shrink": 0
+                            },
+                            "propConfig": {
+                              "props.value": {
+                                "binding": {
+                                  "config": {
+                                    "bidirectional": true,
+                                    "path": "view.custom.endPicker"
+                                  },
+                                  "type": "property"
+                                }
+                              }
+                            },
+                            "props": {
+                              "formattedValue": "Jul 31, 2020 9:02 AM",
+                              "formattedValues": {
+                                "date": "Jul 31, 2020",
+                                "datetime": "Jul 31, 2020 9:02 AM",
+                                "time": "9:02 AM"
+                              },
+                              "style": {
+                                "height": "40px"
+                              }
+                            },
+                            "type": "ia.input.date-time-input"
+                          }
+                        ],
+                        "meta": {
+                          "name": "EndDate"
+                        },
+                        "position": {
+                          "basis": "200px",
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "column",
+                          "justify": "center",
+                          "style": {
+                            "overflow": "hidden"
+                          }
+                        },
+                        "type": "ia.container.flex"
+                      }
+                    ],
+                    "meta": {
+                      "name": "DateRange"
+                    },
+                    "position": {
+                      "basis": "60px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "!{view.custom.realtime}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "justify": "center",
+                      "style": {
+                        "height": "88px",
+                        "overflow": "visible"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "Label"
+                        },
+                        "position": {
+                          "shrink": 0
+                        },
+                        "props": {
+                          "style": {
+                            "color": "var(--neutral-100)",
+                            "marginRight": "8px"
+                          },
+                          "text": "Last:"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "NumericEntryField"
+                        },
+                        "position": {
+                          "basis": "170px"
+                        },
+                        "propConfig": {
+                          "props.value": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "view.custom.realtimeAmount"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "style": {
+                            "borderRadius": "4px",
+                            "height": "40px"
+                          }
+                        },
+                        "type": "ia.input.numeric-entry-field"
+                      },
+                      {
+                        "meta": {
+                          "name": "Dropdown"
+                        },
+                        "position": {
+                          "basis": "180px"
+                        },
+                        "propConfig": {
+                          "props.value": {
+                            "binding": {
+                              "config": {
+                                "bidirectional": true,
+                                "path": "view.custom.realtimeUnit"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "options": [
+                            {
+                              "label": "Seconds",
+                              "value": "SEC"
+                            },
+                            {
+                              "label": "Minutes",
+                              "value": "MIN"
+                            },
+                            {
+                              "label": "Hours",
+                              "value": "HOUR"
+                            }
+                          ],
+                          "search": {
+                            "enabled": false
+                          }
+                        },
+                        "type": "ia.input.dropdown"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Realtime"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "{view.custom.realtime}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "justify": "center",
+                      "style": {
+                        "height": "40px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "meta": {
+                      "name": "ChartRangeSelector"
+                    },
+                    "position": {
+                      "basis": "100px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "!{view.custom.realtime}"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "endDate": "toMillis({view.custom.endPicker})",
+                              "pens": "{view.custom.pens}",
+                              "startDate": "toMillis({view.custom.startPicker})"
+                            },
+                            "waitOnAll": true
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif len(value.pens) \u003e 0:\n\t\treturn system.tag.queryTagHistory(paths\u003d[value.pens[0].value[\u0027path\u0027].value], startDate\u003dvalue.startDate, endDate\u003dvalue.endDate, returnSize\u003d300)\n\treturn system.dataset.toDataSet([], [])",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      },
+                      "props.selectedRange.end": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.custom.selectionEnd"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.selectedRange.start": {
+                        "binding": {
+                          "config": {
+                            "bidirectional": true,
+                            "path": "view.custom.selectionStart"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.timeAxis.visible": {
+                        "binding": {
+                          "config": {
+                            "expression": "len({this.props.data}) \u003e 0"
+                          },
+                          "overlayOptOut": true,
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "brushRange": {
+                        "visible": false
+                      },
+                      "selectedRange": {},
+                      "style": {
+                        "classes": "AdHocTrends/ChartRangeSelector"
+                      },
+                      "timeAxis": {
+                        "height": 20,
+                        "tickCount": 10
+                      },
+                      "yAxis": {
+                        "visible": false
+                      }
+                    },
+                    "type": "ia.chart.chartrangeselector"
+                  }
+                ],
+                "meta": {
+                  "name": "Range"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "TimeSeriesChart"
+                },
+                "position": {
+                  "basis": "400px",
+                  "grow": 5,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.historyParameters": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.pens"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\thistoryParameters \u003d {\u0027paths\u0027: [], \u0027columnNames\u0027: []}\n\tfor pen in value:\n\t\thistoryParameters[\u0027paths\u0027].append(pen[\u0027path\u0027])\n\t\thistoryParameters[\u0027columnNames\u0027].append(pen[\u0027alias\u0027])\n\treturn historyParameters",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.plots": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "axes": "{view.custom.axes}",
+                          "combineAxes": "{view.custom.combineAxes}",
+                          "pens": "{view.custom.pens}",
+                          "splitPlots": "{view.custom.splitPlots}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\timport time\n\ttime.sleep(0.5)\n\tplots \u003d []\n\tplotNumbers \u003d {}\n\tif value.splitPlots:\n\t\tfor pen in value.pens:\n\t\t\tif str(pen.value[\u0027plot\u0027].value) not in plotNumbers:\n\t\t\t\tplotNumbers[str(pen.value[\u0027plot\u0027].value)] \u003d True\n\telse:\n\t\tplotNumbers[0] \u003d True\n\t\n\tfor plotNumber in plotNumbers:\n\t\ttrends \u003d []\n\t\taxes \u003d []\n\t\tmarkers \u003d []\n\t\tplot \u003d {\u0027trends\u0027: trends, \u0027axes\u0027: axes, \u0027markers\u0027: markers}\n\t\tplots.append(plot)\n\t\tsingleAxis \u003d None\n\t\tfor axis in value.axes:\n\t\t\tif axis.value[\u0027singleAxis\u0027].value:\n\t\t\t\tsingleAxis \u003d axis.value[\u0027name\u0027].value\n\t\t\t\tbreak\n\t\t\n\t\tfor pen in value.pens:\n\t\t\tif str(pen.value[\u0027plot\u0027].value) \u003d\u003d plotNumber or not value.splitPlots:\n\t\t\t\ttrend \u003d {\n\t\t\t\t  \"visible\": pen.value[\u0027visible\u0027].value,\n\t\t\t\t  \"type\": \"line\",\n\t\t\t\t  \"series\": \"series\",\n\t\t\t\t  \"interpolation\": \"curveLinear\",\n\t\t\t\t  \"breakLine\": True,\n\t\t\t\t  \"stack\": True,\n\t\t\t\t  \"radius\": 2,\n\t\t\t\t  \"axis\": singleAxis if value.combineAxes and singleAxis is not None else pen.value[\u0027axis\u0027].value,\n\t\t\t\t  \"columns\": [\n\t\t\t\t\t{\n\t\t\t\t\t  \"key\":pen.value[\u0027alias\u0027].value,\n\t\t\t\t\t  \"color\": pen.value[\u0027color\u0027].value,\n\t\t\t\t\t  \"styles\": {\n\t\t\t\t\t\t\"normal\": {\n\t\t\t\t\t\t  \"stroke\": {\"color\": \"\"},\n\t\t\t\t\t\t  \"fill\": {\"color\": \"\"}\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"highlighted\": {\n\t\t\t\t\t\t  \"stroke\": {\"color\": \"\"},\n\t\t\t\t\t\t  \"fill\": {\"color\": \"\"}\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"selected\": {\n\t\t\t\t\t\t  \"stroke\": {\"color\": \"\"},\n\t\t\t\t\t\t  \"fill\": {\"color\": \"\"}\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"muted\": {\n\t\t\t\t\t\t  \"stroke\": {\"color\": \"\"},\n\t\t\t\t\t\t  \"fill\": {\"color\": \"\"}\n\t\t\t\t\t\t}\n\t\t\t\t\t  }\n\t\t\t\t\t}\n\t\t\t\t  ],\n\t\t\t\t  \"baselines\": []\n\t\t\t\t}\n\t\t\t\ttrends.append(trend)\n\t\t\n\t\t\n\t\t\n\t\tfor axis in value.axes:\n\t\t\tmin \u003d None\n\t\t\ttry:\n\t\t\t\tmin \u003d float(axis.value[\u0027lowerBound\u0027].value)\n\t\t\texcept:\n\t\t\t\tpass\n\t\t\tmax \u003d None\n\t\t\ttry:\n\t\t\t\tmax \u003d float(axis.value[\u0027upperBound\u0027].value)\n\t\t\texcept:\n\t\t\t\tpass\n\t\t\taxis \u003d {\n\t\t\t\t\"name\": axis.value[\u0027name\u0027].value,\n\t\t\t\t\"min\": min,\n\t\t\t\t\"max\": max,\n\t\t\t\t\"alignment\": \"left\",\n\t\t\t\t\"width\": 60,\n\t\t\t\t\"label\": {\n\t\t\t\t\t\"visible\": True,\n\t\t\t\t\t\"text\": axis.value[\u0027name\u0027].value,\n\t\t\t\t\t\"offset\": 0,\n\t\t\t\t\t\"font\": {\n\t\t\t\t\t\t \"color\": \"\",\n\t\t\t\t\t\t \"size\": 12\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tick\": {},\n\t\t\t\t\"style\": {}\n\t\t\t}\n\t\t\t\n\t\t\taxes.append(axis)\n\t\n\treturn plots",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  },
+                  "props.series[0].data": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "endDate": "toMillis({view.custom.dateRange.endDate})",
+                          "historyParameters": "{this.custom.historyParameters}",
+                          "startDate": "{view.custom.dateRange.startDate}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t# using script because standard tag history binding does not support fully-qualified tag paths\n\t\n\t# expression structure values are returning QualifiedValue\n\tpaths \u003d [path.value for path in value.historyParameters.paths.value]\n\tcolumnNames \u003d [columnName.value for columnName in value.historyParameters.columnNames.value]\n\t\n\tfor pen in self.view.custom.pens:\n\t\taxisName \u003d pen[\u0027axis\u0027]\n\t\tpenAxis \u003d None\n\t\tfor i in range(len(self.view.custom.axes)):\n\t\t\taxis \u003d self.view.custom.axes[i]\n\t\t\tif axis[\u0027name\u0027] \u003d\u003d axisName:\n\t\t\t\tpenAxis \u003d i\n\t\t\t\tbreak\n\t\tif penAxis is not None and self.view.custom.axes[penAxis][\u0027autoRange\u0027]:\n\t\t\ttry:\n\t\t\t\tmax \u003d system.tag.queryTagHistory(paths\u003d[pen[\u0027path\u0027]], startDate\u003dvalue.startDate, endDate\u003dvalue.endDate, returnSize\u003d1, aggregationMode\u003d\u0027Maximum\u0027)\n\t\t\t\tupperBound \u003d max.getValueAt(0, 1)\n\t\t\t\tself.view.custom.axes[i][\u0027upperBound\u0027] \u003d upperBound + (1 if upperBound \u003e 0 else -1)\n\t\t\t\t\n\t\t\t\tmin \u003d system.tag.queryTagHistory(paths\u003d[pen[\u0027path\u0027]], startDate\u003dvalue.startDate, endDate\u003dvalue.endDate, returnSize\u003d1, aggregationMode\u003d\u0027Minimum\u0027)\n\t\t\t\tlowerBound \u003d min.getValueAt(0, 1)\n\t\t\t\tself.view.custom.axes[i][\u0027lowerBound\u0027] \u003d lowerBound + (1 if lowerBound \u003c 0 else -1)\n\t\t\texcept:\n\t\t\t\tpass\n\t\n\treturn system.tag.queryTagHistory(paths\u003dpaths, columnNames\u003dcolumnNames, startDate\u003dvalue.startDate, endDate\u003dvalue.endDate, returnSize\u003d300, aggregationMode\u003d\u0027MinMax\u0027)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  },
+                  "props.xTrace.visible": {
+                    "binding": {
+                      "config": {
+                        "path": "view.custom.xTrace"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "series": [
+                    {
+                      "name": "series"
+                    }
+                  ],
+                  "style": {
+                    "classes": "AdHocTrends/ChartRangeSelector",
+                    "marginTop": "4px"
+                  },
+                  "xTrace": {
+                    "infoBox": {
+                      "fill": {
+                        "color": "var(--neutral-10)"
+                      },
+                      "stroke": {
+                        "color": "var(--neutral-90)"
+                      }
+                    },
+                    "line": {
+                      "color": "var(--neutral-90)"
+                    }
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "messageHandlers": [
+                    {
+                      "messageType": "SaveData",
+                      "pageScope": false,
+                      "script": "\tsystem.perspective.download(\u0027tagHistory.xml\u0027, system.dataset.dataSetToExcel(True, [self.props.series[0].data], True))",
+                      "sessionScope": false,
+                      "viewScope": true
+                    }
+                  ]
+                },
+                "type": "ia.chart.timeseries"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onEditCellCommit": {
+                          "config": {
+                            "script": "\tif event.column \u003d\u003d \u0027delete\u0027:\n\t\tpen \u003d self.view.custom.pens[event.row]\n\t\tsystem.perspective.sendMessage(\u0027toggleTagHistory\u0027, {\u0027path\u0027: pen[\u0027path\u0027]})\n#\t\tfor i in range(len(self.view.custom.colors)):\n#\t\t\tcolor \u003d self.view.custom.colors[i]\n#\t\t\tif color[\u0027pen\u0027] \u003d\u003d pen[\u0027path\u0027]:\n#\t\t\t\tself.view.custom.colors[i][\u0027pen\u0027] \u003d None\n#\t\tpens \u003d [pen for pen in self.view.custom.pens]\n#\t\tpens.remove(pens[event.row])\n#\t\tself.view.custom.pens \u003d pens\n#\t\t\n#\t\ttags \u003d [tag for tag in self.view.custom.tags]\n#\t\ttags.remove(tags[event.row])\n#\t\tself.view.custom.tags \u003d tags\n\t\t\n\telse:\n\t\tself.view.custom.pens[event.row][event.column] \u003d event.value"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Pens"
+                    },
+                    "propConfig": {
+                      "props.columns[0].width": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({view.custom.splitPlots}, 60, 0)"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.pens"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "cells": {
+                        "allowEditOn": "single-click"
+                      },
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "plot",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Plot"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "number",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "visible",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Visible"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": 20
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "color",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Color"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "view",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "Framework/Color Picker/Color Ad Hoc",
+                          "width": 40
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "alias",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Name"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": 40
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "axis",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Axis"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": 40
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "path",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Path"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": 200
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "delete",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Delete"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "boolean",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": ""
+                        }
+                      ],
+                      "pager": {
+                        "bottom": false,
+                        "initialOption": 100
+                      },
+                      "rows": {
+                        "highlight": {
+                          "color": "var(--neutral-10)"
+                        },
+                        "striped": {
+                          "enabled": false
+                        }
+                      },
+                      "selection": {
+                        "enableRowSelection": false
+                      }
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "messageHandlers": [
+                        {
+                          "messageType": "toggleTagHistory",
+                          "pageScope": true,
+                          "script": "\ttoggleTag \u003d payload[\u0027path\u0027]\n\t\t\n\ttogglePen \u003d None\n\tpens \u003d [pen for pen in self.view.custom.pens]\n\tfor pen in pens:\n\t\tif pen[\u0027path\u0027] \u003d\u003d toggleTag:\n\t\t\ttogglePen \u003d pen\n\t\n\tif togglePen:\n\t\tfor i in range(len(self.view.custom.colors)):\n\t\t\tcolor \u003d self.view.custom.colors[i]\n\t\t\tif color[\u0027pen\u0027] \u003d\u003d togglePen[\u0027path\u0027]:\n\t\t\t\tself.view.custom.colors[i][\u0027pen\u0027] \u003d None\n\t\t\n\t\t# remove axis if this is the only pen using it \n\t\taxisInUse \u003d 0\n\t\tfor pen in pens:\n\t\t\tif pen[\u0027axis\u0027] \u003d\u003d togglePen[\u0027axis\u0027]:\n\t\t\t\taxisInUse +\u003d 1\n\t\tif axisInUse \u003d\u003d 1:\n\t\t\tsystem.perspective.sendMessage(\u0027removeAxis\u0027, {\u0027axis\u0027: togglePen[\u0027axis\u0027]})\n\t\tpens.remove(togglePen)\n\t\tself.view.custom.pens \u003d pens\n\t\t\n\t\ttags \u003d [tag for tag in self.view.custom.tags]\n\t\tif toggleTag in tags:\n\t\t\ttags.remove(toggleTag)\n\t\t\tself.view.custom.tags \u003d tags",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.table"
+                  },
+                  {
+                    "custom": {
+                      "rowClick": {
+                        "row": 0,
+                        "rowIndex": 0,
+                        "value": {
+                          "LABEL": "LABEL",
+                          "LOWERBOUND": 0,
+                          "UPPERBOUND": 100
+                        }
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onEditCellCommit": {
+                          "config": {
+                            "script": "\tif event.column \u003d\u003d \u0027delete\u0027:\n\t\taxes \u003d [axis for axis in self.view.custom.axes]\n\t\taxes.remove(axes[event.row])\n\t\tself.view.custom.axes \u003d axes\n\telif event.column \u003d\u003d \u0027singleAxis\u0027:\n\t\t# only allowed to select new single axis\n\t\tif event.value:\n\t\t\t# set the new value first, so that the time series chart will not momentarily flash all axes\n\t\t\tself.view.custom.axes[event.row][event.column] \u003d event.value\n\t\t\tfor i in range(len(self.view.custom.axes)):\n\t\t\t\tif i !\u003d event.row:\n\t\t\t\t\tself.view.custom.axes[i][event.column] \u003d False\n\t\t\t\n\telse:\n\t\tif event.column \u003d\u003d \u0027name\u0027:\n\t\t\toldAxis \u003d self.view.custom.axes[event.row][event.column]\n\n\t\tself.view.custom.axes[event.row][event.column] \u003d event.value\n\t\t\n\t\t# delay introduce to work around bug\n\t\t#18:19:55.285 [Browser Events Thread] INFO Perspective.Designer.BrowserConsole - TypeError: r.props.yScale is not a function\n\t\t#18:19:55.286 [Browser Events Thread] INFO Perspective.Designer.BrowserConsole - ui.ErrorBoundary: Component error caught in error boundary: undefined\n\t\n\t\timport time\n\t\ttime.sleep(0.1)\n\t\n\t\tif event.column \u003d\u003d \u0027name\u0027:\n\t\t\tfor i in range(len(self.view.custom.pens)):\n\t\t\t\tif self.view.custom.pens[i][\u0027axis\u0027] \u003d\u003d oldAxis:\n\t\t\t\t\tself.view.custom.pens[i][\u0027axis\u0027] \u003d event.value\n\t\n\t\t\n\t\n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Axes"
+                    },
+                    "position": {
+                      "tabIndex": 1
+                    },
+                    "propConfig": {
+                      "props.columns[0].editable": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({view.custom.combineAxes}, true, false)"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.columns[0].width": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({view.custom.combineAxes}, 60, 0)"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.axes"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "cells": {
+                        "allowEditOn": "single-click"
+                      },
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "field": "singleAxis",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Visible"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "boolean",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "name",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Name"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": 250
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "autoRange",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Auto Range"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "boolean",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": 120
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "lowerBound",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Lower Bound"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "number",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": 140
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "upperBound",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Upper Bound"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "number",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": 140
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "delete",
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Delete"
+                          },
+                          "justify": "auto",
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "#62A3F6",
+                              "linecap": "round",
+                              "width": 5
+                            },
+                            "max": 100,
+                            "track": {
+                              "color": "#DADADA",
+                              "linecap": "round",
+                              "width": 2
+                            },
+                            "value": {
+                              "color": "#7D7D7D",
+                              "show": true
+                            }
+                          },
+                          "render": "boolean",
+                          "resizable": true,
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "#2196F3",
+                              "unselected": "#FFFFFF"
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "width": ""
+                        }
+                      ],
+                      "pager": {
+                        "bottom": false,
+                        "initialOption": 100
+                      },
+                      "rows": {
+                        "highlight": {
+                          "color": "#E9F6FE"
+                        },
+                        "striped": {
+                          "enabled": false
+                        }
+                      },
+                      "selection": {
+                        "enableRowSelection": false
+                      }
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "messageHandlers": [
+                        {
+                          "messageType": "removeAxis",
+                          "pageScope": true,
+                          "script": "\taxisName \u003d payload[\u0027axis\u0027]\n\t\t\n\taxes \u003d [axis for axis in self.view.custom.axes]\n\taxisToRemove \u003d None\n\tfor axis in axes:\n\t\tif axis[\u0027name\u0027] \u003d\u003d axisName:\n\t\t\taxisToRemove \u003d axis \n\taxes.remove(axisToRemove)\n\tself.view.custom.axes \u003d axes",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.table"
+                  }
+                ],
+                "meta": {
+                  "name": "TabContainer"
+                },
+                "position": {
+                  "basis": "150px",
+                  "grow": 1
+                },
+                "props": {
+                  "style": {
+                    "borderColor": "#303030",
+                    "borderStyle": "solid",
+                    "borderWidth": "0px 1px 1px 1px"
+                  },
+                  "tabs": [
+                    "Pens",
+                    "Axes"
+                  ]
+                },
+                "type": "ia.container.tab"
+              }
+            ],
+            "meta": {
+              "name": "Chart"
+            },
+            "position": {
+              "basis": "400px",
+              "grow": 10
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onMouseEnter": {
+              "config": {
+                "script": "\tself.view.custom.tooltip \u003d \u0027\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Content"
+        },
+        "position": {
+          "basis": "400px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "AdHocTrends/Content"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "scripts": {
+      "customMethods": [],
+      "messageHandlers": [
+        {
+          "messageType": "color-clicked",
+          "pageScope": true,
+          "script": "\tif \u0027rowIndex\u0027 in payload and payload[\u0027rowIndex\u0027] \u003e\u003d 0:\n\t\tsystem.perspective.togglePopup(\u0027colorPicker\u0027, \u0027Framework/Color Picker/Color Picker Ad Hoc\u0027, {\u0027rowIndex\u0027: payload[\u0027rowIndex\u0027], \u0027color\u0027: payload[\u0027color\u0027]}, \u0027Select a Color\u0027)\n\telse:\n\t\tpass",
+          "sessionScope": false,
+          "viewScope": false
+        },
+        {
+          "messageType": "color-selected",
+          "pageScope": true,
+          "script": "\tif \u0027rowIndex\u0027 in payload and \\\n\t  payload[\u0027rowIndex\u0027] \u003e\u003d 0 and \\\n\t  payload[\u0027rowIndex\u0027] \u003c len(self.view.custom.pens):\n\t\tself.view.custom.pens[payload[\u0027rowIndex\u0027]].color \u003d payload[\u0027color\u0027]\n\t\tfor color in self.view.custom.colors:\n\t\t\tif color.pen \u003d\u003d self.view.custom.pens[payload[\u0027rowIndex\u0027]].path:\n\t\t\t\tcolor.pen \u003d None\n\t\t\t\tbreak",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

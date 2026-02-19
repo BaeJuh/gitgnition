@@ -1,0 +1,199 @@
+{
+  "custom": {},
+  "params": {},
+  "propConfig": {
+    "params.feature": {
+      "paramDirection": "input"
+    },
+    "params.key": {
+      "paramDirection": "input"
+    },
+    "params.tier1": {
+      "paramDirection": "input"
+    },
+    "params.tier2": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.params.messageAction.payload.tagPath": {
+            "binding": {
+              "config": {
+                "path": "session.custom.tagPath"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.text": {
+            "binding": {
+              "config": {
+                "expression": "if({session.custom.tagPath} \u003d \"\", \"Root\", {session.custom.tagPath})"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "icon": "folder",
+            "messageAction": {
+              "icon": "refresh",
+              "messageType": "tag-refresh",
+              "payload": {}
+            }
+          },
+          "path": "Tag Dashboard/Title",
+          "style": {
+            "marginBottom": "10px"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "path": "session.custom.tagPath"
+              },
+              "transforms": [
+                {
+                  "code": "\tret \u003d [{\"display\":\"Root\", \"tagPath\":\"\"}]\n\t\n\tif value !\u003d None and len(value) \u003e 0:\n\t\tbracketPos \u003d value.index(\"]\")+1\n\t\ttagProvider \u003d value[0:bracketPos]\n\t\tpaths \u003d value[bracketPos:].split(\"/\")\n\t\t\n\t\tparentPath \u003d tagProvider\n\t\tret.append({\"display\":\" / \" + tagProvider[1:-1], \"tagPath\":parentPath})\n\t\t\n\t\tfirst \u003d True\n\t\tfor path in paths:\n\t\t\tif path !\u003d \"\":\n\t\t\t\tparentPath +\u003d (\"/\" if not first else \"\") + path\n\t\t\t\tret.append({\"display\":\" / \" + path, \"tagPath\":parentPath})\n\t\t\tfirst \u003d False\n\t\n\treturn ret",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "elementPosition": {
+            "basis": "auto",
+            "grow": 0,
+            "shrink": 0
+          },
+          "elementStyle": {
+            "marginRight": "2px"
+          },
+          "loading": {
+            "order": "with-parent"
+          },
+          "path": "Tag Dashboard/Breadcrumb",
+          "style": {
+            "classes": "TagDashboard/Page/Margins",
+            "marginBottom": "10px"
+          },
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false
+        },
+        "type": "ia.display.flex-repeater"
+      },
+      {
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "loading": {
+            "order": "with-parent"
+          },
+          "path": "Tag Dashboard/Table/Header",
+          "style": {
+            "classes": "TagDashboard/Page/Margins",
+            "marginBottom": "5px"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "FlexRepeater_0"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "path": "session.custom.tagPath"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn TagDashboard.getTags(self, value)",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "elementPosition": {
+            "basis": "auto",
+            "grow": 0,
+            "shrink": 0
+          },
+          "elementStyle": {
+            "marginBottom": "5px"
+          },
+          "loading": {
+            "order": "with-parent"
+          },
+          "path": "Tag Dashboard/Table/Row",
+          "style": {
+            "classes": "TagDashboard/Page/Margins",
+            "marginBottom": "5px"
+          },
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "tag-refresh",
+              "pageScope": true,
+              "script": "\tself.refreshBinding(\"props.instances\")",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "TagDashboard/Page/Page"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

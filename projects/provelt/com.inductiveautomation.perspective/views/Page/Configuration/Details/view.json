@@ -1,0 +1,1487 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 946,
+      "width": 321
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "Name"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Name"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "{session.custom.dashboard.objects.edit.action.action} \u003d \"add\""
+              },
+              "type": "expr"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "session.custom.dashboard.objects.edit.name"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "Form/Field"
+          }
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "Spacer1"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_2"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "Parent"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Parent"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "custom.id": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "session.custom.dashboard.objects.edit.parent_id"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "session.custom.dashboard.objects.edit.parent_path"
+                  },
+                  "transforms": [
+                    {
+                      "expression": "coalesce({value}, \"\")",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "property"
+                },
+                "onChange": {
+                  "enabled": null,
+                  "script": "\tif origin \u003d\u003d \"Browser\":\n\t\tif currentValue.value \u003d\u003d \"\":\n\t\t\tself.session.custom.dashboard.objects.edit.parent_path \u003d None\n\t\telse:\n\t\t\tself.session.custom.dashboard.objects.edit.parent_path \u003d currentValue.value"
+                }
+              }
+            },
+            "props": {
+              "enabled": false,
+              "style": {
+                "classes": "Form/Field"
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "messageHandlers": [
+                {
+                  "messageType": "parent-selection",
+                  "pageScope": true,
+                  "script": "\tid \u003d payload[\"id\"]\n\tpath \u003d payload[\"path\"]\n\t\n\tself.custom.id \u003d id\n\tself.props.text \u003d path",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "draggable": false,
+                    "id": "dashboard-tree",
+                    "modal": true,
+                    "overlayDismiss": true,
+                    "resizable": true,
+                    "showCloseIcon": true,
+                    "title": "Choose Parent",
+                    "type": "open",
+                    "viewParams": {
+                      "id": "{/root.custom.id}",
+                      "mode": "select"
+                    },
+                    "viewPath": "Page/Configuration/Dashboard Tree"
+                  },
+                  "scope": "C",
+                  "type": "popup"
+                }
+              }
+            },
+            "meta": {
+              "name": "Search"
+            },
+            "position": {
+              "basis": "24px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "{.../Access/Access.props.controlValue} \u003d 0"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "path": "material/search",
+              "style": {
+                "cursor": "pointer",
+                "marginLeft": "6px"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "Parent"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Spacer2"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "URL"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "URL"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "session.custom.dashboard.objects.edit.url"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "Form/Field"
+          }
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "Spacer3"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_1"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "Icon"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "EmbeddedView"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.params.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "session.custom.dashboard.objects.edit.icon"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "configuration": {}
+              },
+              "path": "Page/Configuration/Parameter Types/Icon"
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Spacer4"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_3"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "Default Dashboard"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Default"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "{../Access/Access.props.controlValue} \u003d 0"
+              },
+              "type": "expr"
+            }
+          },
+          "props.selected": {
+            "binding": {
+              "config": {
+                "expression": "if({../Access/Access.props.controlValue} \u003d 0, {session.custom.dashboard.objects.edit.default}, false)"
+              },
+              "type": "expr"
+            },
+            "onChange": {
+              "enabled": null,
+              "script": "\tif origin \u003d\u003d \"Browser\":\n\t\tself.session.custom.dashboard.objects.edit.default \u003d currentValue.value"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "if({this.props.selected}, \"Yes\", \"No\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "inputStyle": {
+            "classes": "Form/Field"
+          }
+        },
+        "type": "ia.input.checkbox"
+      },
+      {
+        "meta": {
+          "name": "Spacer5"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_7"
+        },
+        "position": {
+          "basis": "20px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "Grid"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Grid"
+            },
+            "position": {
+              "basis": "150px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.controlValue": {
+                "binding": {
+                  "config": {
+                    "path": "session.custom.dashboard.objects.edit.grid"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": null,
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "fixed",
+                          "output": 0
+                        },
+                        {
+                          "input": "stretch",
+                          "output": 1
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                },
+                "onChange": {
+                  "enabled": null,
+                  "script": "\tif origin \u003d\u003d \"Browser\":\n\t\tif currentValue.value:\n\t\t\tself.session.custom.dashboard.objects.edit.grid \u003d \"stretch\"\n\t\telse:\n\t\t\tself.session.custom.dashboard.objects.edit.grid \u003d \"fixed\""
+                }
+              },
+              "props.indicatorValue": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.controlValue"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "orientation": "row",
+              "states": [
+                {
+                  "selectedStyle": {
+                    "backgroundColor": "#AAAAAA",
+                    "classes": ""
+                  },
+                  "text": "Fixed",
+                  "unselectedStyle": {
+                    "classes": ""
+                  },
+                  "value": 0
+                },
+                {
+                  "selectedStyle": {
+                    "backgroundColor": "#AAAAAA",
+                    "classes": ""
+                  },
+                  "text": "Stretch",
+                  "unselectedStyle": {
+                    "classes": ""
+                  },
+                  "value": 1
+                }
+              ]
+            },
+            "type": "ia.input.multi-state-button"
+          }
+        ],
+        "meta": {
+          "name": "Grid"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "paddingBottom": "2px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Spacer10"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Cell Size"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "CellSize"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "session.custom.dashboard.objects.edit.cellSize"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "format": "0,0",
+                  "style": {
+                    "classes": "Form/Field"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "CellSize"
+            },
+            "position": {
+              "basis": "75px",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginRight": "6px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "CellSize"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{../Grid/Grid.props.controlValue} \u003d 0"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Spacer9"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "# of Grid Rows"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Rows"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "session.custom.dashboard.objects.edit.gridRows"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "format": "0,0",
+                  "style": {
+                    "classes": "Form/Field"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "Rows"
+            },
+            "position": {
+              "basis": "70px"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginRight": "6px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Row Gutter"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "RowGutter"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "session.custom.dashboard.objects.edit.gridRowGutterSize"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "format": "0,0",
+                  "style": {
+                    "classes": "Form/Field"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "RowGutter"
+            },
+            "position": {
+              "basis": "70px"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginRight": "6px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "# of Grid Columns"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Cols"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "session.custom.dashboard.objects.edit.gridCols"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "format": "0,0",
+                  "style": {
+                    "classes": "Form/Field"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "Cols"
+            },
+            "position": {
+              "basis": "70px"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginRight": "6px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Column Gutter"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "ColGutter"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "session.custom.dashboard.objects.edit.gridColGutterSize"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "format": "0,0.########",
+                  "style": {
+                    "classes": "Form/Field"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "ColGutter"
+            },
+            "position": {
+              "basis": "70px"
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "GridConfig"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Spacer6"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_5"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "Access"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Access"
+            },
+            "position": {
+              "basis": "150px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.controlValue": {
+                "binding": {
+                  "config": {
+                    "path": "session.custom.dashboard.objects.edit.public"
+                  },
+                  "transforms": [
+                    {
+                      "expression": "if({value}, 1, 0)",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "property"
+                },
+                "onChange": {
+                  "enabled": null,
+                  "script": "\tif origin \u003d\u003d \"Browser\":\n\t\tif currentValue.value:\n\t\t\tself.session.custom.dashboard.objects.edit.public \u003d True\n\t\t\tself.session.custom.dashboard.objects.edit.parent_id \u003d None\n\t\t\tself.session.custom.dashboard.objects.edit.parent_path \u003d None\n\t\t\tself.session.custom.dashboard.objects.edit.default \u003d False\n\t\telse:\n\t\t\tself.session.custom.dashboard.objects.edit.public \u003d False"
+                }
+              },
+              "props.indicatorValue": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.controlValue"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "orientation": "row",
+              "states": [
+                {
+                  "selectedStyle": {
+                    "backgroundColor": "#AAAAAA",
+                    "classes": ""
+                  },
+                  "text": "Public",
+                  "unselectedStyle": {
+                    "classes": ""
+                  },
+                  "value": 1
+                },
+                {
+                  "selectedStyle": {
+                    "backgroundColor": "#AAAAAA",
+                    "classes": ""
+                  },
+                  "text": "Private",
+                  "unselectedStyle": {
+                    "classes": ""
+                  },
+                  "value": 0
+                }
+              ]
+            },
+            "type": "ia.input.multi-state-button"
+          }
+        ],
+        "meta": {
+          "name": "Access"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "paddingBottom": "2px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Spacer7"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_6"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "GPS"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "GPS_Enabled"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.selected": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "session.custom.dashboard.objects.edit.gps.enabled"
+              },
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "if({this.props.selected}, \"Enabled\", \"Disabled\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "inputStyle": {
+            "classes": "Form/Field"
+          }
+        },
+        "type": "ia.input.checkbox"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Lat"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Lat"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "..../GPS_Enabled.props.selected"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "session.custom.dashboard.objects.edit.gps.lat"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "format": "0,0.########",
+                  "style": {
+                    "classes": "Form/Field"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "Lat"
+            },
+            "position": {
+              "basis": "80px",
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginRight": "6px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Lon"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Lon"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "..../GPS_Enabled.props.selected"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "session.custom.dashboard.objects.edit.gps.lon"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "format": "0,0.########",
+                  "style": {
+                    "classes": "Form/Field"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "Lon"
+            },
+            "position": {
+              "basis": "80px",
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginRight": "6px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Radius (ft)"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Radius"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": "..../GPS_Enabled.props.selected"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "session.custom.dashboard.objects.edit.gps.radius"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "format": "0,0.########",
+                  "style": {
+                    "classes": "Form/Field"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "Radius"
+            },
+            "position": {
+              "basis": "80px",
+              "grow": 1
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "GPS"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "marginLeft": "10px"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Spacer8"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Spacer11"
+        },
+        "position": {
+          "basis": "8px",
+          "shrink": 0
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_8"
+        },
+        "position": {
+          "basis": "20px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          },
+          "text": "Mobile-Responsive Breakpoints"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onEditCellCommit": {
+                  "config": {
+                    "script": "\ttry:\n\t\tif event.row \u003d\u003d 0:\n\t\t\tdashboard.showMessage(\"Cannot modify the default breakpoint\")\n\t\telse:\n\t\t\tvalue \u003d int(event.value)\n\t\t\tfor i in range(len(self.props.data)):\n\t\t\t\tif i !\u003d event.row and int(self.props.data[i][\"size\"]) \u003d\u003d value:\n\t\t\t\t\tdashboard.showMessage(\"Breakpoint \u0027%s\u0027 already exists\" % value)\n\t\t\t\t\treturn\n\t\t\t\n\t\t\toldValue \u003d self.props.data[event.rowIndex][\"size\"]\n\t\t\tsizes \u003d self.session.custom.dashboard.objects.edit.sizes\n\t\t\tfor i in range(len(sizes)):\n\t\t\t\tif sizes[i] \u003d\u003d oldValue:\n\t\t\t\t\tsizes[i] \u003d value\n\t\t\t\t\tbreak\n\t\t\t\t\t\n\t\t\tfor widget in self.session.custom.dashboard.objects.edit.widgets:\n\t\t\t\twidget[\"sizes\"][value] \u003d widget[\"sizes\"][oldValue]\n\t\t\t\t\t\n\t\t\tself.props.selection.selectedRow \u003d None\n\texcept:\n\t\tdashboard.showMessage(\"Please enter in a number\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Table"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "path": "session.custom.dashboard.objects.edit.sizes"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn sorted([{\"size\":size} for size in value], key \u003d lambda i: i[\"size\"])",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": true,
+                  "field": "size",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Breakpoint"
+                  },
+                  "justify": "auto",
+                  "number": "value",
+                  "numberFormat": "0,0",
+                  "progressBar": {
+                    "bar": {
+                      "color": "#62A3F6",
+                      "linecap": "round",
+                      "width": 5
+                    },
+                    "max": 100,
+                    "track": {
+                      "color": "#DADADA",
+                      "linecap": "round",
+                      "width": 2
+                    },
+                    "value": {
+                      "color": "#7D7D7D",
+                      "show": true
+                    }
+                  },
+                  "render": "number",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "#2196F3",
+                      "unselected": "#FFFFFF"
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                }
+              ],
+              "pager": {
+                "bottom": false
+              },
+              "virtualized": false
+            },
+            "type": "ia.display.table"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tdata \u003d [{\"size\":r[\"size\"]} for r in self.parent.parent.getChild(\"Table\").props.data]\n\tif len(data) \u003c 4:\n\t\tmaxSize \u003d 0\n\t\tfor r in data:\n\t\t\tif r[\"size\"] \u003e maxSize:\n\t\t\t\tmaxSize \u003d r[\"size\"]\n\t\t\n\t\tnewSize \u003d maxSize + 100\n\t\tsizes \u003d self.session.custom.dashboard.objects.edit.sizes\n\t\tsizes.append(newSize)\n\t\t\n\t\tfor widget in self.session.custom.dashboard.objects.edit.widgets:\n\t\t\twidget[\"sizes\"][newSize] \u003d widget[\"sizes\"][maxSize]\n\t\t\n\t\tself.parent.parent.getChild(\"Table\").props.selection.selectedRow \u003d None\n\telse:\n\t\tdashboard.showMessage(\"You are only allowed 4 breakpoints\")"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Add"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "material/add",
+                  "style": {
+                    "cursor": "pointer"
+                  }
+                },
+                "type": "ia.display.icon"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tif self.parent.parent.getChild(\"Table\").props.selection.selectedRow !\u003d None:\n\t\tif self.parent.parent.getChild(\"Table\").props.selection.selectedRow \u003d\u003d 0:\n\t\t\tdashboard.showMessage(\"Cannot remove the default breakpoint\")\n\t\telse:\n\t\t\tsizes \u003d self.session.custom.dashboard.objects.edit.sizes\n\t\t\tsize \u003d self.parent.parent.getChild(\"Table\").props.selection.data[0].size\n\t\t\tsizes.remove(size)\n\t\t\t\n\t\t\tself.parent.parent.getChild(\"Table\").props.selection.selectedRow \u003d None\n\telse:\n\t\tdashboard.showMessage(\"Please select a breakpoint to remove\")"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Add_0"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "material/remove",
+                  "style": {
+                    "cursor": "pointer"
+                  }
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "basis": "32px",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Sizes"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "paddingBottom": "2px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.id": {
+        "binding": {
+          "config": {
+            "path": "session.custom.dashboard.objects.edit.id"
+          },
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 372,
+      "width": 379
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label",
+                "margin": "0px",
+                "textAlign": "center"
+              },
+              "text": "Total Devices"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "basis": "40px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Devices/DeviceCount"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#DFDEDE",
+                "borderRadius": "4px",
+                "classes": "MQTT/Value",
+                "color": "#333333",
+                "fontSize": "18px",
+                "marginBottom": "10px",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_0"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label",
+                "margin": "0px",
+                "textAlign": "center"
+              },
+              "text": "Online Devices"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value_0"
+            },
+            "position": {
+              "basis": "40px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Devices/DevicesOnline"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#DFDEDE",
+                "borderRadius": "4px",
+                "classes": "MQTT/Value",
+                "color": "#00AC00",
+                "fontSize": "18px",
+                "marginBottom": "10px",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_1"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label",
+                "margin": "0px",
+                "textAlign": "center"
+              },
+              "text": "Offline Devices"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value_1"
+            },
+            "position": {
+              "basis": "40px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Devices/DevicesOffline"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#DFDEDE",
+                "borderRadius": "4px",
+                "classes": "MQTT/Value",
+                "color": "#D90000",
+                "fontSize": "18px",
+                "marginBottom": "10px",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "110px",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label",
+                "margin": "0px",
+                "textAlign": "center"
+              },
+              "text": "Total Nodes"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value"
+            },
+            "position": {
+              "basis": "40px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Edge Nodes/NodeUnitCount"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#DFDEDE",
+                "borderRadius": "4px",
+                "classes": "MQTT/Value",
+                "color": "#333333",
+                "fontSize": "18px",
+                "marginBottom": "10px",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_0"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label",
+                "margin": "0px",
+                "textAlign": "center"
+              },
+              "text": "Online Nodes"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value_0"
+            },
+            "position": {
+              "basis": "40px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Edge Nodes/NodesOnline"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#DFDEDE",
+                "borderRadius": "4px",
+                "classes": "MQTT/Value",
+                "color": "#00AC00",
+                "fontSize": "18px",
+                "marginBottom": "10px",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_1"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "MQTT/Label",
+                "margin": "0px",
+                "textAlign": "center"
+              },
+              "text": "Offline Nodes"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Value_1"
+            },
+            "position": {
+              "basis": "40px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "[MQTT Engine]Engine Info/Edge Nodes/NodesOffline"
+                  },
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#DFDEDE",
+                "borderRadius": "4px",
+                "classes": "MQTT/Value",
+                "color": "#D90000",
+                "fontSize": "18px",
+                "marginBottom": "10px",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "basis": "110px",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginLeft": "10px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "justify": "center",
+      "wrap": "wrap"
+    },
+    "type": "ia.container.flex"
+  }
+}
